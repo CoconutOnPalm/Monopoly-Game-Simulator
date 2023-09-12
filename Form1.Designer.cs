@@ -165,7 +165,6 @@
             this.playerNameTextBox5 = new System.Windows.Forms.TextBox();
             this.playerNameTextBox6 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.startMoneyTB1 = new System.Windows.Forms.TextBox();
             this.player2Button = new System.Windows.Forms.RadioButton();
             this.player3Button = new System.Windows.Forms.RadioButton();
             this.player4Button = new System.Windows.Forms.RadioButton();
@@ -177,6 +176,9 @@
             this.includeCheckBox3 = new System.Windows.Forms.CheckBox();
             this.includeCheckBox4 = new System.Windows.Forms.CheckBox();
             this.includeCheckBox6 = new System.Windows.Forms.CheckBox();
+            this.startMoneyTB1 = new System.Windows.Forms.TextBox();
+            this.simSettingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.maxDebtLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.orangePanel3.SuspendLayout();
             this.orangePanel2.SuspendLayout();
@@ -222,6 +224,7 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.playerManagerGroupBox.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
+            this.simSettingsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -1554,7 +1557,7 @@
             // 
             this.selectWholeStreet.BackColor = System.Drawing.SystemColors.Control;
             this.selectWholeStreet.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.selectWholeStreet.Location = new System.Drawing.Point(453, 466);
+            this.selectWholeStreet.Location = new System.Drawing.Point(6, 510);
             this.selectWholeStreet.Name = "selectWholeStreet";
             this.selectWholeStreet.Padding = new System.Windows.Forms.Padding(6, 0, 0, 0);
             this.selectWholeStreet.Size = new System.Drawing.Size(281, 35);
@@ -1834,6 +1837,7 @@
             this.tableLayoutPanel6.Controls.Add(this.startDebtTB4, 3, 4);
             this.tableLayoutPanel6.Controls.Add(this.player1Button, 0, 1);
             this.tableLayoutPanel6.Controls.Add(this.startMoneyTB4, 2, 4);
+            this.tableLayoutPanel6.Controls.Add(this.startMoneyTB1, 2, 1);
             this.tableLayoutPanel6.Controls.Add(this.startDebtTB3, 3, 3);
             this.tableLayoutPanel6.Controls.Add(this.startMoneyTB3, 2, 3);
             this.tableLayoutPanel6.Controls.Add(this.startDebtTB2, 3, 2);
@@ -1848,7 +1852,6 @@
             this.tableLayoutPanel6.Controls.Add(this.playerNameTextBox5, 1, 5);
             this.tableLayoutPanel6.Controls.Add(this.playerNameTextBox6, 1, 6);
             this.tableLayoutPanel6.Controls.Add(this.label2, 1, 0);
-            this.tableLayoutPanel6.Controls.Add(this.startMoneyTB1, 2, 1);
             this.tableLayoutPanel6.Controls.Add(this.player2Button, 0, 2);
             this.tableLayoutPanel6.Controls.Add(this.player3Button, 0, 3);
             this.tableLayoutPanel6.Controls.Add(this.player4Button, 0, 4);
@@ -1892,45 +1895,65 @@
             this.startDebtTB6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startDebtTB6.Location = new System.Drawing.Point(269, 201);
+            this.startDebtTB6.MaxLength = 4;
             this.startDebtTB6.Name = "startDebtTB6";
             this.startDebtTB6.Size = new System.Drawing.Size(51, 27);
             this.startDebtTB6.TabIndex = 18;
+            this.startDebtTB6.Tag = "5";
+            this.startDebtTB6.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startDebtTB6.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // startMoneyTB6
             // 
             this.startMoneyTB6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startMoneyTB6.Location = new System.Drawing.Point(212, 201);
+            this.startMoneyTB6.MaxLength = 6;
             this.startMoneyTB6.Name = "startMoneyTB6";
             this.startMoneyTB6.Size = new System.Drawing.Size(51, 27);
             this.startMoneyTB6.TabIndex = 17;
+            this.startMoneyTB6.Tag = "5";
+            this.startMoneyTB6.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startMoneyTB6.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // startDebtTB5
             // 
             this.startDebtTB5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startDebtTB5.Location = new System.Drawing.Point(269, 168);
+            this.startDebtTB5.MaxLength = 4;
             this.startDebtTB5.Name = "startDebtTB5";
             this.startDebtTB5.Size = new System.Drawing.Size(51, 27);
             this.startDebtTB5.TabIndex = 15;
+            this.startDebtTB5.Tag = "4";
+            this.startDebtTB5.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startDebtTB5.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // startMoneyTB5
             // 
             this.startMoneyTB5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startMoneyTB5.Location = new System.Drawing.Point(212, 168);
+            this.startMoneyTB5.MaxLength = 6;
             this.startMoneyTB5.Name = "startMoneyTB5";
             this.startMoneyTB5.Size = new System.Drawing.Size(51, 27);
             this.startMoneyTB5.TabIndex = 14;
+            this.startMoneyTB5.Tag = "4";
+            this.startMoneyTB5.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startMoneyTB5.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // startDebtTB4
             // 
             this.startDebtTB4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startDebtTB4.Location = new System.Drawing.Point(269, 135);
+            this.startDebtTB4.MaxLength = 4;
             this.startDebtTB4.Name = "startDebtTB4";
             this.startDebtTB4.Size = new System.Drawing.Size(51, 27);
             this.startDebtTB4.TabIndex = 12;
+            this.startDebtTB4.Tag = "3";
+            this.startDebtTB4.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startDebtTB4.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // player1Button
             // 
@@ -1954,54 +1977,78 @@
             this.startMoneyTB4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startMoneyTB4.Location = new System.Drawing.Point(212, 135);
+            this.startMoneyTB4.MaxLength = 6;
             this.startMoneyTB4.Name = "startMoneyTB4";
             this.startMoneyTB4.Size = new System.Drawing.Size(51, 27);
             this.startMoneyTB4.TabIndex = 11;
+            this.startMoneyTB4.Tag = "3";
+            this.startMoneyTB4.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startMoneyTB4.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // startDebtTB3
             // 
             this.startDebtTB3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startDebtTB3.Location = new System.Drawing.Point(269, 102);
+            this.startDebtTB3.MaxLength = 4;
             this.startDebtTB3.Name = "startDebtTB3";
             this.startDebtTB3.Size = new System.Drawing.Size(51, 27);
             this.startDebtTB3.TabIndex = 9;
+            this.startDebtTB3.Tag = "2";
+            this.startDebtTB3.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startDebtTB3.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // startMoneyTB3
             // 
             this.startMoneyTB3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startMoneyTB3.Location = new System.Drawing.Point(212, 102);
+            this.startMoneyTB3.MaxLength = 6;
             this.startMoneyTB3.Name = "startMoneyTB3";
             this.startMoneyTB3.Size = new System.Drawing.Size(51, 27);
             this.startMoneyTB3.TabIndex = 8;
+            this.startMoneyTB3.Tag = "2";
+            this.startMoneyTB3.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startMoneyTB3.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // startDebtTB2
             // 
             this.startDebtTB2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startDebtTB2.Location = new System.Drawing.Point(269, 69);
+            this.startDebtTB2.MaxLength = 4;
             this.startDebtTB2.Name = "startDebtTB2";
             this.startDebtTB2.Size = new System.Drawing.Size(51, 27);
             this.startDebtTB2.TabIndex = 6;
+            this.startDebtTB2.Tag = "1";
+            this.startDebtTB2.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startDebtTB2.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // startMoneyTB2
             // 
             this.startMoneyTB2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startMoneyTB2.Location = new System.Drawing.Point(212, 69);
+            this.startMoneyTB2.MaxLength = 6;
             this.startMoneyTB2.Name = "startMoneyTB2";
             this.startMoneyTB2.Size = new System.Drawing.Size(51, 27);
             this.startMoneyTB2.TabIndex = 5;
+            this.startMoneyTB2.Tag = "1";
+            this.startMoneyTB2.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startMoneyTB2.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // startDebtTB1
             // 
             this.startDebtTB1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startDebtTB1.Location = new System.Drawing.Point(269, 36);
+            this.startDebtTB1.MaxLength = 4;
             this.startDebtTB1.Name = "startDebtTB1";
             this.startDebtTB1.Size = new System.Drawing.Size(51, 27);
             this.startDebtTB1.TabIndex = 3;
+            this.startDebtTB1.Tag = "0";
+            this.startDebtTB1.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startDebtTB1.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
             // label4
             // 
@@ -2089,15 +2136,6 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // startMoneyTB1
-            // 
-            this.startMoneyTB1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.startMoneyTB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startMoneyTB1.Location = new System.Drawing.Point(212, 36);
-            this.startMoneyTB1.Name = "startMoneyTB1";
-            this.startMoneyTB1.Size = new System.Drawing.Size(51, 27);
-            this.startMoneyTB1.TabIndex = 2;
             // 
             // player2Button
             // 
@@ -2257,11 +2295,45 @@
             this.includeCheckBox6.UseVisualStyleBackColor = true;
             this.includeCheckBox6.CheckedChanged += new System.EventHandler(this.includeCheckBox6_CheckedChanged);
             // 
+            // startMoneyTB1
+            // 
+            this.startMoneyTB1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.startMoneyTB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.startMoneyTB1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.startMoneyTB1.Location = new System.Drawing.Point(212, 36);
+            this.startMoneyTB1.MaxLength = 6;
+            this.startMoneyTB1.Name = "startMoneyTB1";
+            this.startMoneyTB1.Size = new System.Drawing.Size(51, 27);
+            this.startMoneyTB1.TabIndex = 2;
+            this.startMoneyTB1.Tag = "0";
+            this.startMoneyTB1.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startMoneyTB1.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
+            // 
+            // simSettingsGroupBox
+            // 
+            this.simSettingsGroupBox.Controls.Add(this.maxDebtLabel);
+            this.simSettingsGroupBox.Location = new System.Drawing.Point(453, 278);
+            this.simSettingsGroupBox.Name = "simSettingsGroupBox";
+            this.simSettingsGroupBox.Size = new System.Drawing.Size(282, 267);
+            this.simSettingsGroupBox.TabIndex = 23;
+            this.simSettingsGroupBox.TabStop = false;
+            this.simSettingsGroupBox.Text = "Simulation Settings";
+            // 
+            // maxDebtLabel
+            // 
+            this.maxDebtLabel.AutoSize = true;
+            this.maxDebtLabel.Location = new System.Drawing.Point(7, 20);
+            this.maxDebtLabel.Name = "maxDebtLabel";
+            this.maxDebtLabel.Size = new System.Drawing.Size(35, 13);
+            this.maxDebtLabel.TabIndex = 0;
+            this.maxDebtLabel.Text = "label6";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1140, 537);
+            this.ClientSize = new System.Drawing.Size(1140, 554);
+            this.Controls.Add(this.simSettingsGroupBox);
             this.Controls.Add(this.playerManagerGroupBox);
             this.Controls.Add(this.propertyManagerGroupBox);
             this.Controls.Add(this.selectWholeStreet);
@@ -2319,6 +2391,8 @@
             this.playerManagerGroupBox.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
+            this.simSettingsGroupBox.ResumeLayout(false);
+            this.simSettingsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -2472,6 +2546,8 @@
         private System.Windows.Forms.CheckBox includeCheckBox3;
         private System.Windows.Forms.CheckBox includeCheckBox4;
         private System.Windows.Forms.CheckBox includeCheckBox6;
+        private System.Windows.Forms.GroupBox simSettingsGroupBox;
+        private System.Windows.Forms.Label maxDebtLabel;
     }
 }
 

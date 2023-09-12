@@ -694,7 +694,7 @@ namespace Monopoly_Game_Simulator
             RefreshPropertyData();
         }
 
-        
+
         private void RefreshPlayerPropertiesListBox()
         {
             playerPropertiesListBox.Items.Clear();
@@ -1196,5 +1196,42 @@ namespace Monopoly_Game_Simulator
         {
             RefreshLevelDropdownList();
         }
+
+
+        public void PlayerSettingsTextBox_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            int playerIndex = Convert.ToInt32(textBox.Tag);
+
+            // is empty
+            if (textBox.Text.Length == 0)
+            {
+                m_gameControlHub.Players[playerIndex].Money = 0;
+                return;
+            }
+
+            // is not text
+            if (System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Please enter only numbers.");
+                textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1);
+                return;
+            }
+
+            m_gameControlHub.Players[playerIndex].Money = Convert.ToInt32(textBox.Text);
+        }
+
+        public void OnPlayerSettingsLeave(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            // is empty
+            if (textBox.Text.Length == 0)
+            {
+                textBox.Text = "0";
+                return;
+            }
+        }
+
     }
 }
