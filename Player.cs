@@ -10,13 +10,14 @@ namespace SimulationLayer
 {
     internal class Player
     {
-        public Player(string name, int money = 1500, int start_debt = 0) 
+        public Player(string name, int money = 1500, int start_debt = 0)
         {
             m_ID = s_global_ID_registry;
             s_global_ID_registry++;
 
             m_name = name;
             m_alive = true;
+            Playing = true;
 
             m_money = money;
             m_debt = start_debt;
@@ -90,8 +91,8 @@ namespace SimulationLayer
 
         public int Money
         {
-            set 
-            { 
+            set
+            {
                 m_money = value;
                 if (m_money < 0)
                     m_alive = false;
@@ -109,7 +110,7 @@ namespace SimulationLayer
                 }
                 else
                 {
-                    m_position = value; 
+                    m_position = value;
                 }
             }
             get { return m_position; }
@@ -122,12 +123,12 @@ namespace SimulationLayer
 
         public bool Playing { get; set; }
 
-        public string Name => m_name;
+        public string Name { get => m_name; set => m_name = value; }
 
         public int Lost_games { get => m_lost_games; set => m_lost_games = value; }
         public int Won_games { get => m_won_games; set => m_won_games = value; }
 
-        private readonly string m_name;
+        private string m_name;
         private int m_position;
         private int m_money;
         private int m_debt;

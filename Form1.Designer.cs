@@ -123,10 +123,6 @@
             this.ClearPropertiesButton = new System.Windows.Forms.Button();
             this.levelSelectorComboBox = new System.Windows.Forms.ComboBox();
             this.maxLevelCheckBox = new System.Windows.Forms.CheckBox();
-            this.simulationEntryData_DataSet = new Monopoly_Game_Simulator.SimulationEntryData_DataSet();
-            this.playerEntryDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.playerEntryDataTableAdapter = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.PlayerEntryDataTableAdapter();
-            this.tableAdapterManager = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager();
             this.propertyManagerGroupBox = new System.Windows.Forms.GroupBox();
             this.tileValueLabel = new System.Windows.Forms.Label();
             this.tileValueTextLabel = new System.Windows.Forms.Label();
@@ -151,6 +147,7 @@
             this.startDebtTB4 = new System.Windows.Forms.TextBox();
             this.player1Button = new System.Windows.Forms.RadioButton();
             this.startMoneyTB4 = new System.Windows.Forms.TextBox();
+            this.startMoneyTB1 = new System.Windows.Forms.TextBox();
             this.startDebtTB3 = new System.Windows.Forms.TextBox();
             this.startMoneyTB3 = new System.Windows.Forms.TextBox();
             this.startDebtTB2 = new System.Windows.Forms.TextBox();
@@ -176,9 +173,23 @@
             this.includeCheckBox3 = new System.Windows.Forms.CheckBox();
             this.includeCheckBox4 = new System.Windows.Forms.CheckBox();
             this.includeCheckBox6 = new System.Windows.Forms.CheckBox();
-            this.startMoneyTB1 = new System.Windows.Forms.TextBox();
             this.simSettingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.simModeGB = new System.Windows.Forms.GroupBox();
+            this.simulatedGamesSelector = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.multiSimRB = new System.Windows.Forms.RadioButton();
+            this.singleSimRB = new System.Windows.Forms.RadioButton();
+            this.startSimulationButton = new System.Windows.Forms.Button();
+            this.moneyPerStartSelector = new System.Windows.Forms.NumericUpDown();
+            this.moneyFromStartLabel = new System.Windows.Forms.Label();
+            this.maxDebtSelector = new System.Windows.Forms.NumericUpDown();
             this.maxDebtLabel = new System.Windows.Forms.Label();
+            this.simulationEntryData_DataSet = new Monopoly_Game_Simulator.SimulationEntryData_DataSet();
+            this.playerEntryDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.playerEntryDataTableAdapter = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.PlayerEntryDataTableAdapter();
+            this.tableAdapterManager = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager();
+            this.playerAccountRecordBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.simulatedDataDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.orangePanel3.SuspendLayout();
             this.orangePanel2.SuspendLayout();
@@ -217,14 +228,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage2)).BeginInit();
             this.publicServicePanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simulationEntryData_DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerEntryDataBindingSource)).BeginInit();
             this.propertyManagerGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileColorPB)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.playerManagerGroupBox.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.simSettingsGroupBox.SuspendLayout();
+            this.simModeGB.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.simulatedGamesSelector)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moneyPerStartSelector)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxDebtSelector)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simulationEntryData_DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerEntryDataBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerAccountRecordBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simulatedDataDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -1624,27 +1641,6 @@
             this.maxLevelCheckBox.UseVisualStyleBackColor = false;
             this.maxLevelCheckBox.CheckedChanged += new System.EventHandler(this.maxLevelCheckBox_CheckedChanged);
             // 
-            // simulationEntryData_DataSet
-            // 
-            this.simulationEntryData_DataSet.DataSetName = "SimulationEntryData_DataSet";
-            this.simulationEntryData_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // playerEntryDataBindingSource
-            // 
-            this.playerEntryDataBindingSource.DataMember = "PlayerEntryData";
-            this.playerEntryDataBindingSource.DataSource = this.simulationEntryData_DataSet;
-            // 
-            // playerEntryDataTableAdapter
-            // 
-            this.playerEntryDataTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.PlayerEntryDataTableAdapter = this.playerEntryDataTableAdapter;
-            this.tableAdapterManager.TileEntryDataTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // propertyManagerGroupBox
             // 
             this.propertyManagerGroupBox.Controls.Add(this.tileValueLabel);
@@ -1985,6 +1981,20 @@
             this.startMoneyTB4.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
             this.startMoneyTB4.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
             // 
+            // startMoneyTB1
+            // 
+            this.startMoneyTB1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.startMoneyTB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.startMoneyTB1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.startMoneyTB1.Location = new System.Drawing.Point(212, 36);
+            this.startMoneyTB1.MaxLength = 6;
+            this.startMoneyTB1.Name = "startMoneyTB1";
+            this.startMoneyTB1.Size = new System.Drawing.Size(51, 27);
+            this.startMoneyTB1.TabIndex = 2;
+            this.startMoneyTB1.Tag = "0";
+            this.startMoneyTB1.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
+            this.startMoneyTB1.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
+            // 
             // startDebtTB3
             // 
             this.startDebtTB3.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -2295,22 +2305,13 @@
             this.includeCheckBox6.UseVisualStyleBackColor = true;
             this.includeCheckBox6.CheckedChanged += new System.EventHandler(this.includeCheckBox6_CheckedChanged);
             // 
-            // startMoneyTB1
-            // 
-            this.startMoneyTB1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.startMoneyTB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startMoneyTB1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.startMoneyTB1.Location = new System.Drawing.Point(212, 36);
-            this.startMoneyTB1.MaxLength = 6;
-            this.startMoneyTB1.Name = "startMoneyTB1";
-            this.startMoneyTB1.Size = new System.Drawing.Size(51, 27);
-            this.startMoneyTB1.TabIndex = 2;
-            this.startMoneyTB1.Tag = "0";
-            this.startMoneyTB1.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
-            this.startMoneyTB1.Leave += new System.EventHandler(this.OnPlayerSettingsLeave);
-            // 
             // simSettingsGroupBox
             // 
+            this.simSettingsGroupBox.Controls.Add(this.simModeGB);
+            this.simSettingsGroupBox.Controls.Add(this.startSimulationButton);
+            this.simSettingsGroupBox.Controls.Add(this.moneyPerStartSelector);
+            this.simSettingsGroupBox.Controls.Add(this.moneyFromStartLabel);
+            this.simSettingsGroupBox.Controls.Add(this.maxDebtSelector);
             this.simSettingsGroupBox.Controls.Add(this.maxDebtLabel);
             this.simSettingsGroupBox.Location = new System.Drawing.Point(453, 278);
             this.simSettingsGroupBox.Name = "simSettingsGroupBox";
@@ -2319,14 +2320,187 @@
             this.simSettingsGroupBox.TabStop = false;
             this.simSettingsGroupBox.Text = "Simulation Settings";
             // 
+            // simModeGB
+            // 
+            this.simModeGB.Controls.Add(this.simulatedGamesSelector);
+            this.simModeGB.Controls.Add(this.label6);
+            this.simModeGB.Controls.Add(this.multiSimRB);
+            this.simModeGB.Controls.Add(this.singleSimRB);
+            this.simModeGB.Location = new System.Drawing.Point(9, 85);
+            this.simModeGB.Name = "simModeGB";
+            this.simModeGB.Size = new System.Drawing.Size(267, 80);
+            this.simModeGB.TabIndex = 5;
+            this.simModeGB.TabStop = false;
+            this.simModeGB.Text = "Simulation Mode";
+            // 
+            // simulatedGamesSelector
+            // 
+            this.simulatedGamesSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.simulatedGamesSelector.Increment = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.simulatedGamesSelector.Location = new System.Drawing.Point(172, 50);
+            this.simulatedGamesSelector.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.simulatedGamesSelector.Name = "simulatedGamesSelector";
+            this.simulatedGamesSelector.Size = new System.Drawing.Size(89, 23);
+            this.simulatedGamesSelector.TabIndex = 6;
+            this.simulatedGamesSelector.Value = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.simulatedGamesSelector.ValueChanged += new System.EventHandler(this.simulatedGamesSelector_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label6.Location = new System.Drawing.Point(6, 50);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(164, 20);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Simulated Games";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // multiSimRB
+            // 
+            this.multiSimRB.Appearance = System.Windows.Forms.Appearance.Button;
+            this.multiSimRB.Checked = true;
+            this.multiSimRB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.multiSimRB.Location = new System.Drawing.Point(136, 20);
+            this.multiSimRB.Name = "multiSimRB";
+            this.multiSimRB.Size = new System.Drawing.Size(125, 24);
+            this.multiSimRB.TabIndex = 1;
+            this.multiSimRB.TabStop = true;
+            this.multiSimRB.Text = "multiple games";
+            this.multiSimRB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.multiSimRB.UseVisualStyleBackColor = true;
+            this.multiSimRB.CheckedChanged += new System.EventHandler(this.multiSimRB_CheckedChanged);
+            // 
+            // singleSimRB
+            // 
+            this.singleSimRB.Appearance = System.Windows.Forms.Appearance.Button;
+            this.singleSimRB.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
+            this.singleSimRB.Location = new System.Drawing.Point(6, 20);
+            this.singleSimRB.Name = "singleSimRB";
+            this.singleSimRB.Size = new System.Drawing.Size(125, 24);
+            this.singleSimRB.TabIndex = 0;
+            this.singleSimRB.Text = "single game";
+            this.singleSimRB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.singleSimRB.UseVisualStyleBackColor = true;
+            this.singleSimRB.CheckedChanged += new System.EventHandler(this.singleSimRB_CheckedChanged);
+            // 
+            // startSimulationButton
+            // 
+            this.startSimulationButton.BackColor = System.Drawing.Color.LightGreen;
+            this.startSimulationButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.startSimulationButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.startSimulationButton.Location = new System.Drawing.Point(66, 191);
+            this.startSimulationButton.Name = "startSimulationButton";
+            this.startSimulationButton.Size = new System.Drawing.Size(150, 45);
+            this.startSimulationButton.TabIndex = 4;
+            this.startSimulationButton.Text = "Simulate";
+            this.startSimulationButton.UseVisualStyleBackColor = false;
+            this.startSimulationButton.Click += new System.EventHandler(this.startSimulationButton_Click);
+            // 
+            // moneyPerStartSelector
+            // 
+            this.moneyPerStartSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.moneyPerStartSelector.Increment = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.moneyPerStartSelector.Location = new System.Drawing.Point(186, 45);
+            this.moneyPerStartSelector.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.moneyPerStartSelector.Name = "moneyPerStartSelector";
+            this.moneyPerStartSelector.Size = new System.Drawing.Size(89, 23);
+            this.moneyPerStartSelector.TabIndex = 3;
+            this.moneyPerStartSelector.Value = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.moneyPerStartSelector.ValueChanged += new System.EventHandler(this.moneyPerStartSelector_ValueChanged);
+            // 
+            // moneyFromStartLabel
+            // 
+            this.moneyFromStartLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.moneyFromStartLabel.Location = new System.Drawing.Point(6, 45);
+            this.moneyFromStartLabel.Name = "moneyFromStartLabel";
+            this.moneyFromStartLabel.Size = new System.Drawing.Size(173, 20);
+            this.moneyFromStartLabel.TabIndex = 2;
+            this.moneyFromStartLabel.Text = "Money for passing Start";
+            this.moneyFromStartLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // maxDebtSelector
+            // 
+            this.maxDebtSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.maxDebtSelector.Increment = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.maxDebtSelector.Location = new System.Drawing.Point(186, 16);
+            this.maxDebtSelector.Maximum = new decimal(new int[] {
+            100000,
+            0,
+            0,
+            0});
+            this.maxDebtSelector.Name = "maxDebtSelector";
+            this.maxDebtSelector.Size = new System.Drawing.Size(89, 23);
+            this.maxDebtSelector.TabIndex = 1;
+            this.maxDebtSelector.Value = new decimal(new int[] {
+            5000,
+            0,
+            0,
+            0});
+            this.maxDebtSelector.ValueChanged += new System.EventHandler(this.maxDebtSelector_ValueChanged);
+            // 
             // maxDebtLabel
             // 
-            this.maxDebtLabel.AutoSize = true;
-            this.maxDebtLabel.Location = new System.Drawing.Point(7, 20);
+            this.maxDebtLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.maxDebtLabel.Location = new System.Drawing.Point(6, 16);
             this.maxDebtLabel.Name = "maxDebtLabel";
-            this.maxDebtLabel.Size = new System.Drawing.Size(35, 13);
+            this.maxDebtLabel.Size = new System.Drawing.Size(173, 20);
             this.maxDebtLabel.TabIndex = 0;
-            this.maxDebtLabel.Text = "label6";
+            this.maxDebtLabel.Text = "Maximum Debt";
+            this.maxDebtLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // simulationEntryData_DataSet
+            // 
+            this.simulationEntryData_DataSet.DataSetName = "SimulationEntryData_DataSet";
+            this.simulationEntryData_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // playerEntryDataBindingSource
+            // 
+            this.playerEntryDataBindingSource.DataMember = "PlayerEntryData";
+            this.playerEntryDataBindingSource.DataSource = this.simulationEntryData_DataSet;
+            // 
+            // playerEntryDataTableAdapter
+            // 
+            this.playerEntryDataTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.PlayerEntryDataTableAdapter = this.playerEntryDataTableAdapter;
+            this.tableAdapterManager.TileEntryDataTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // playerAccountRecordBindingSource
+            // 
+            this.playerAccountRecordBindingSource.DataMember = "PlayerAccountRecord";
+            this.playerAccountRecordBindingSource.DataSource = this.simulatedDataDataSetBindingSource;
             // 
             // MainWindow
             // 
@@ -2382,8 +2556,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage2)).EndInit();
             this.publicServicePanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simulationEntryData_DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerEntryDataBindingSource)).EndInit();
             this.propertyManagerGroupBox.ResumeLayout(false);
             this.propertyManagerGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileColorPB)).EndInit();
@@ -2392,7 +2564,14 @@
             this.tableLayoutPanel6.ResumeLayout(false);
             this.tableLayoutPanel6.PerformLayout();
             this.simSettingsGroupBox.ResumeLayout(false);
-            this.simSettingsGroupBox.PerformLayout();
+            this.simModeGB.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.simulatedGamesSelector)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.moneyPerStartSelector)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.maxDebtSelector)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simulationEntryData_DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerEntryDataBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerAccountRecordBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.simulatedDataDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2548,6 +2727,17 @@
         private System.Windows.Forms.CheckBox includeCheckBox6;
         private System.Windows.Forms.GroupBox simSettingsGroupBox;
         private System.Windows.Forms.Label maxDebtLabel;
+        private System.Windows.Forms.NumericUpDown moneyPerStartSelector;
+        private System.Windows.Forms.Label moneyFromStartLabel;
+        private System.Windows.Forms.NumericUpDown maxDebtSelector;
+        private System.Windows.Forms.Button startSimulationButton;
+        private System.Windows.Forms.GroupBox simModeGB;
+        private System.Windows.Forms.NumericUpDown simulatedGamesSelector;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RadioButton multiSimRB;
+        private System.Windows.Forms.RadioButton singleSimRB;
+        private System.Windows.Forms.BindingSource simulatedDataDataSetBindingSource;
+        private System.Windows.Forms.BindingSource playerAccountRecordBindingSource;
     }
 }
 

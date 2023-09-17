@@ -13,6 +13,13 @@ using System.Windows.Forms;
 
 namespace Monopoly_Game_Simulator
 {
+    enum SimulationMode
+    {
+        SingleSim,
+        MultiSim
+    }
+
+
     public partial class MainWindow : Form
     {
 
@@ -23,6 +30,8 @@ namespace Monopoly_Game_Simulator
         private SimulationLayer.GameControlHub m_gameControlHub;
 
         private SimulationLayer.Player m_selectedPlayer = SimulationLayer.GameControlHub.emptyPlayer;
+
+        private SimulationMode m_simulationMode = new SimulationMode();
 
 
         public MainWindow()
@@ -37,7 +46,7 @@ namespace Monopoly_Game_Simulator
 
             m_selectedPlayer = m_gameControlHub.Players.FirstOrDefault();
 
-            LoadPlayers();
+            LoadPlayerSettingsBox();
             LoadTiles();
 
             // trigger CheckBox.CheckChanged event
@@ -48,6 +57,8 @@ namespace Monopoly_Game_Simulator
 
 
             playerNameLabel.Text = m_selectedPlayer.Name;
+
+            m_simulationMode = SimulationMode.MultiSim;
 
             RefreshSelectedTiles();
             RefreshPlayerPropertiesListBox();
@@ -63,6 +74,60 @@ namespace Monopoly_Game_Simulator
 
 
         private void LoadPlayers()
+        {
+            var player1 = m_gameControlHub.Players[0];
+            var player2 = m_gameControlHub.Players[1];
+            var player3 = m_gameControlHub.Players[2];
+            var player4 = m_gameControlHub.Players[3];
+            var player5 = m_gameControlHub.Players[4];
+            var player6 = m_gameControlHub.Players[5];
+
+            player1.Playing = true;
+            player2.Playing = true;
+            player3.Playing = includeCheckBox3.Checked;
+            player4.Playing = includeCheckBox4.Checked;
+            player5.Playing = includeCheckBox5.Checked;
+            player6.Playing = includeCheckBox6.Checked;
+
+            player1.Name = playerNameTextBox1.Text;
+            player1.Money = Convert.ToInt32(startMoneyTB1.Text);
+            player1.Money = Convert.ToInt32(startDebtTB1.Text);
+
+            player2.Name = playerNameTextBox2.Text;
+            player2.Money = Convert.ToInt32(startMoneyTB2.Text);
+            player2.Money = Convert.ToInt32(startDebtTB2.Text);
+
+            if (player3.Playing)
+            {
+                player3.Name = playerNameTextBox3.Text;
+                player3.Money = Convert.ToInt32(startMoneyTB3.Text);
+                player3.Money = Convert.ToInt32(startDebtTB3.Text);
+            }
+
+            if (player4.Playing)
+            {
+                player4.Name = playerNameTextBox4.Text;
+                player4.Money = Convert.ToInt32(startMoneyTB4.Text);
+                player4.Money = Convert.ToInt32(startDebtTB4.Text);
+            }
+
+            if (player5.Playing)
+            {
+                player5.Name = playerNameTextBox5.Text;
+                player5.Money = Convert.ToInt32(startMoneyTB5.Text);
+                player5.Money = Convert.ToInt32(startDebtTB5.Text);
+            }
+
+            if (player6.Playing)
+            {
+                player6.Name = playerNameTextBox6.Text;
+                player6.Money = Convert.ToInt32(startMoneyTB6.Text);
+                player6.Money = Convert.ToInt32(startDebtTB6.Text);
+            }
+        }
+
+
+        private void LoadPlayerSettingsBox()
         {
             var Players = m_gameControlHub.Players;
 
@@ -1213,7 +1278,7 @@ namespace Monopoly_Game_Simulator
             // is not text
             if (System.Text.RegularExpressions.Regex.IsMatch(textBox.Text, "[^0-9]"))
             {
-                MessageBox.Show("Please enter only numbers.");
+                MessageBox.Show("Please enter numbers only");
                 textBox.Text = textBox.Text.Remove(textBox.Text.Length - 1);
                 return;
             }
@@ -1233,5 +1298,40 @@ namespace Monopoly_Game_Simulator
             }
         }
 
+        private void singleSimRB_CheckedChanged(object sender, EventArgs e)
+        {
+            simulatedGamesSelector.Enabled = false;
+            m_simulationMode = SimulationMode.SingleSim;
+        }
+
+        private void multiSimRB_CheckedChanged(object sender, EventArgs e)
+        {
+            simulatedGamesSelector.Enabled = true;
+            m_simulationMode = SimulationMode.MultiSim;
+        }
+
+        private void moneyPerStartSelector_ValueChanged(object sender, EventArgs e)
+        {
+            SimulationLayer.GameControlHub.START_TILE_PAYOUT = Convert.ToInt32(moneyPerStartSelector.Value);
+        }
+
+        private void maxDebtSelector_ValueChanged(object sender, EventArgs e)
+        {
+            SimulationLayer.GameControlHub.MAX_DEBT = Convert.ToInt32(maxDebtSelector.Value);
+        }
+
+        private void simulatedGamesSelector_ValueChanged(object sender, EventArgs e)
+        {
+            SimulationLayer.GameControlHub.GAMES_PER_SIMULATION = Convert.ToInt32(simulatedGamesSelector.Value);
+        }
+
+        private void startSimulationButton_Click(object sender, EventArgs e)
+        {
+            LoadPlayers();
+
+            var resoult = m_gameControlHub.Run(m_simulationMode == SimulationMode.MultiSim);
+
+            Console.WriteLine("Game ended in {0} tunrs", resoult.Item2);
+        }
     }
 }

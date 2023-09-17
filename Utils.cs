@@ -27,34 +27,24 @@ namespace SimulationLayer
                 {
                     case Color.Brown:
                         return System.Drawing.Color.Sienna;
-                        break;
                     case Color.Cyan:
                         return System.Drawing.Color.LightSkyBlue;
-                        break;
                     case Color.Magenta:
                         return System.Drawing.Color.DarkMagenta;
-                        break;
                     case Color.Orange:
                         return System.Drawing.Color.Orange;
-                        break;
                     case Color.Red:
                         return System.Drawing.Color.Red;
-                        break;
                     case Color.Yellow:
                         return System.Drawing.Color.Yellow;
-                        break;
                     case Color.Green:
                         return System.Drawing.Color.Green;
-                        break;
                     case Color.Blue:
                         return System.Drawing.Color.Blue;
-                        break;
                     case Color.Utility:
                         return System.Drawing.Color.FromArgb(220, 242, 221);
-                        break;
                     case Color.Other:
                         return System.Drawing.Color.DarkGray;
-                        break;
                 }
                 return System.Drawing.Color.White;
             }
