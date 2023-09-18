@@ -157,6 +157,8 @@ namespace SimulationLayer
             SimualationExitCode exitCode = new SimualationExitCode();
             exitCode = SimualationExitCode.Default;
 
+            m_simulation_running = true;
+
             // multisim mode
             if (simulationMode)
             {
@@ -171,6 +173,9 @@ namespace SimulationLayer
                     // decide which player wins
                     foreach (var player in Players)
                     {
+                        if (!player.Playing)
+                            continue;
+
                         if (player.Debt == 0 && player.Money > 0) // money as safety check
                         {
                             // game is won when player does not loose and his debt is > 0
@@ -183,6 +188,16 @@ namespace SimulationLayer
                     m_player_who_lost = emptyPlayer;
                     m_simulation_running = true;
                 }
+
+
+                foreach (var player in Players)
+                {
+                    if (player.Playing)
+                    {
+                        Console.WriteLine("Player: " + player.Name + " \t" + player.Won_games.ToString() + " \t" + player.Lost_games.ToString());
+                    }
+                }
+
 
                 return (exitCode, 0);
             }
@@ -208,6 +223,9 @@ namespace SimulationLayer
 
                 foreach (var player in Players)
                 {
+                    if (!player.Playing)
+                        continue;
+
                     if (player.Debt == 0 && player.Money > 0) // money as safety check
                     {
                         // game is won when player does not loose and his debt is > 0
@@ -231,11 +249,16 @@ namespace SimulationLayer
             {
                 var player = Players[i];
 
-                int first = Utils.Random.RollDice(), second = Utils.Random.RollDice();
-                int movement = player.Move(first + second);
-                var tile = Tiles.ElementAt(player.Position).Value;
+                if (!player.Playing)
+                    continue;
 
-                var parking = Tiles[20].Price; // parking alias
+                int first = Utils.Random.RollDice(), second = Utils.Random.RollDice();
+
+                player.Move(first + second);
+
+                // current tile
+                var tile = Tiles.ElementAt(player.Position).Value;
+                var parking = Tiles[20].Price; // parking price alias
 
 
                 // going to jail via police tile
@@ -254,6 +277,12 @@ namespace SimulationLayer
                     }
 
                     continue;
+                }
+
+                // chance and community chest tiles
+                if (tile.Properties.Contains(Property.isChanceCard))
+                {
+                    // TODO: implement
                 }
 
                 // parking tile
@@ -403,6 +432,8 @@ namespace SimulationLayer
 
         private bool m_simulation_running = true;
         private Player m_player_who_lost = emptyPlayer;
+
+        public DataLayer.InternalDataCollector dataCollector = new DataLayer.InternalDataCollector();
 
         public static int MAX_DEBT = 5000;
         public static int START_TILE_PAYOUT = 200; // payout for passing 'start' tile

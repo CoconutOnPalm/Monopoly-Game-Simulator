@@ -102,6 +102,7 @@ namespace SimulationLayer
             Value = value;
             m_position = position;
             m_totalProfit = 0;
+            m_total_passes = 0;
 
             m_properties = new HashSet<Property>(properties);
             m_owner = GameControlHub.emptyPlayer;
@@ -260,6 +261,7 @@ namespace SimulationLayer
         internal Color Color { get => m_color; set => m_color = value; }
         public string Name { get => m_name; set => m_name = value; }
         public int Value { get => m_value; set => m_value = value; }
+        public int TotalPasses { get => m_total_passes; set => m_total_passes = value; }
 
         private readonly int m_position;
 
@@ -275,5 +277,6 @@ namespace SimulationLayer
 
         private Player m_owner;
         private ulong m_totalProfit;
+        private int m_total_passes; // how many times a player stepped on this tile
     }
 }

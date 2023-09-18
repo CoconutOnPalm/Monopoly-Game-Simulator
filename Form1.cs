@@ -252,6 +252,26 @@ namespace Monopoly_Game_Simulator
         }
 
 
+        private void RefreshSimulation()
+        {
+            LoadPlayers();
+
+            foreach (var player in m_gameControlHub.Players)
+            {
+                player.Position = 0;
+                player.Lost_games = 0;
+                player.Won_games = 0;
+            }
+
+            foreach (var tile in m_gameControlHub.Tiles)
+            {
+                tile.Value.TotalProfit = 0;
+                tile.Value.TotalPasses = 0;
+            }
+        }
+
+
+
         private void CheckStreetTile(Panel panel)
         {
             if (panel == null)
@@ -1329,9 +1349,166 @@ namespace Monopoly_Game_Simulator
         {
             LoadPlayers();
 
-            var resoult = m_gameControlHub.Run(m_simulationMode == SimulationMode.MultiSim);
+            var output = m_gameControlHub.Run(m_simulationMode == SimulationMode.MultiSim);
 
-            Console.WriteLine("Game ended in {0} tunrs", resoult.Item2);
+            if (m_simulationMode == SimulationMode.MultiSim)
+                tabControl1.SelectedIndex = 0;
+            else
+                tabControl1.SelectedIndex = 1;
+
+
+            UpdateSinglegameOutputTab(output.Item1, output.Item2);
+            UpdateMultigameOutputTab(output.Item1, output.Item2);
+
+            RefreshSimulation();
+        }
+
+        private void UpdateSinglegameOutputTab(SimulationLayer.SimualationExitCode exitCode, int turns)
+        {
+            if (m_simulationMode == SimulationMode.SingleSim)
+            {
+                // labels
+                switch (exitCode)
+                {
+                    case SimulationLayer.SimualationExitCode.Default:
+                        simStatusLabel.BackColor = Color.Honeydew;
+                        simStatusLabel.Text = "Default";
+                        break;
+                    case SimulationLayer.SimualationExitCode.TurnLimitExceeded:
+                        simStatusLabel.BackColor = Color.AliceBlue;
+                        simStatusLabel.Text = "Turn limit exceeded";
+                        break;
+                    case SimulationLayer.SimualationExitCode.BankWentBankrupt:
+                        simStatusLabel.BackColor = Color.LightYellow;
+                        simStatusLabel.Text = "Bank out of money";
+                        break;
+                    case SimulationLayer.SimualationExitCode.Error:
+                        simStatusLabel.BackColor = Color.MistyRose;
+                        simStatusLabel.Text = "ERROR";
+                        break;
+                }
+
+                if (exitCode == SimulationLayer.SimualationExitCode.TurnLimitExceeded)
+                    simEndedInLabel.Text = "infinite turns";
+                else
+                    simEndedInLabel.Text = turns.ToString() + " turns";
+
+                // players
+                simOSMPlayerLabel1.Text = m_gameControlHub.Players[0].Name;
+                simOSMPlayerLabel2.Text = m_gameControlHub.Players[1].Name;
+                simOSMPlayerLabel3.Text = m_gameControlHub.Players[2].Name;
+                simOSMPlayerLabel4.Text = m_gameControlHub.Players[3].Name;
+                simOSMPlayerLabel5.Text = m_gameControlHub.Players[4].Name;
+                simOSMPlayerLabel6.Text = m_gameControlHub.Players[5].Name;
+
+                simOSMMoneyLabel1.Text = m_gameControlHub.Players[0].Money.ToString();
+                simOSMMoneyLabel2.Text = m_gameControlHub.Players[1].Money.ToString();
+                simOSMMoneyLabel3.Text = m_gameControlHub.Players[2].Money.ToString();
+                simOSMMoneyLabel4.Text = m_gameControlHub.Players[3].Money.ToString();
+                simOSMMoneyLabel5.Text = m_gameControlHub.Players[4].Money.ToString();
+                simOSMMoneyLabel6.Text = m_gameControlHub.Players[5].Money.ToString();
+
+                simOSMDebtLabel1.Text = m_gameControlHub.Players[0].Debt.ToString();
+                simOSMDebtLabel2.Text = m_gameControlHub.Players[1].Debt.ToString();
+                simOSMDebtLabel3.Text = m_gameControlHub.Players[2].Debt.ToString();
+                simOSMDebtLabel4.Text = m_gameControlHub.Players[3].Debt.ToString();
+                simOSMDebtLabel5.Text = m_gameControlHub.Players[4].Debt.ToString();
+                simOSMDebtLabel6.Text = m_gameControlHub.Players[5].Debt.ToString();
+
+                Color GetColor(SimulationLayer.Player player)
+                {
+                    if (!player.Playing)
+                        return Color.LightGray;
+                    if (player.Lost_games > 0)
+                        return Color.Red;
+                    if (player.Won_games > 0)
+                        return Color.LimeGreen;
+                    return Color.White;
+                }
+
+                simOSMWinInfoLabel1.BackColor = GetColor(m_gameControlHub.Players[0]);
+                simOSMWinInfoLabel2.BackColor = GetColor(m_gameControlHub.Players[1]);
+                simOSMWinInfoLabel3.BackColor = GetColor(m_gameControlHub.Players[2]);
+                simOSMWinInfoLabel4.BackColor = GetColor(m_gameControlHub.Players[3]);
+                simOSMWinInfoLabel5.BackColor = GetColor(m_gameControlHub.Players[4]);
+                simOSMWinInfoLabel6.BackColor = GetColor(m_gameControlHub.Players[5]);
+            }
+        }
+
+        private void UpdateMultigameOutputTab(SimulationLayer.SimualationExitCode exitCode, int turns)
+        {
+            if (m_simulationMode == SimulationMode.MultiSim)
+            {
+                // labels
+                switch (exitCode)
+                {
+                    case SimulationLayer.SimualationExitCode.Default:
+                        simStatusLabelMM.BackColor = Color.Honeydew;
+                        simStatusLabelMM.Text = "Default";
+                        break;
+                    case SimulationLayer.SimualationExitCode.TurnLimitExceeded:
+                        simStatusLabelMM.BackColor = Color.Honeydew;
+                        simStatusLabelMM.Text = "Default";
+                        break;
+                    case SimulationLayer.SimualationExitCode.BankWentBankrupt:
+                        simStatusLabelMM.BackColor = Color.Honeydew;
+                        simStatusLabelMM.Text = "Default";
+                        break;
+                    case SimulationLayer.SimualationExitCode.Error:
+                        simStatusLabelMM.BackColor = Color.MistyRose;
+                        simStatusLabelMM.Text = "ERROR";
+                        break;
+                }
+
+                decimal gamecount = SimulationLayer.GameControlHub.GAMES_PER_SIMULATION;
+
+                chart1.Series[0].Points.Clear();
+                chart1.Series[1].Points.Clear();
+                chart1.Series[2].Points.Clear();
+
+                var player = m_gameControlHub.Players[5];
+                if (player.Playing)
+                {
+                    chart1.Series[0].Points.AddXY(player.Name, player.Won_games / gamecount);
+                    chart1.Series[1].Points.AddXY(player.Name, (gamecount - (player.Won_games + player.Lost_games)) / gamecount);
+                    chart1.Series[2].Points.AddXY(player.Name, player.Lost_games / gamecount);
+                }
+
+                player = m_gameControlHub.Players[4];
+                if (player.Playing)
+                {
+                    chart1.Series[0].Points.AddXY(player.Name, player.Won_games / gamecount);
+                    chart1.Series[1].Points.AddXY(player.Name, (gamecount - (player.Won_games + player.Lost_games)) / gamecount);
+                    chart1.Series[2].Points.AddXY(player.Name, player.Lost_games / gamecount);
+                }
+
+                player = m_gameControlHub.Players[3];
+                if (player.Playing)
+                {
+                    chart1.Series[0].Points.AddXY(player.Name, player.Won_games / gamecount);
+                    chart1.Series[1].Points.AddXY(player.Name, (gamecount - (player.Won_games + player.Lost_games)) / gamecount);
+                    chart1.Series[2].Points.AddXY(player.Name, player.Lost_games / gamecount);
+                }
+
+                player = m_gameControlHub.Players[2];
+                if (player.Playing)
+                {
+                    chart1.Series[0].Points.AddXY(player.Name, player.Won_games / gamecount);
+                    chart1.Series[1].Points.AddXY(player.Name, (gamecount - (player.Won_games + player.Lost_games)) / gamecount);
+                    chart1.Series[2].Points.AddXY(player.Name, player.Lost_games / gamecount);
+                }
+
+
+                player = m_gameControlHub.Players[1];
+                chart1.Series[0].Points.AddXY(player.Name, player.Won_games / gamecount);
+                chart1.Series[1].Points.AddXY(player.Name, (gamecount - (player.Won_games + player.Lost_games)) / gamecount);
+                chart1.Series[2].Points.AddXY(player.Name, player.Lost_games / gamecount);
+
+                player = m_gameControlHub.Players[0];
+                chart1.Series[0].Points.AddXY(player.Name, player.Won_games / gamecount);
+                chart1.Series[1].Points.AddXY(player.Name, (gamecount - (player.Won_games + player.Lost_games)) / gamecount);
+                chart1.Series[2].Points.AddXY(player.Name, player.Lost_games / gamecount);
+            }
         }
     }
 }

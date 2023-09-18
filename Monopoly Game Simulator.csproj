@@ -71,7 +71,14 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormSMD.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSMD.Designer.cs">
+      <DependentUpon>FormSMD.cs</DependentUpon>
+    </Compile>
     <Compile Include="GameControlHub.cs" />
+    <Compile Include="InternalDataCollector.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
