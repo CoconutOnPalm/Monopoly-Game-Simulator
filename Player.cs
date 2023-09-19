@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SimulationLayer
 {
-    internal class Player
+    public class Player
     {
         public Player(string name, int money = 1500, int start_debt = 0)
         {
@@ -100,6 +100,26 @@ namespace SimulationLayer
             get { return m_money; }
         }
 
+        public int StartMoney
+        {
+            set
+            {
+                m_startMoney = value;
+                m_money = value;
+            }
+            get { return m_startMoney; }
+        }
+
+        public int StartDebt
+        {
+            set 
+            {
+                m_startDebt = value;
+                m_debt = value;
+            }
+            get { return m_startDebt; }
+        }
+
         public int Position
         {
             set
@@ -132,6 +152,9 @@ namespace SimulationLayer
         private int m_position;
         private int m_money;
         private int m_debt;
+        private int m_startMoney;
+        private int m_startDebt;
+
         private HashSet<int> m_owned_tiles;
 
         private readonly int m_ID;

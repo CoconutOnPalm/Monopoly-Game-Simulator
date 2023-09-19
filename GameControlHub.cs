@@ -32,7 +32,7 @@ namespace SimulationLayer
 
 
 
-    internal class GameControlHub
+    public class GameControlHub
     {
         public GameControlHub()
         {
@@ -148,6 +148,14 @@ namespace SimulationLayer
         }
 
 
+        //public async Task<(SimualationExitCode, int)> RunAsync(bool simulationMode)
+        //{
+        //    var output = Run(simulationMode);
+        //    await output;
+        //    return output.Result;
+        //}
+
+
         /// <summary>
         /// Runs the simulation
         /// </summary>
@@ -166,8 +174,7 @@ namespace SimulationLayer
                 {
                     while (m_simulation_running)
                     {
-                        if (NextTurn() == TurnExitCode.BankWentBankrupt)
-                            exitCode = SimualationExitCode.BankWentBankrupt;
+                        NextTurn();
                     }
 
                     // decide which player wins
@@ -187,8 +194,33 @@ namespace SimulationLayer
 
                     m_player_who_lost = emptyPlayer;
                     m_simulation_running = true;
-                }
 
+                    RefreshPlayerData();
+
+                    if (i != 0) // to avoid div by 0
+                    {
+                        Console.WriteLine("{0}, {1}", 100 * (i + 1) / GAMES_PER_SIMULATION, 100 * (i) / GAMES_PER_SIMULATION);
+                        if (100 * (i + 1) / GAMES_PER_SIMULATION > 100 * (i) / GAMES_PER_SIMULATION)
+                        {
+                            OnSimulationProgressIncreased(EventArgs.Empty);
+                            //if (f_progressbar.InvokeRequired)
+                            //{
+                            //    MethodInvoker m = new MethodInvoker(() => f_progressbar.Value++);
+                            //    f_progressbar.Invoke(m);
+                            //}
+                            //else
+                            //{
+                            //    f_progressbar.Value++;
+                            //    //}
+                            //}
+                        }
+                    }
+                    else
+                    {
+                        OnSimulationProgressIncreased(EventArgs.Empty);
+                    }
+
+                }
 
                 foreach (var player in Players)
                 {
@@ -198,6 +230,10 @@ namespace SimulationLayer
                     }
                 }
 
+                foreach (var tile in Tiles)
+                {
+                    DataCollector.AddTileData(tile.Key, tile.Value.TotalProfit, tile.Value.TotalPasses);
+                }
 
                 return (exitCode, 0);
             }
@@ -209,6 +245,16 @@ namespace SimulationLayer
                 {
                     if (NextTurn() == TurnExitCode.BankWentBankrupt)
                         exitCode = SimualationExitCode.BankWentBankrupt;
+
+                    for (int i = 0; i < Players.Count; i++)
+                    {
+                        DataCollector.AddMoneyData(i, Players[i].Money, Players[i].Debt);
+                    }
+
+                    foreach (var tile in Tiles)
+                    {
+                        DataCollector.AddTileData(tile.Key, tile.Value.TotalProfit, tile.Value.TotalPasses);
+                    }
 
                     turns++;
 
@@ -239,6 +285,16 @@ namespace SimulationLayer
                 m_simulation_running = true;
 
                 return (exitCode, turns);
+            }
+        }
+
+
+        private void RefreshPlayerData()
+        {
+            foreach (Player player in Players)
+            {
+                player.Money = player.StartMoney;
+                player.Debt = player.StartDebt;
             }
         }
 
@@ -427,18 +483,29 @@ namespace SimulationLayer
         }
 
 
+        private void OnSimulationProgressIncreased(EventArgs e)
+        {
+            if (SimulationProgressIncreased != null)
+                SimulationProgressIncreased.Invoke(this, e);
+        }
+
+
         public List<Player> Players;
         public Dictionary<int, Tile> Tiles;
 
         private bool m_simulation_running = true;
         private Player m_player_who_lost = emptyPlayer;
 
-        public DataLayer.InternalDataCollector dataCollector = new DataLayer.InternalDataCollector();
+        public DataLayer.InternalDataCollector DataCollector = new DataLayer.InternalDataCollector();
 
         public static int MAX_DEBT = 5000;
         public static int START_TILE_PAYOUT = 200; // payout for passing 'start' tile
-        public static int GAMES_PER_SIMULATION = 1000; // how many games are played before resoults are shown
+        public static int GAMES_PER_SIMULATION = 100; // how many games are played before resoults are shown
         public static readonly int TILE_COUNT = 40;
         public static readonly Player emptyPlayer = new Player("_empty_player");
+
+        public event EventHandler SimulationProgressIncreased;
+
+        public ProgressBar f_progressbar;
     }
 }

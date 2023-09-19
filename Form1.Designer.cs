@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.orangePanel3 = new System.Windows.Forms.Panel();
             this.orangeLabel3 = new System.Windows.Forms.Label();
@@ -189,10 +189,6 @@
             this.moneyFromStartLabel = new System.Windows.Forms.Label();
             this.maxDebtSelector = new System.Windows.Forms.NumericUpDown();
             this.maxDebtLabel = new System.Windows.Forms.Label();
-            this.simulationEntryData_DataSet = new Monopoly_Game_Simulator.SimulationEntryData_DataSet();
-            this.playerEntryDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.playerEntryDataTableAdapter = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.PlayerEntryDataTableAdapter();
-            this.tableAdapterManager = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager();
             this.simOutputGroupBox = new System.Windows.Forms.GroupBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
@@ -240,6 +236,12 @@
             this.simEndedInLabel = new System.Windows.Forms.Label();
             this.simStatusLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.simulationEntryData_DataSet = new Monopoly_Game_Simulator.SimulationEntryData_DataSet();
+            this.playerEntryDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.playerEntryDataTableAdapter = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.PlayerEntryDataTableAdapter();
+            this.tableAdapterManager = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.orangePanel3.SuspendLayout();
             this.orangePanel2.SuspendLayout();
@@ -288,8 +290,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simulatedGamesSelector)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.moneyPerStartSelector)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxDebtSelector)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simulationEntryData_DataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerEntryDataBindingSource)).BeginInit();
             this.simOutputGroupBox.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -297,6 +297,8 @@
             this.tabPage1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.simulationEntryData_DataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerEntryDataBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -2364,6 +2366,7 @@
             // 
             // simSettingsGroupBox
             // 
+            this.simSettingsGroupBox.Controls.Add(this.progressBar1);
             this.simSettingsGroupBox.Controls.Add(this.simModeGB);
             this.simSettingsGroupBox.Controls.Add(this.startSimulationButton);
             this.simSettingsGroupBox.Controls.Add(this.moneyPerStartSelector);
@@ -2400,7 +2403,7 @@
             0});
             this.simulatedGamesSelector.Location = new System.Drawing.Point(172, 50);
             this.simulatedGamesSelector.Maximum = new decimal(new int[] {
-            10000,
+            1000,
             0,
             0,
             0});
@@ -2408,7 +2411,7 @@
             this.simulatedGamesSelector.Size = new System.Drawing.Size(89, 23);
             this.simulatedGamesSelector.TabIndex = 6;
             this.simulatedGamesSelector.Value = new decimal(new int[] {
-            1000,
+            100,
             0,
             0,
             0});
@@ -2533,27 +2536,6 @@
             this.maxDebtLabel.Text = "Maximum Debt";
             this.maxDebtLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // simulationEntryData_DataSet
-            // 
-            this.simulationEntryData_DataSet.DataSetName = "SimulationEntryData_DataSet";
-            this.simulationEntryData_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // playerEntryDataBindingSource
-            // 
-            this.playerEntryDataBindingSource.DataMember = "PlayerEntryData";
-            this.playerEntryDataBindingSource.DataSource = this.simulationEntryData_DataSet;
-            // 
-            // playerEntryDataTableAdapter
-            // 
-            this.playerEntryDataTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.PlayerEntryDataTableAdapter = this.playerEntryDataTableAdapter;
-            this.tableAdapterManager.TileEntryDataTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // simOutputGroupBox
             // 
             this.simOutputGroupBox.Controls.Add(this.tabControl1);
@@ -2590,33 +2572,33 @@
             // 
             // chart1
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
+            chartArea6.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea6);
+            legend6.Name = "Legend1";
+            this.chart1.Legends.Add(legend6);
             this.chart1.Location = new System.Drawing.Point(6, 52);
             this.chart1.Name = "chart1";
-            series7.ChartArea = "ChartArea1";
-            series7.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series7.Color = System.Drawing.Color.LimeGreen;
-            series7.IsValueShownAsLabel = true;
-            series7.Legend = "Legend1";
-            series7.Name = "Won Games";
-            series8.ChartArea = "ChartArea1";
-            series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series8.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            series8.IsValueShownAsLabel = true;
-            series8.Legend = "Legend1";
-            series8.Name = "Non-defeat";
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series9.Color = System.Drawing.Color.Red;
-            series9.IsValueShownAsLabel = true;
-            series9.Legend = "Legend1";
-            series9.Name = "Lost Games";
-            this.chart1.Series.Add(series7);
-            this.chart1.Series.Add(series8);
-            this.chart1.Series.Add(series9);
+            series16.ChartArea = "ChartArea1";
+            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series16.Color = System.Drawing.Color.LimeGreen;
+            series16.IsValueShownAsLabel = true;
+            series16.Legend = "Legend1";
+            series16.Name = "Won Games";
+            series17.ChartArea = "ChartArea1";
+            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series17.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            series17.IsValueShownAsLabel = true;
+            series17.Legend = "Legend1";
+            series17.Name = "Non-defeat";
+            series18.ChartArea = "ChartArea1";
+            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series18.Color = System.Drawing.Color.Red;
+            series18.IsValueShownAsLabel = true;
+            series18.Legend = "Legend1";
+            series18.Name = "Lost Games";
+            this.chart1.Series.Add(series16);
+            this.chart1.Series.Add(series17);
+            this.chart1.Series.Add(series18);
             this.chart1.Size = new System.Drawing.Size(351, 157);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
@@ -2674,6 +2656,7 @@
             this.openChartButtonSM.Size = new System.Drawing.Size(78, 35);
             this.openChartButtonSM.TabIndex = 6;
             this.openChartButtonSM.UseVisualStyleBackColor = true;
+            this.openChartButtonSM.Click += new System.EventHandler(this.openChartButtonSM_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -3095,6 +3078,41 @@
             this.label8.TabIndex = 2;
             this.label8.Text = "Simulation ended in: ";
             // 
+            // simulationEntryData_DataSet
+            // 
+            this.simulationEntryData_DataSet.DataSetName = "SimulationEntryData_DataSet";
+            this.simulationEntryData_DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // playerEntryDataBindingSource
+            // 
+            this.playerEntryDataBindingSource.DataMember = "PlayerEntryData";
+            this.playerEntryDataBindingSource.DataSource = this.simulationEntryData_DataSet;
+            // 
+            // playerEntryDataTableAdapter
+            // 
+            this.playerEntryDataTableAdapter.ClearBeforeFill = true;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.PlayerEntryDataTableAdapter = this.playerEntryDataTableAdapter;
+            this.tableAdapterManager.TileEntryDataTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressBar1.Location = new System.Drawing.Point(3, 251);
+            this.progressBar1.MarqueeAnimationSpeed = 0;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(276, 13);
+            this.progressBar1.TabIndex = 6;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3162,8 +3180,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.simulatedGamesSelector)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.moneyPerStartSelector)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxDebtSelector)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.simulationEntryData_DataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.playerEntryDataBindingSource)).EndInit();
             this.simOutputGroupBox.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -3172,6 +3188,8 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.simulationEntryData_DataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.playerEntryDataBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -3383,6 +3401,8 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label simStatusLabelMM;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
 

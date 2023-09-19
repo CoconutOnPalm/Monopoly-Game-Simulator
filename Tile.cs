@@ -35,7 +35,7 @@ namespace SimulationLayer
     }
 
 
-    internal class Price
+    public class Price
     {
 
         public Price() { }
@@ -92,7 +92,7 @@ namespace SimulationLayer
 
 
 
-    internal class Tile
+    public class Tile
     {
         public Tile(string name, int position, Color color, HashSet<Property> properties, Price price, int value)
         {

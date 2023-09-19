@@ -8,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -24,14 +25,18 @@ namespace Monopoly_Game_Simulator
     {
 
         public Color m_defaultTileColor = new Color();
-        private Color m_selectedTileColor = new Color();
-        private Color m_hoverTileColor = new Color();
+        public Color m_selectedTileColor = new Color();
+        public Color m_hoverTileColor = new Color();
 
-        private SimulationLayer.GameControlHub m_gameControlHub;
+        public SimulationLayer.GameControlHub m_gameControlHub;
 
         private SimulationLayer.Player m_selectedPlayer = SimulationLayer.GameControlHub.emptyPlayer;
 
         private SimulationMode m_simulationMode = new SimulationMode();
+
+        private FormSMD m_formSMD; // singlegame mode data form (chart button in bottom-right panel)
+
+        private (SimulationLayer.SimualationExitCode, int) m_simOutput = (SimulationLayer.SimualationExitCode.Error, 0);
 
 
         public MainWindow()
@@ -63,6 +68,9 @@ namespace Monopoly_Game_Simulator
             RefreshSelectedTiles();
             RefreshPlayerPropertiesListBox();
             RefreshPropertyData();
+
+            m_gameControlHub.SimulationProgressIncreased += OnSimulationProgressIncreased;
+            m_gameControlHub.f_progressbar = progressBar1;
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -70,6 +78,25 @@ namespace Monopoly_Game_Simulator
             // TODO: This line of code loads data into the 'simulationEntryData_DataSet.PlayerEntryData' table. You can move, or remove it, as needed.
             this.playerEntryDataTableAdapter.Fill(this.simulationEntryData_DataSet.PlayerEntryData);
 
+        }
+
+
+        private void OnSimulationProgressIncreased(object sender, EventArgs e)
+        {
+            //progressBar1.Value++;
+            //progressBar1.Invoke((MethodInvoker)delegate { progressBar1.Value++; });
+            //MethodInvoker m = new MethodInvoker(() => progressBar1.Step++);
+            //progressBar1.Invoke(m);
+
+            if (progressBar1.InvokeRequired)
+            {
+                MethodInvoker m = new MethodInvoker(() => progressBar1.Value++);
+                progressBar1.Invoke(m);
+            }
+            else
+            {
+                progressBar1.Value++;
+            }
         }
 
 
@@ -90,39 +117,39 @@ namespace Monopoly_Game_Simulator
             player6.Playing = includeCheckBox6.Checked;
 
             player1.Name = playerNameTextBox1.Text;
-            player1.Money = Convert.ToInt32(startMoneyTB1.Text);
-            player1.Money = Convert.ToInt32(startDebtTB1.Text);
+            player1.StartMoney = Convert.ToInt32(startMoneyTB1.Text);
+            player1.StartDebt = Convert.ToInt32(startDebtTB1.Text);
 
             player2.Name = playerNameTextBox2.Text;
-            player2.Money = Convert.ToInt32(startMoneyTB2.Text);
-            player2.Money = Convert.ToInt32(startDebtTB2.Text);
+            player2.StartMoney = Convert.ToInt32(startMoneyTB2.Text);
+            player2.StartDebt = Convert.ToInt32(startDebtTB2.Text);
 
             if (player3.Playing)
             {
                 player3.Name = playerNameTextBox3.Text;
-                player3.Money = Convert.ToInt32(startMoneyTB3.Text);
-                player3.Money = Convert.ToInt32(startDebtTB3.Text);
+                player3.StartMoney = Convert.ToInt32(startMoneyTB3.Text);
+                player3.StartDebt = Convert.ToInt32(startDebtTB3.Text);
             }
 
             if (player4.Playing)
             {
                 player4.Name = playerNameTextBox4.Text;
-                player4.Money = Convert.ToInt32(startMoneyTB4.Text);
-                player4.Money = Convert.ToInt32(startDebtTB4.Text);
+                player4.StartMoney = Convert.ToInt32(startMoneyTB4.Text);
+                player4.StartDebt = Convert.ToInt32(startDebtTB4.Text);
             }
 
             if (player5.Playing)
             {
                 player5.Name = playerNameTextBox5.Text;
-                player5.Money = Convert.ToInt32(startMoneyTB5.Text);
-                player5.Money = Convert.ToInt32(startDebtTB5.Text);
+                player5.StartMoney = Convert.ToInt32(startMoneyTB5.Text);
+                player5.StartDebt = Convert.ToInt32(startDebtTB5.Text);
             }
 
             if (player6.Playing)
             {
                 player6.Name = playerNameTextBox6.Text;
-                player6.Money = Convert.ToInt32(startMoneyTB6.Text);
-                player6.Money = Convert.ToInt32(startDebtTB6.Text);
+                player6.StartMoney = Convert.ToInt32(startMoneyTB6.Text);
+                player6.StartDebt = Convert.ToInt32(startDebtTB6.Text);
             }
         }
 
@@ -132,28 +159,28 @@ namespace Monopoly_Game_Simulator
             var Players = m_gameControlHub.Players;
 
             playerNameTextBox1.Text = Players[0].Name;
-            startMoneyTB1.Text = Players[0].Money.ToString();
-            startDebtTB1.Text = Players[0].Debt.ToString();
+            startMoneyTB1.Text = Players[0].StartMoney.ToString();
+            startDebtTB1.Text = Players[0].StartDebt.ToString();
 
             playerNameTextBox2.Text = Players[1].Name;
-            startMoneyTB2.Text = Players[1].Money.ToString();
-            startDebtTB2.Text = Players[1].Debt.ToString();
+            startMoneyTB2.Text = Players[1].StartMoney.ToString();
+            startDebtTB2.Text = Players[1].StartDebt.ToString();
 
             playerNameTextBox3.Text = Players[2].Name;
-            startMoneyTB3.Text = Players[2].Money.ToString();
-            startDebtTB3.Text = Players[2].Debt.ToString();
+            startMoneyTB3.Text = Players[2].StartMoney.ToString();
+            startDebtTB3.Text = Players[2].StartDebt.ToString();
 
             playerNameTextBox4.Text = Players[3].Name;
-            startMoneyTB4.Text = Players[3].Money.ToString();
-            startDebtTB4.Text = Players[3].Debt.ToString();
+            startMoneyTB4.Text = Players[3].StartMoney.ToString();
+            startDebtTB4.Text = Players[3].StartDebt.ToString();
 
             playerNameTextBox5.Text = Players[4].Name;
-            startMoneyTB5.Text = Players[4].Money.ToString();
-            startDebtTB5.Text = Players[4].Debt.ToString();
+            startMoneyTB5.Text = Players[4].StartMoney.ToString();
+            startDebtTB5.Text = Players[4].StartDebt.ToString();
 
             playerNameTextBox6.Text = Players[5].Name;
-            startMoneyTB6.Text = Players[5].Money.ToString();
-            startDebtTB6.Text = Players[5].Debt.ToString();
+            startMoneyTB6.Text = Players[5].StartMoney.ToString();
+            startDebtTB6.Text = Players[5].StartDebt.ToString();
         }
 
 
@@ -258,6 +285,7 @@ namespace Monopoly_Game_Simulator
 
             foreach (var player in m_gameControlHub.Players)
             {
+                Console.WriteLine(player.StartMoney);
                 player.Position = 0;
                 player.Lost_games = 0;
                 player.Won_games = 0;
@@ -1291,7 +1319,7 @@ namespace Monopoly_Game_Simulator
             // is empty
             if (textBox.Text.Length == 0)
             {
-                m_gameControlHub.Players[playerIndex].Money = 0;
+                m_gameControlHub.Players[playerIndex].StartMoney = 0;
                 return;
             }
 
@@ -1303,7 +1331,7 @@ namespace Monopoly_Game_Simulator
                 return;
             }
 
-            m_gameControlHub.Players[playerIndex].Money = Convert.ToInt32(textBox.Text);
+            m_gameControlHub.Players[playerIndex].StartMoney = Convert.ToInt32(textBox.Text);
         }
 
         public void OnPlayerSettingsLeave(object sender, EventArgs e)
@@ -1348,19 +1376,31 @@ namespace Monopoly_Game_Simulator
         private void startSimulationButton_Click(object sender, EventArgs e)
         {
             LoadPlayers();
+            progressBar1.Value = 0;
 
-            var output = m_gameControlHub.Run(m_simulationMode == SimulationMode.MultiSim);
+            backgroundWorker1.RunWorkerAsync();
+            //var output = m_gameControlHub.Run(m_simulationMode == SimulationMode.MultiSim);
+        }
 
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            m_simOutput = m_gameControlHub.Run(m_simulationMode == SimulationMode.MultiSim);
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
             if (m_simulationMode == SimulationMode.MultiSim)
                 tabControl1.SelectedIndex = 0;
             else
                 tabControl1.SelectedIndex = 1;
 
+            var output = m_simOutput;
 
             UpdateSinglegameOutputTab(output.Item1, output.Item2);
             UpdateMultigameOutputTab(output.Item1, output.Item2);
-
             RefreshSimulation();
+
+            Console.WriteLine(progressBar1.Value);
         }
 
         private void UpdateSinglegameOutputTab(SimulationLayer.SimualationExitCode exitCode, int turns)
@@ -1401,19 +1441,19 @@ namespace Monopoly_Game_Simulator
                 simOSMPlayerLabel5.Text = m_gameControlHub.Players[4].Name;
                 simOSMPlayerLabel6.Text = m_gameControlHub.Players[5].Name;
 
-                simOSMMoneyLabel1.Text = m_gameControlHub.Players[0].Money.ToString();
-                simOSMMoneyLabel2.Text = m_gameControlHub.Players[1].Money.ToString();
-                simOSMMoneyLabel3.Text = m_gameControlHub.Players[2].Money.ToString();
-                simOSMMoneyLabel4.Text = m_gameControlHub.Players[3].Money.ToString();
-                simOSMMoneyLabel5.Text = m_gameControlHub.Players[4].Money.ToString();
-                simOSMMoneyLabel6.Text = m_gameControlHub.Players[5].Money.ToString();
+                simOSMMoneyLabel1.Text = m_gameControlHub.Players[0].StartMoney.ToString();
+                simOSMMoneyLabel2.Text = m_gameControlHub.Players[1].StartMoney.ToString();
+                simOSMMoneyLabel3.Text = m_gameControlHub.Players[2].StartMoney.ToString();
+                simOSMMoneyLabel4.Text = m_gameControlHub.Players[3].StartMoney.ToString();
+                simOSMMoneyLabel5.Text = m_gameControlHub.Players[4].StartMoney.ToString();
+                simOSMMoneyLabel6.Text = m_gameControlHub.Players[5].StartMoney.ToString();
 
-                simOSMDebtLabel1.Text = m_gameControlHub.Players[0].Debt.ToString();
-                simOSMDebtLabel2.Text = m_gameControlHub.Players[1].Debt.ToString();
-                simOSMDebtLabel3.Text = m_gameControlHub.Players[2].Debt.ToString();
-                simOSMDebtLabel4.Text = m_gameControlHub.Players[3].Debt.ToString();
-                simOSMDebtLabel5.Text = m_gameControlHub.Players[4].Debt.ToString();
-                simOSMDebtLabel6.Text = m_gameControlHub.Players[5].Debt.ToString();
+                simOSMDebtLabel1.Text = m_gameControlHub.Players[0].StartDebt.ToString();
+                simOSMDebtLabel2.Text = m_gameControlHub.Players[1].StartDebt.ToString();
+                simOSMDebtLabel3.Text = m_gameControlHub.Players[2].StartDebt.ToString();
+                simOSMDebtLabel4.Text = m_gameControlHub.Players[3].StartDebt.ToString();
+                simOSMDebtLabel5.Text = m_gameControlHub.Players[4].StartDebt.ToString();
+                simOSMDebtLabel6.Text = m_gameControlHub.Players[5].StartDebt.ToString();
 
                 Color GetColor(SimulationLayer.Player player)
                 {
@@ -1510,5 +1550,12 @@ namespace Monopoly_Game_Simulator
                 chart1.Series[2].Points.AddXY(player.Name, player.Lost_games / gamecount);
             }
         }
+
+        private void openChartButtonSM_Click(object sender, EventArgs e)
+        {
+            m_formSMD = new FormSMD();
+            m_formSMD.Show();
+        }
+
     }
 }
