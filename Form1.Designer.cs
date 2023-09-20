@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series17 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series18 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.orangePanel3 = new System.Windows.Forms.Panel();
             this.orangeLabel3 = new System.Windows.Forms.Label();
@@ -179,6 +179,7 @@
             this.includeCheckBox4 = new System.Windows.Forms.CheckBox();
             this.includeCheckBox6 = new System.Windows.Forms.CheckBox();
             this.simSettingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.simModeGB = new System.Windows.Forms.GroupBox();
             this.simulatedGamesSelector = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
@@ -240,7 +241,6 @@
             this.playerEntryDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playerEntryDataTableAdapter = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.PlayerEntryDataTableAdapter();
             this.tableAdapterManager = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.orangePanel3.SuspendLayout();
@@ -2380,6 +2380,15 @@
             this.simSettingsGroupBox.TabStop = false;
             this.simSettingsGroupBox.Text = "Simulation Settings";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.progressBar1.Location = new System.Drawing.Point(3, 251);
+            this.progressBar1.MarqueeAnimationSpeed = 0;
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(276, 13);
+            this.progressBar1.TabIndex = 6;
+            // 
             // simModeGB
             // 
             this.simModeGB.Controls.Add(this.simulatedGamesSelector);
@@ -2572,33 +2581,33 @@
             // 
             // chart1
             // 
-            chartArea6.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chart1.Legends.Add(legend6);
+            chartArea2.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chart1.Legends.Add(legend2);
             this.chart1.Location = new System.Drawing.Point(6, 52);
             this.chart1.Name = "chart1";
-            series16.ChartArea = "ChartArea1";
-            series16.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series16.Color = System.Drawing.Color.LimeGreen;
-            series16.IsValueShownAsLabel = true;
-            series16.Legend = "Legend1";
-            series16.Name = "Won Games";
-            series17.ChartArea = "ChartArea1";
-            series17.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series17.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            series17.IsValueShownAsLabel = true;
-            series17.Legend = "Legend1";
-            series17.Name = "Non-defeat";
-            series18.ChartArea = "ChartArea1";
-            series18.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series18.Color = System.Drawing.Color.Red;
-            series18.IsValueShownAsLabel = true;
-            series18.Legend = "Legend1";
-            series18.Name = "Lost Games";
-            this.chart1.Series.Add(series16);
-            this.chart1.Series.Add(series17);
-            this.chart1.Series.Add(series18);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series4.Color = System.Drawing.Color.LimeGreen;
+            series4.IsValueShownAsLabel = true;
+            series4.Legend = "Legend1";
+            series4.Name = "Won Games";
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            series5.IsValueShownAsLabel = true;
+            series5.Legend = "Legend1";
+            series5.Name = "Non-defeat";
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series6.Color = System.Drawing.Color.Red;
+            series6.IsValueShownAsLabel = true;
+            series6.Legend = "Legend1";
+            series6.Name = "Lost Games";
+            this.chart1.Series.Add(series4);
+            this.chart1.Series.Add(series5);
+            this.chart1.Series.Add(series6);
             this.chart1.Size = new System.Drawing.Size(351, 157);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
@@ -2611,6 +2620,7 @@
             this.openChartButtonMM.Size = new System.Drawing.Size(78, 35);
             this.openChartButtonMM.TabIndex = 7;
             this.openChartButtonMM.UseVisualStyleBackColor = true;
+            this.openChartButtonMM.Click += new System.EventHandler(this.openChartButtonMM_Click);
             // 
             // label14
             // 
@@ -3098,15 +3108,6 @@
             this.tableAdapterManager.PlayerEntryDataTableAdapter = this.playerEntryDataTableAdapter;
             this.tableAdapterManager.TileEntryDataTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.progressBar1.Location = new System.Drawing.Point(3, 251);
-            this.progressBar1.MarqueeAnimationSpeed = 0;
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(276, 13);
-            this.progressBar1.TabIndex = 6;
             // 
             // backgroundWorker1
             // 

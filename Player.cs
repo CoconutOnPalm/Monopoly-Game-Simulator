@@ -21,6 +21,8 @@ namespace SimulationLayer
 
             m_money = money;
             m_debt = start_debt;
+            m_startMoney = money;
+            m_startDebt = start_debt;
 
             m_owned_tiles = new HashSet<int>();
         }

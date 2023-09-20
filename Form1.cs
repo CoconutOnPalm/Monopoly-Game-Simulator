@@ -35,6 +35,7 @@ namespace Monopoly_Game_Simulator
         private SimulationMode m_simulationMode = new SimulationMode();
 
         private FormSMD m_formSMD; // singlegame mode data form (chart button in bottom-right panel)
+        private FormMMD m_formMMD; // singlegame mode data form (chart button in bottom-right panel)
 
         private (SimulationLayer.SimualationExitCode, int) m_simOutput = (SimulationLayer.SimualationExitCode.Error, 0);
 
@@ -90,7 +91,7 @@ namespace Monopoly_Game_Simulator
 
             if (progressBar1.InvokeRequired)
             {
-                MethodInvoker m = new MethodInvoker(() => progressBar1.Value++);
+                MethodInvoker m = new MethodInvoker(() => { if (progressBar1.Value < 100) progressBar1.Value++; });
                 progressBar1.Invoke(m);
             }
             else
@@ -498,6 +499,10 @@ namespace Monopoly_Game_Simulator
                     AssignPropertyToPlayer(m_selectedPlayer, label.Text);
                     panel.BackColor = m_selectedTileColor;
                 }
+
+                m_gameControlHub.UpdateTransportCards(m_selectedPlayer);
+                this.RefreshLevelDropdownList();
+                this.RefreshPropertyData();
             }
         }
 
@@ -524,6 +529,10 @@ namespace Monopoly_Game_Simulator
                         RemovePropertyFromPlayer(m_selectedPlayer, label.Text);
                     panel.BackColor = m_defaultTileColor;
                 }
+
+                m_gameControlHub.UpdateTransportCards(m_selectedPlayer);
+                this.RefreshLevelDropdownList();
+                this.RefreshPropertyData();
             }
         }
 
@@ -900,12 +909,12 @@ namespace Monopoly_Game_Simulator
             tileColorPB.BackColor = SimulationLayer.Utils.Convert.SysColorToSimColor(selectedTile.Color);
 
 
-            // highlit current price label
+            // highlight current price label
 
-            // reset all highlits
+            // reset all highlights
             ClearColors();
 
-            // highlite price label
+            // highlight price label
             if (levelSelectorComboBox.SelectedIndex >= 0 && levelSelectorComboBox.SelectedIndex <= 5)
             {
                 tableLayoutPanel5.Controls[levelSelectorComboBox.SelectedIndex].BackColor = Color.FromKnownColor(KnownColor.ButtonHighlight);
@@ -919,6 +928,7 @@ namespace Monopoly_Game_Simulator
             string selectedItem = playerPropertiesListBox.SelectedItem as string; // alias
             SimulationLayer.Tile selectedTile = null;
 
+            // get selected tile
             for (int i = 0; i < m_gameControlHub.Tiles.Count; i++)
             {
                 if (m_gameControlHub.Tiles[i].Name == selectedItem)
@@ -929,6 +939,20 @@ namespace Monopoly_Game_Simulator
 
             if (selectedTile == null)
             {
+                return;
+            }
+
+            // special cases for transport and utility cards
+            if (selectedTile.Properties.Contains(SimulationLayer.Property.isTransport))
+            {
+                levelSelectorComboBox.Enabled = false;
+                levelSelectorComboBox.Text = string.Concat("Level ", selectedTile.Level.ToString());
+                return;
+            }
+            else if (selectedTile.Properties.Contains(SimulationLayer.Property.isPublicService))
+            {
+                levelSelectorComboBox.Enabled = false;
+                levelSelectorComboBox.Text = string.Empty;
                 return;
             }
 
@@ -1376,6 +1400,7 @@ namespace Monopoly_Game_Simulator
         private void startSimulationButton_Click(object sender, EventArgs e)
         {
             LoadPlayers();
+            m_gameControlHub.DataCollector.Clear();
             progressBar1.Value = 0;
 
             backgroundWorker1.RunWorkerAsync();
@@ -1441,19 +1466,19 @@ namespace Monopoly_Game_Simulator
                 simOSMPlayerLabel5.Text = m_gameControlHub.Players[4].Name;
                 simOSMPlayerLabel6.Text = m_gameControlHub.Players[5].Name;
 
-                simOSMMoneyLabel1.Text = m_gameControlHub.Players[0].StartMoney.ToString();
-                simOSMMoneyLabel2.Text = m_gameControlHub.Players[1].StartMoney.ToString();
-                simOSMMoneyLabel3.Text = m_gameControlHub.Players[2].StartMoney.ToString();
-                simOSMMoneyLabel4.Text = m_gameControlHub.Players[3].StartMoney.ToString();
-                simOSMMoneyLabel5.Text = m_gameControlHub.Players[4].StartMoney.ToString();
-                simOSMMoneyLabel6.Text = m_gameControlHub.Players[5].StartMoney.ToString();
+                simOSMMoneyLabel1.Text = m_gameControlHub.Players[0].Money.ToString();
+                simOSMMoneyLabel2.Text = m_gameControlHub.Players[1].Money.ToString();
+                simOSMMoneyLabel3.Text = m_gameControlHub.Players[2].Money.ToString();
+                simOSMMoneyLabel4.Text = m_gameControlHub.Players[3].Money.ToString();
+                simOSMMoneyLabel5.Text = m_gameControlHub.Players[4].Money.ToString();
+                simOSMMoneyLabel6.Text = m_gameControlHub.Players[5].Money.ToString();
 
-                simOSMDebtLabel1.Text = m_gameControlHub.Players[0].StartDebt.ToString();
-                simOSMDebtLabel2.Text = m_gameControlHub.Players[1].StartDebt.ToString();
-                simOSMDebtLabel3.Text = m_gameControlHub.Players[2].StartDebt.ToString();
-                simOSMDebtLabel4.Text = m_gameControlHub.Players[3].StartDebt.ToString();
-                simOSMDebtLabel5.Text = m_gameControlHub.Players[4].StartDebt.ToString();
-                simOSMDebtLabel6.Text = m_gameControlHub.Players[5].StartDebt.ToString();
+                simOSMDebtLabel1.Text = m_gameControlHub.Players[0].Debt.ToString();
+                simOSMDebtLabel2.Text = m_gameControlHub.Players[1].Debt.ToString();
+                simOSMDebtLabel3.Text = m_gameControlHub.Players[2].Debt.ToString();
+                simOSMDebtLabel4.Text = m_gameControlHub.Players[3].Debt.ToString();
+                simOSMDebtLabel5.Text = m_gameControlHub.Players[4].Debt.ToString();
+                simOSMDebtLabel6.Text = m_gameControlHub.Players[5].Debt.ToString();
 
                 Color GetColor(SimulationLayer.Player player)
                 {
@@ -1557,5 +1582,10 @@ namespace Monopoly_Game_Simulator
             m_formSMD.Show();
         }
 
+        private void openChartButtonMM_Click(object sender, EventArgs e)
+        {
+            m_formMMD = new FormMMD();
+            m_formMMD.Show();
+        }
     }
 }

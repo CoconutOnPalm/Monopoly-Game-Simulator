@@ -41,6 +41,14 @@ namespace DataLayer
             TileDataTracker[index].second = passes;
         }
 
+        public void Clear()
+        {
+            foreach (var player in  PlayerMoneyTracker)
+            {
+                player.Value.Clear();
+            }
+        }
+
         private Dictionary<int, List<Pair<int, int>>> m_playerMoneyTracker;
         private Dictionary<int, Pair<ulong, int>> m_tileDataTracker;
 

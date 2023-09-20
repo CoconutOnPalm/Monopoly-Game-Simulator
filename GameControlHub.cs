@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -251,11 +252,6 @@ namespace SimulationLayer
                         DataCollector.AddMoneyData(i, Players[i].Money, Players[i].Debt);
                     }
 
-                    foreach (var tile in Tiles)
-                    {
-                        DataCollector.AddTileData(tile.Key, tile.Value.TotalProfit, tile.Value.TotalPasses);
-                    }
-
                     turns++;
 
                     if (turns > 1000)
@@ -263,6 +259,12 @@ namespace SimulationLayer
                         m_simulation_running = false;
                         exitCode = SimualationExitCode.TurnLimitExceeded;
                     }
+                }
+
+                foreach (var tile in Tiles)
+                {
+                    Console.WriteLine(tile.Value.TotalProfit + " \t" + tile.Value.TotalPasses);
+                    DataCollector.AddTileData(tile.Key, tile.Value.TotalProfit, tile.Value.TotalPasses);
                 }
 
                 //System.Diagnostics.Debugger.Break();
@@ -316,6 +318,11 @@ namespace SimulationLayer
                 var tile = Tiles.ElementAt(player.Position).Value;
                 var parking = Tiles[20].Price; // parking price alias
 
+                var owner = tile.getOwner(); // tile owner
+
+                // no matter which type, count pass as pass
+                tile.TotalPasses++;
+
 
                 // going to jail via police tile
                 if (tile.Properties.Contains(Property.isPolice))
@@ -336,20 +343,50 @@ namespace SimulationLayer
                 }
 
                 // chance and community chest tiles
-                if (tile.Properties.Contains(Property.isChanceCard))
+                else if (tile.Properties.Contains(Property.isChanceCard))
                 {
                     // TODO: implement
                 }
 
                 // parking tile
-                if (tile == Tiles[20])
+                else if (tile == Tiles[20])
                 {
                     player.Money += parking.GetPrice(0);
                     parking.SetPrice(0);
                 }
 
+                else if (tile.Properties.Contains(Property.isPublicService))
+                {
+                    if (owner == GameControlHub.emptyPlayer || owner == player)
+                        continue;
+
+                    int count = 0; // count how many PS tiles owner has
+                    foreach (int index in owner.OwnedTiles)
+                    {
+                        if (Tiles[index].Properties.Contains(Property.isPublicService))
+                        {  count++; }
+                    }
+
+                    if (count == 1)
+                    {
+                        int money = (Utils.Random.RollDice() + Utils.Random.RollDice()) * 4;
+                        player.Money -= money;
+                        owner.Money += money;
+
+                        tile.TotalProfit += (ulong)money;
+                    }
+                    else if (count == 2)
+                    {
+                        int money = (Utils.Random.RollDice() + Utils.Random.RollDice()) * 10;
+                        player.Money -= money;
+                        owner.Money += money;
+
+                        tile.TotalProfit += (ulong)money;
+                    }
+                }
+
                 // paying for standing on someone's tile
-                if (!player.IsOwnerOf(tile))
+                else if (!player.IsOwnerOf(tile))
                 {
                     if (tile.getOwner() == emptyPlayer)
                     {
@@ -357,8 +394,6 @@ namespace SimulationLayer
                     }
                     else
                     {
-                        var owner = tile.getOwner();
-
                         player.Debt += tile.getFare();
                         owner.Money += tile.getFare();
                         tile.TotalProfit += (ulong)tile.getFare();
@@ -434,15 +469,15 @@ namespace SimulationLayer
         }
 
 
-        void UpdateTransportCards(Player player)
+        public void UpdateTransportCards(Player player)
         {
-            int trasport_cards = 0;
+            int transport_cards = 0;
 
             foreach (var c in player.OwnedTiles)
             {
                 if (Tiles.ElementAt(c).Value.Properties.Contains(Property.isTransport))
                 {
-                    trasport_cards++;
+                    transport_cards++;
                 }
             }
 
@@ -450,7 +485,8 @@ namespace SimulationLayer
             {
                 if (Tiles.ElementAt(c).Value.Properties.Contains(Property.isTransport))
                 {
-                    Tiles.ElementAt(c).Value.Level = trasport_cards;
+                    Tiles.ElementAt(c).Value.Level = transport_cards;
+                    Console.WriteLine(transport_cards);
                 }
             }
         }
