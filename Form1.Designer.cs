@@ -237,11 +237,11 @@
             this.simEndedInLabel = new System.Windows.Forms.Label();
             this.simStatusLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.simulationEntryData_DataSet = new Monopoly_Game_Simulator.SimulationEntryData_DataSet();
             this.playerEntryDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playerEntryDataTableAdapter = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.PlayerEntryDataTableAdapter();
             this.tableAdapterManager = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.tableLayoutPanel1.SuspendLayout();
             this.orangePanel3.SuspendLayout();
             this.orangePanel2.SuspendLayout();
@@ -3088,6 +3088,11 @@
             this.label8.TabIndex = 2;
             this.label8.Text = "Simulation ended in: ";
             // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
             // simulationEntryData_DataSet
             // 
             this.simulationEntryData_DataSet.DataSetName = "SimulationEntryData_DataSet";
@@ -3109,11 +3114,6 @@
             this.tableAdapterManager.TileEntryDataTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3128,6 +3128,7 @@
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainWindow";
             this.Text = "Monopoly Game Simulator";
             this.Load += new System.EventHandler(this.MainWindow_Load);
