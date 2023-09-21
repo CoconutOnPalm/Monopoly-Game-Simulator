@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,9 @@ namespace Monopoly_Game_Simulator
 {
     public partial class FormMMD : Form
     {
+
+        private Bitmap m_image;
+
         public FormMMD()
         {
             InitializeComponent();
@@ -35,6 +39,8 @@ namespace Monopoly_Game_Simulator
 
                 chart1.Series[0].Points.AddXY( tileName, item.Value.first / gamecount);
                 chart1.Series[1].Points.AddXY( tileName, item.Value.second / gamecount);
+
+                chart1.Series[0].Points.Last().ToolTip = tileName;
             }
 
             // set column chart colors
@@ -95,6 +101,47 @@ namespace Monopoly_Game_Simulator
         {
             ClearChart();
             LoadTileChart();
+        }
+
+        private Bitmap Screenshot()
+        {
+            Bitmap bitmap = new Bitmap(this.chart1.Width, this.chart1.Height, PixelFormat.Format64bppArgb);
+            chart1.DrawToBitmap(bitmap, new Rectangle(0, 0, chart1.Width, chart1.Height));
+
+            return bitmap;
+        }
+
+        private void FormMMD_KeyDown(object sender, KeyEventArgs e)
+        {
+            m_image = Screenshot();
+
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                ImageFormat format = ImageFormat.Png;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string ext = System.IO.Path.GetExtension(saveFileDialog1.FileName);
+
+                    switch (ext)
+                    {
+                        case ".png":
+                            format = ImageFormat.Png;
+                            break;
+                        case ".jpg":
+                            format = ImageFormat.Jpeg;
+                            break;
+                        case ".bmp":
+                            format = ImageFormat.Bmp;
+                            break;
+                        default:
+                            MessageBox.Show("Incorrect extention: " + ext);
+                            return;
+                    }
+
+                    m_image.Save(saveFileDialog1.FileName, format);
+                }
+            }
         }
     }
 }

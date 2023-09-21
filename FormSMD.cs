@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,9 @@ namespace Monopoly_Game_Simulator
 {
     public partial class FormSMD : Form
     {
+
+        private Bitmap m_image;
+
         public FormSMD()
         {
             InitializeComponent();
@@ -33,6 +38,8 @@ namespace Monopoly_Game_Simulator
 
                 chart1.Series[0].Points.AddXY(tileName, item.Value.first);
                 chart1.Series[1].Points.AddXY(tileName, item.Value.second);
+
+                chart1.Series[0].Points.Last().ToolTip = tileName;
             }
 
             // set column chart colors
@@ -134,55 +141,10 @@ namespace Monopoly_Game_Simulator
         }
 
 
-        //private void LoadTable()
-        //{
-        //    TableLayoutPanel panel = tableLayoutPanel1;
-        //    MainWindow mainWindow = Application.OpenForms.OfType<MainWindow>().FirstOrDefault();
+        public void CreateImageFromScreen()
+        {
 
-        //    var data = mainWindow.m_gameControlHub.DataCollector;
-        //    var controlHub = mainWindow.m_gameControlHub;
-
-        //    // half of tiles
-        //    for (int i = 0; i < 20; i++)
-        //    {
-        //        Label name = (Label)panel.GetControlFromPosition(0, i + 1);
-        //        Label profit = (Label)panel.GetControlFromPosition(1, i + 1);
-        //        Label passes = (Label)panel.GetControlFromPosition(2, i + 1);
-
-        //        decimal gamecount = SimulationLayer.GameControlHub.GAMES_PER_SIMULATION;
-
-        //        string tileName = controlHub.Tiles[i + 20].Name;
-        //        if (tileName.Length > 16)
-        //            tileName = new string(tileName.ToCharArray(), 0, 16);
-
-        //        name.Text = tileName;
-        //        profit.Text = (data.TileDataTracker[i].first).ToString();
-        //        passes.Text = (data.TileDataTracker[i].second).ToString();
-        //        //profit.Text = (controlHub.Tiles[i].TotalProfit).ToString();
-        //        //passes.Text = (controlHub.Tiles[i].TotalPasses).ToString();
-        //    }
-
-        //    // second half
-        //    panel = tableLayoutPanel2;
-
-        //    for (int i = 0; i < 20; i++)
-        //    {
-        //        Label name = (Label)panel.GetControlFromPosition(0, i + 1);
-        //        Label profit = (Label)panel.GetControlFromPosition(1, i + 1);
-        //        Label passes = (Label)panel.GetControlFromPosition(2, i + 1);
-
-        //        decimal gamecount = SimulationLayer.GameControlHub.GAMES_PER_SIMULATION;
-
-        //        string tileName = controlHub.Tiles[i + 20].Name;
-        //        if (tileName.Length > 16)
-        //            tileName = new string(tileName.ToCharArray(), 0, 16);
-
-        //        name.Text = tileName;
-        //        profit.Text = (data.TileDataTracker[i + 20].first).ToString();
-        //        passes.Text = (data.TileDataTracker[i + 20].second).ToString();
-        //    }
-        //}
-
+        }
 
         public void OnFormShow(object sender, EventArgs e)
         {
@@ -191,6 +153,48 @@ namespace Monopoly_Game_Simulator
             LoadTileChart();
             LoadPlayerMoneyChart();
             LoadPlayerDebtChart();
+        }
+
+
+        private Bitmap Screenshot()
+        {
+            Bitmap bitmap = new Bitmap(this.tableLayoutPanel1.Width, this.tableLayoutPanel1.Height, PixelFormat.Format64bppArgb);
+            tableLayoutPanel1.DrawToBitmap(m_image, new Rectangle(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height));
+
+            return bitmap;
+        }
+
+        private void FormSMD_KeyDown(object sender, KeyEventArgs e)
+        {
+            m_image = Screenshot();
+
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                ImageFormat format = ImageFormat.Png;
+
+                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    string ext = System.IO.Path.GetExtension(saveFileDialog1.FileName);
+
+                    switch (ext)
+                    {
+                        case ".png":
+                            format = ImageFormat.Png; 
+                            break;
+                        case ".jpg":
+                            format = ImageFormat.Jpeg; 
+                            break;
+                        case ".bmp":
+                            format = ImageFormat.Bmp; 
+                            break;
+                        default:
+                            MessageBox.Show("Incorrect extention: " + ext);
+                            return;
+                    }
+
+                    m_image.Save(saveFileDialog1.FileName, format);
+                }
+            }
         }
     }
 }

@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.orangePanel3 = new System.Windows.Forms.Panel();
             this.orangeLabel3 = new System.Windows.Forms.Label();
@@ -242,6 +242,8 @@
             this.playerEntryDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playerEntryDataTableAdapter = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.PlayerEntryDataTableAdapter();
             this.tableAdapterManager = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.tableLayoutPanel1.SuspendLayout();
             this.orangePanel3.SuspendLayout();
             this.orangePanel2.SuspendLayout();
@@ -354,6 +356,7 @@
             this.orangeLabel3.TabIndex = 33;
             this.orangeLabel3.Text = "Sample Text";
             this.orangeLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.orangeLabel3, "Adds this tile to selected player\'s properties");
             this.orangeLabel3.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.orangeLabel3.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.orangeLabel3.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -369,6 +372,7 @@
             this.orangeCheckBox3.Name = "orangeCheckBox3";
             this.orangeCheckBox3.Size = new System.Drawing.Size(65, 25);
             this.orangeCheckBox3.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.orangeCheckBox3, "Adds this tile to selected player\'s properties");
             this.orangeCheckBox3.UseVisualStyleBackColor = false;
             this.orangeCheckBox3.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -398,6 +402,7 @@
             this.orangeLabel2.TabIndex = 34;
             this.orangeLabel2.Text = "Sample Text";
             this.orangeLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.orangeLabel2, "Adds this tile to selected player\'s properties");
             this.orangeLabel2.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.orangeLabel2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.orangeLabel2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -413,6 +418,7 @@
             this.orangeCheckBox2.Name = "orangeCheckBox2";
             this.orangeCheckBox2.Size = new System.Drawing.Size(64, 25);
             this.orangeCheckBox2.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.orangeCheckBox2, "Adds this tile to selected player\'s properties");
             this.orangeCheckBox2.UseVisualStyleBackColor = false;
             this.orangeCheckBox2.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -442,6 +448,7 @@
             this.orangeLabel1.TabIndex = 35;
             this.orangeLabel1.Text = "Sample Text";
             this.orangeLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.orangeLabel1, "Adds this tile to selected player\'s properties");
             this.orangeLabel1.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.orangeLabel1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.orangeLabel1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -457,6 +464,7 @@
             this.orangeCheckBox1.Name = "orangeCheckBox1";
             this.orangeCheckBox1.Size = new System.Drawing.Size(63, 25);
             this.orangeCheckBox1.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.orangeCheckBox1, "Adds this tile to selected player\'s properties");
             this.orangeCheckBox1.UseVisualStyleBackColor = false;
             this.orangeCheckBox1.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -486,6 +494,7 @@
             this.magentaLabel3.TabIndex = 27;
             this.magentaLabel3.Text = "Sample Text";
             this.magentaLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.magentaLabel3, "Adds this tile to selected player\'s properties");
             this.magentaLabel3.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.magentaLabel3.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.magentaLabel3.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -501,6 +510,7 @@
             this.magentaCheckBox3.Name = "magentaCheckBox3";
             this.magentaCheckBox3.Size = new System.Drawing.Size(65, 25);
             this.magentaCheckBox3.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.magentaCheckBox3, "Adds this tile to selected player\'s properties");
             this.magentaCheckBox3.UseVisualStyleBackColor = false;
             this.magentaCheckBox3.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -530,6 +540,7 @@
             this.magentaLabel2.TabIndex = 26;
             this.magentaLabel2.Text = "Sample Text";
             this.magentaLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.magentaLabel2, "Adds this tile to selected player\'s properties");
             this.magentaLabel2.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.magentaLabel2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.magentaLabel2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -545,6 +556,7 @@
             this.magentaCheckBox2.Name = "magentaCheckBox2";
             this.magentaCheckBox2.Size = new System.Drawing.Size(64, 25);
             this.magentaCheckBox2.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.magentaCheckBox2, "Adds this tile to selected player\'s properties");
             this.magentaCheckBox2.UseVisualStyleBackColor = false;
             this.magentaCheckBox2.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -574,6 +586,7 @@
             this.magentaLabel1.TabIndex = 25;
             this.magentaLabel1.Text = "Sample Text";
             this.magentaLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.magentaLabel1, "Adds this tile to selected player\'s properties");
             this.magentaLabel1.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.magentaLabel1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.magentaLabel1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -589,6 +602,7 @@
             this.magentaCheckBox1.Name = "magentaCheckBox1";
             this.magentaCheckBox1.Size = new System.Drawing.Size(63, 25);
             this.magentaCheckBox1.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.magentaCheckBox1, "Adds this tile to selected player\'s properties");
             this.magentaCheckBox1.UseVisualStyleBackColor = false;
             this.magentaCheckBox1.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -618,6 +632,7 @@
             this.cyanLabel3.TabIndex = 22;
             this.cyanLabel3.Text = "Sample Text";
             this.cyanLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.cyanLabel3, "Adds this tile to selected player\'s properties");
             this.cyanLabel3.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.cyanLabel3.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.cyanLabel3.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -633,6 +648,7 @@
             this.cyanCheckBox3.Name = "cyanCheckBox3";
             this.cyanCheckBox3.Size = new System.Drawing.Size(65, 25);
             this.cyanCheckBox3.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.cyanCheckBox3, "Adds this tile to selected player\'s properties");
             this.cyanCheckBox3.UseVisualStyleBackColor = false;
             this.cyanCheckBox3.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -662,6 +678,7 @@
             this.cyanLabel2.TabIndex = 23;
             this.cyanLabel2.Text = "Sample Text";
             this.cyanLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.cyanLabel2, "Adds this tile to selected player\'s properties");
             this.cyanLabel2.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.cyanLabel2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.cyanLabel2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -677,6 +694,7 @@
             this.cyanCheckBox2.Name = "cyanCheckBox2";
             this.cyanCheckBox2.Size = new System.Drawing.Size(64, 25);
             this.cyanCheckBox2.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.cyanCheckBox2, "Adds this tile to selected player\'s properties");
             this.cyanCheckBox2.UseVisualStyleBackColor = false;
             this.cyanCheckBox2.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -706,6 +724,7 @@
             this.cyanLabel1.TabIndex = 24;
             this.cyanLabel1.Text = "Sample Text";
             this.cyanLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.cyanLabel1, "Adds this tile to selected player\'s properties");
             this.cyanLabel1.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.cyanLabel1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.cyanLabel1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -721,6 +740,7 @@
             this.cyanCheckBox1.Name = "cyanCheckBox1";
             this.cyanCheckBox1.Size = new System.Drawing.Size(63, 25);
             this.cyanCheckBox1.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.cyanCheckBox1, "Adds this tile to selected player\'s properties");
             this.cyanCheckBox1.UseVisualStyleBackColor = false;
             this.cyanCheckBox1.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -750,6 +770,7 @@
             this.brownLabel2.TabIndex = 15;
             this.brownLabel2.Text = "Sample Text";
             this.brownLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.brownLabel2, "Adds this tile to selected player\'s properties");
             this.brownLabel2.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.brownLabel2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.brownLabel2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -765,6 +786,7 @@
             this.brownCheckBox2.Name = "brownCheckBox2";
             this.brownCheckBox2.Size = new System.Drawing.Size(64, 25);
             this.brownCheckBox2.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.brownCheckBox2, "Adds this tile to selected player\'s properties");
             this.brownCheckBox2.UseVisualStyleBackColor = false;
             this.brownCheckBox2.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -793,6 +815,7 @@
             this.brownLabel1.TabIndex = 14;
             this.brownLabel1.Text = "Sample Text";
             this.brownLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.brownLabel1, "Adds this tile to selected player\'s properties");
             this.brownLabel1.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.brownLabel1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.brownLabel1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -808,6 +831,7 @@
             this.brownCheckBox1.Name = "brownCheckBox1";
             this.brownCheckBox1.Size = new System.Drawing.Size(63, 25);
             this.brownCheckBox1.TabIndex = 13;
+            this.toolTip1.SetToolTip(this.brownCheckBox1, "Adds this tile to selected player\'s properties");
             this.brownCheckBox1.UseVisualStyleBackColor = false;
             this.brownCheckBox1.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -864,6 +888,7 @@
             this.blueLabel2.TabIndex = 31;
             this.blueLabel2.Text = "Sample Text";
             this.blueLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.blueLabel2, "Adds this tile to selected player\'s properties");
             this.blueLabel2.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.blueLabel2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.blueLabel2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -879,6 +904,7 @@
             this.blueCheckBox2.Name = "blueCheckBox2";
             this.blueCheckBox2.Size = new System.Drawing.Size(64, 25);
             this.blueCheckBox2.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.blueCheckBox2, "Adds this tile to selected player\'s properties");
             this.blueCheckBox2.UseVisualStyleBackColor = false;
             this.blueCheckBox2.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -908,6 +934,7 @@
             this.blueLabel1.TabIndex = 32;
             this.blueLabel1.Text = "Sample Text";
             this.blueLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.blueLabel1, "Adds this tile to selected player\'s properties");
             this.blueLabel1.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.blueLabel1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.blueLabel1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -923,6 +950,7 @@
             this.blueCheckBox1.Name = "blueCheckBox1";
             this.blueCheckBox1.Size = new System.Drawing.Size(63, 25);
             this.blueCheckBox1.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.blueCheckBox1, "Adds this tile to selected player\'s properties");
             this.blueCheckBox1.UseVisualStyleBackColor = false;
             this.blueCheckBox1.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -952,6 +980,7 @@
             this.greenLabel3.TabIndex = 30;
             this.greenLabel3.Text = "Sample Text";
             this.greenLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.greenLabel3, "Adds this tile to selected player\'s properties");
             this.greenLabel3.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.greenLabel3.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.greenLabel3.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -967,6 +996,7 @@
             this.greenCheckBox3.Name = "greenCheckBox3";
             this.greenCheckBox3.Size = new System.Drawing.Size(65, 25);
             this.greenCheckBox3.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.greenCheckBox3, "Adds this tile to selected player\'s properties");
             this.greenCheckBox3.UseVisualStyleBackColor = false;
             this.greenCheckBox3.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -996,6 +1026,7 @@
             this.greenLabel2.TabIndex = 29;
             this.greenLabel2.Text = "Sample Text";
             this.greenLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.greenLabel2, "Adds this tile to selected player\'s properties");
             this.greenLabel2.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.greenLabel2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.greenLabel2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -1011,6 +1042,7 @@
             this.greenCheckBox2.Name = "greenCheckBox2";
             this.greenCheckBox2.Size = new System.Drawing.Size(64, 25);
             this.greenCheckBox2.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.greenCheckBox2, "Adds this tile to selected player\'s properties");
             this.greenCheckBox2.UseVisualStyleBackColor = false;
             this.greenCheckBox2.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -1040,6 +1072,7 @@
             this.greenLabel1.TabIndex = 28;
             this.greenLabel1.Text = "Sample Text";
             this.greenLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.greenLabel1, "Adds this tile to selected player\'s properties");
             this.greenLabel1.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.greenLabel1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.greenLabel1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -1055,6 +1088,7 @@
             this.greenCheckBox1.Name = "greenCheckBox1";
             this.greenCheckBox1.Size = new System.Drawing.Size(63, 25);
             this.greenCheckBox1.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.greenCheckBox1, "Adds this tile to selected player\'s properties");
             this.greenCheckBox1.UseVisualStyleBackColor = false;
             this.greenCheckBox1.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -1084,6 +1118,7 @@
             this.yellowLabel3.TabIndex = 19;
             this.yellowLabel3.Text = "Sample Text";
             this.yellowLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.yellowLabel3, "Adds this tile to selected player\'s properties");
             this.yellowLabel3.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.yellowLabel3.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.yellowLabel3.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -1099,6 +1134,7 @@
             this.yellowCheckBox3.Name = "yellowCheckBox3";
             this.yellowCheckBox3.Size = new System.Drawing.Size(65, 25);
             this.yellowCheckBox3.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.yellowCheckBox3, "Adds this tile to selected player\'s properties");
             this.yellowCheckBox3.UseVisualStyleBackColor = false;
             this.yellowCheckBox3.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -1128,6 +1164,7 @@
             this.yellowLabel2.TabIndex = 20;
             this.yellowLabel2.Text = "Sample Text";
             this.yellowLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.yellowLabel2, "Adds this tile to selected player\'s properties");
             this.yellowLabel2.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.yellowLabel2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.yellowLabel2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -1143,6 +1180,7 @@
             this.yellowCheckBox2.Name = "yellowCheckBox2";
             this.yellowCheckBox2.Size = new System.Drawing.Size(64, 25);
             this.yellowCheckBox2.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.yellowCheckBox2, "Adds this tile to selected player\'s properties");
             this.yellowCheckBox2.UseVisualStyleBackColor = false;
             this.yellowCheckBox2.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -1172,6 +1210,7 @@
             this.yellowLabel1.TabIndex = 21;
             this.yellowLabel1.Text = "Sample Text";
             this.yellowLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.yellowLabel1, "Adds this tile to selected player\'s properties");
             this.yellowLabel1.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.yellowLabel1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.yellowLabel1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -1187,6 +1226,7 @@
             this.yellowCheckBox1.Name = "yellowCheckBox1";
             this.yellowCheckBox1.Size = new System.Drawing.Size(63, 25);
             this.yellowCheckBox1.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.yellowCheckBox1, "Adds this tile to selected player\'s properties");
             this.yellowCheckBox1.UseVisualStyleBackColor = false;
             this.yellowCheckBox1.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -1216,6 +1256,7 @@
             this.redLabel2.TabIndex = 17;
             this.redLabel2.Text = "Sample Text";
             this.redLabel2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.redLabel2, "Adds this tile to selected player\'s properties");
             this.redLabel2.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.redLabel2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.redLabel2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -1231,6 +1272,7 @@
             this.redCheckBox2.Name = "redCheckBox2";
             this.redCheckBox2.Size = new System.Drawing.Size(64, 25);
             this.redCheckBox2.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.redCheckBox2, "Adds this tile to selected player\'s properties");
             this.redCheckBox2.UseVisualStyleBackColor = false;
             this.redCheckBox2.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -1260,6 +1302,7 @@
             this.redLabel1.TabIndex = 16;
             this.redLabel1.Text = "Sample Text";
             this.redLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.redLabel1, "Adds this tile to selected player\'s properties");
             this.redLabel1.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.redLabel1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.redLabel1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -1275,6 +1318,7 @@
             this.redCheckBox1.Name = "redCheckBox1";
             this.redCheckBox1.Size = new System.Drawing.Size(63, 25);
             this.redCheckBox1.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.redCheckBox1, "Adds this tile to selected player\'s properties");
             this.redCheckBox1.UseVisualStyleBackColor = false;
             this.redCheckBox1.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -1304,6 +1348,7 @@
             this.redLabel3.TabIndex = 18;
             this.redLabel3.Text = "Sample Text";
             this.redLabel3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.toolTip1.SetToolTip(this.redLabel3, "Adds this tile to selected player\'s properties");
             this.redLabel3.Click += new System.EventHandler(this.OnStreetTileClicked);
             this.redLabel3.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
             this.redLabel3.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
@@ -1319,6 +1364,7 @@
             this.redCheckBox3.Name = "redCheckBox3";
             this.redCheckBox3.Size = new System.Drawing.Size(65, 25);
             this.redCheckBox3.TabIndex = 14;
+            this.toolTip1.SetToolTip(this.redCheckBox3, "Adds this tile to selected player\'s properties");
             this.redCheckBox3.UseVisualStyleBackColor = false;
             this.redCheckBox3.Click += new System.EventHandler(this.OnStreetTileClicked);
             // 
@@ -1639,6 +1685,8 @@
             this.selectWholeStreet.Size = new System.Drawing.Size(281, 35);
             this.selectWholeStreet.TabIndex = 16;
             this.selectWholeStreet.Text = "Select Whole Street";
+            this.toolTip1.SetToolTip(this.selectWholeStreet, "When this button is selected:\r\nSelecting a tile automatically adds all tiles\r\ntha" +
+        "t have the same color to selected player\'s\r\nproperties");
             this.selectWholeStreet.UseVisualStyleBackColor = false;
             // 
             // playerPropertiesListBox
@@ -1663,6 +1711,7 @@
             this.ClearPropertiesButton.Size = new System.Drawing.Size(100, 26);
             this.ClearPropertiesButton.TabIndex = 18;
             this.ClearPropertiesButton.Text = "clear";
+            this.toolTip1.SetToolTip(this.ClearPropertiesButton, "Removes all properties from the selected player");
             this.ClearPropertiesButton.UseVisualStyleBackColor = true;
             this.ClearPropertiesButton.Click += new System.EventHandler(this.ClearPropertiesButton_Click);
             // 
@@ -1683,6 +1732,9 @@
             this.levelSelectorComboBox.Name = "levelSelectorComboBox";
             this.levelSelectorComboBox.Size = new System.Drawing.Size(100, 26);
             this.levelSelectorComboBox.TabIndex = 19;
+            this.toolTip1.SetToolTip(this.levelSelectorComboBox, "Select tile level\r\n\r\nEach level corresponds to number of houses/hotel\r\nlocated on" +
+        " the property\r\nlevel 0 -> no houses\r\nlevel 1 -> 1 house\r\nlevel 2 -> 2 houses\r\n.." +
+        ".\r\nlevel 5 -> hotel");
             this.levelSelectorComboBox.SelectedIndexChanged += new System.EventHandler(this.levelSelectorComboBox_SelectedIndexChanged);
             // 
             // maxLevelCheckBox
@@ -1697,6 +1749,8 @@
             this.maxLevelCheckBox.Size = new System.Drawing.Size(100, 26);
             this.maxLevelCheckBox.TabIndex = 20;
             this.maxLevelCheckBox.Text = "force max lv";
+            this.toolTip1.SetToolTip(this.maxLevelCheckBox, "Forces all tiles to be at maximum level (hotel)\r\nDoes not work on Transport and U" +
+        "tility tiles");
             this.maxLevelCheckBox.UseVisualStyleBackColor = false;
             this.maxLevelCheckBox.CheckedChanged += new System.EventHandler(this.maxLevelCheckBox_CheckedChanged);
             // 
@@ -1729,6 +1783,7 @@
             this.tileValueLabel.TabIndex = 28;
             this.tileValueLabel.Text = "1500";
             this.tileValueLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.tileValueLabel, "It costs this amount of money to buy this tile");
             // 
             // tileValueTextLabel
             // 
@@ -1767,6 +1822,7 @@
             this.playerNameLabel.TabIndex = 23;
             this.playerNameLabel.Text = "label1";
             this.playerNameLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.playerNameLabel, "Selected player\'s name");
             // 
             // priceLabelText
             // 
@@ -1810,6 +1866,7 @@
             this.priceLabel0.TabIndex = 0;
             this.priceLabel0.Text = "label1";
             this.priceLabel0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.priceLabel0, "Income per player visit, corresponding to tile level\r\n\r\nTile level: 0");
             // 
             // priceLabel1
             // 
@@ -1821,6 +1878,7 @@
             this.priceLabel1.TabIndex = 1;
             this.priceLabel1.Text = "label2";
             this.priceLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.priceLabel1, "Income per player visit, corresponding to tile level\r\n\r\nTile level: 1");
             // 
             // priceLabel2
             // 
@@ -1832,6 +1890,7 @@
             this.priceLabel2.TabIndex = 2;
             this.priceLabel2.Text = "label3";
             this.priceLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.priceLabel2, "Income per player visit, corresponding to tile level\r\n\r\nTile level: 2\r\n");
             // 
             // priceLabel3
             // 
@@ -1843,6 +1902,7 @@
             this.priceLabel3.TabIndex = 3;
             this.priceLabel3.Text = "label4";
             this.priceLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.priceLabel3, "Income per player visit, corresponding to tile level\r\n\r\nTile level: 3");
             // 
             // priceLabel4
             // 
@@ -1854,6 +1914,7 @@
             this.priceLabel4.TabIndex = 4;
             this.priceLabel4.Text = "label5";
             this.priceLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.priceLabel4, "Income per player visit, corresponding to tile level\r\n\r\nTile level: 4");
             // 
             // priceLabel5
             // 
@@ -1865,6 +1926,7 @@
             this.priceLabel5.TabIndex = 5;
             this.priceLabel5.Text = "label6";
             this.priceLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.priceLabel5, "Income per player visit, corresponding to tile level\r\n\r\nTile level: 5 (hotel)");
             // 
             // playerManagerGroupBox
             // 
@@ -1942,6 +2004,8 @@
             this.includeCheckBox5.Name = "includeCheckBox5";
             this.includeCheckBox5.Size = new System.Drawing.Size(51, 27);
             this.includeCheckBox5.TabIndex = 35;
+            this.toolTip1.SetToolTip(this.includeCheckBox5, "Includes/excludes player from simulation\r\nThis lets you manipuilate how many play" +
+        "ers\r\ntake part in the game");
             this.includeCheckBox5.UseVisualStyleBackColor = true;
             this.includeCheckBox5.CheckedChanged += new System.EventHandler(this.includeCheckBox5_CheckedChanged);
             // 
@@ -2024,6 +2088,7 @@
             this.player1Button.TabStop = true;
             this.player1Button.Text = "1";
             this.player1Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.player1Button, "Select player: Player 1");
             this.player1Button.UseVisualStyleBackColor = true;
             this.player1Button.CheckedChanged += new System.EventHandler(this.OnSelectedPlayerChanged);
             // 
@@ -2218,6 +2283,7 @@
             this.player2Button.TabIndex = 24;
             this.player2Button.Text = "2";
             this.player2Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.player2Button, "Select player: Player 2");
             this.player2Button.UseVisualStyleBackColor = true;
             this.player2Button.CheckedChanged += new System.EventHandler(this.OnSelectedPlayerChanged);
             // 
@@ -2233,6 +2299,7 @@
             this.player3Button.TabIndex = 25;
             this.player3Button.Text = "3";
             this.player3Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.player3Button, "Select player: Player 3");
             this.player3Button.UseVisualStyleBackColor = true;
             this.player3Button.CheckedChanged += new System.EventHandler(this.OnSelectedPlayerChanged);
             // 
@@ -2248,6 +2315,7 @@
             this.player4Button.TabIndex = 26;
             this.player4Button.Text = "4";
             this.player4Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.player4Button, "Select player: Player 4");
             this.player4Button.UseVisualStyleBackColor = true;
             this.player4Button.CheckedChanged += new System.EventHandler(this.OnSelectedPlayerChanged);
             // 
@@ -2263,6 +2331,7 @@
             this.player5Button.TabIndex = 27;
             this.player5Button.Text = "5";
             this.player5Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.player5Button, "Select player: Player 5");
             this.player5Button.UseVisualStyleBackColor = true;
             this.player5Button.CheckedChanged += new System.EventHandler(this.OnSelectedPlayerChanged);
             // 
@@ -2278,6 +2347,7 @@
             this.player6Button.TabIndex = 28;
             this.player6Button.Text = "6";
             this.player6Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.player6Button, "Select player: Player 6");
             this.player6Button.UseVisualStyleBackColor = true;
             this.player6Button.CheckedChanged += new System.EventHandler(this.OnSelectedPlayerChanged);
             // 
@@ -2333,6 +2403,8 @@
             this.includeCheckBox3.Name = "includeCheckBox3";
             this.includeCheckBox3.Size = new System.Drawing.Size(51, 27);
             this.includeCheckBox3.TabIndex = 32;
+            this.toolTip1.SetToolTip(this.includeCheckBox3, "Includes/excludes player from simulation\r\nThis lets you manipuilate how many play" +
+        "ers\r\ntake part in the game");
             this.includeCheckBox3.UseVisualStyleBackColor = true;
             this.includeCheckBox3.CheckedChanged += new System.EventHandler(this.includeCheckBox3_CheckedChanged);
             // 
@@ -2347,6 +2419,8 @@
             this.includeCheckBox4.Name = "includeCheckBox4";
             this.includeCheckBox4.Size = new System.Drawing.Size(51, 27);
             this.includeCheckBox4.TabIndex = 33;
+            this.toolTip1.SetToolTip(this.includeCheckBox4, "Includes/excludes player from simulation\r\nThis lets you manipuilate how many play" +
+        "ers\r\ntake part in the game");
             this.includeCheckBox4.UseVisualStyleBackColor = true;
             this.includeCheckBox4.CheckedChanged += new System.EventHandler(this.includeCheckBox4_CheckedChanged);
             // 
@@ -2361,6 +2435,8 @@
             this.includeCheckBox6.Name = "includeCheckBox6";
             this.includeCheckBox6.Size = new System.Drawing.Size(51, 34);
             this.includeCheckBox6.TabIndex = 34;
+            this.toolTip1.SetToolTip(this.includeCheckBox6, "Includes/excludes player from simulation\r\nThis lets you manipuilate how many play" +
+        "ers\r\ntake part in the game");
             this.includeCheckBox6.UseVisualStyleBackColor = true;
             this.includeCheckBox6.CheckedChanged += new System.EventHandler(this.includeCheckBox6_CheckedChanged);
             // 
@@ -2388,6 +2464,7 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(276, 13);
             this.progressBar1.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.progressBar1, "Simulation progress");
             // 
             // simModeGB
             // 
@@ -2416,9 +2493,16 @@
             0,
             0,
             0});
+            this.simulatedGamesSelector.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.simulatedGamesSelector.Name = "simulatedGamesSelector";
             this.simulatedGamesSelector.Size = new System.Drawing.Size(89, 23);
             this.simulatedGamesSelector.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.simulatedGamesSelector, "Amount of simulated games in multi-game mode\r\n\r\nSetting more games gives more spe" +
+        "cifc data, but\r\nalso significantly increases computation time\r\n\r\nDefault: 100 ");
             this.simulatedGamesSelector.Value = new decimal(new int[] {
             100,
             0,
@@ -2448,6 +2532,8 @@
             this.multiSimRB.TabStop = true;
             this.multiSimRB.Text = "multiple games";
             this.multiSimRB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.multiSimRB, "Select multi-game simulation mode\r\n\r\nSimulates multiple games, but gives less spe" +
+        "cific data");
             this.multiSimRB.UseVisualStyleBackColor = true;
             this.multiSimRB.CheckedChanged += new System.EventHandler(this.multiSimRB_CheckedChanged);
             // 
@@ -2461,6 +2547,8 @@
             this.singleSimRB.TabIndex = 0;
             this.singleSimRB.Text = "single game";
             this.singleSimRB.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.toolTip1.SetToolTip(this.singleSimRB, "Select single-game simulation mode\r\n\r\nSimulates only one game, but gives more dat" +
+        "a");
             this.singleSimRB.UseVisualStyleBackColor = true;
             this.singleSimRB.CheckedChanged += new System.EventHandler(this.singleSimRB_CheckedChanged);
             // 
@@ -2474,6 +2562,7 @@
             this.startSimulationButton.Size = new System.Drawing.Size(150, 45);
             this.startSimulationButton.TabIndex = 4;
             this.startSimulationButton.Text = "Simulate";
+            this.toolTip1.SetToolTip(this.startSimulationButton, "Starts the simulation");
             this.startSimulationButton.UseVisualStyleBackColor = false;
             this.startSimulationButton.Click += new System.EventHandler(this.startSimulationButton_Click);
             // 
@@ -2481,7 +2570,7 @@
             // 
             this.moneyPerStartSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.moneyPerStartSelector.Increment = new decimal(new int[] {
-            500,
+            100,
             0,
             0,
             0});
@@ -2494,6 +2583,8 @@
             this.moneyPerStartSelector.Name = "moneyPerStartSelector";
             this.moneyPerStartSelector.Size = new System.Drawing.Size(89, 23);
             this.moneyPerStartSelector.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.moneyPerStartSelector, "If a player passes start tile, he/she gets this amount\r\nof money from the bank\r\n\r" +
+        "\nDefault: 200");
             this.moneyPerStartSelector.Value = new decimal(new int[] {
             200,
             0,
@@ -2528,6 +2619,7 @@
             this.maxDebtSelector.Name = "maxDebtSelector";
             this.maxDebtSelector.Size = new System.Drawing.Size(89, 23);
             this.maxDebtSelector.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.maxDebtSelector, "After having more debt than this value, player looses\r\n\r\nDefault: 5000");
             this.maxDebtSelector.Value = new decimal(new int[] {
             5000,
             0,
@@ -2581,33 +2673,33 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea5.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea5);
+            legend5.Name = "Legend1";
+            this.chart1.Legends.Add(legend5);
             this.chart1.Location = new System.Drawing.Point(6, 52);
             this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series4.Color = System.Drawing.Color.LimeGreen;
-            series4.IsValueShownAsLabel = true;
-            series4.Legend = "Legend1";
-            series4.Name = "Won Games";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            series5.IsValueShownAsLabel = true;
-            series5.Legend = "Legend1";
-            series5.Name = "Non-defeat";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series6.Color = System.Drawing.Color.Red;
-            series6.IsValueShownAsLabel = true;
-            series6.Legend = "Legend1";
-            series6.Name = "Lost Games";
-            this.chart1.Series.Add(series4);
-            this.chart1.Series.Add(series5);
-            this.chart1.Series.Add(series6);
+            series13.ChartArea = "ChartArea1";
+            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series13.Color = System.Drawing.Color.LimeGreen;
+            series13.IsValueShownAsLabel = true;
+            series13.Legend = "Legend1";
+            series13.Name = "Won Games";
+            series14.ChartArea = "ChartArea1";
+            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series14.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            series14.IsValueShownAsLabel = true;
+            series14.Legend = "Legend1";
+            series14.Name = "Non-defeat";
+            series15.ChartArea = "ChartArea1";
+            series15.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series15.Color = System.Drawing.Color.Red;
+            series15.IsValueShownAsLabel = true;
+            series15.Legend = "Legend1";
+            series15.Name = "Lost Games";
+            this.chart1.Series.Add(series13);
+            this.chart1.Series.Add(series14);
+            this.chart1.Series.Add(series15);
             this.chart1.Size = new System.Drawing.Size(351, 157);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
@@ -2619,6 +2711,7 @@
             this.openChartButtonMM.Name = "openChartButtonMM";
             this.openChartButtonMM.Size = new System.Drawing.Size(78, 35);
             this.openChartButtonMM.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.openChartButtonMM, "Open external window containing additional data");
             this.openChartButtonMM.UseVisualStyleBackColor = true;
             this.openChartButtonMM.Click += new System.EventHandler(this.openChartButtonMM_Click);
             // 
@@ -2665,6 +2758,7 @@
             this.openChartButtonSM.Name = "openChartButtonSM";
             this.openChartButtonSM.Size = new System.Drawing.Size(78, 35);
             this.openChartButtonSM.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.openChartButtonSM, "Open external window containing additional data");
             this.openChartButtonSM.UseVisualStyleBackColor = true;
             this.openChartButtonSM.Click += new System.EventHandler(this.openChartButtonSM_Click);
             // 
@@ -3405,6 +3499,8 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }
 

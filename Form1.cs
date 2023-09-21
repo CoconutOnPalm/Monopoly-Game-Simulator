@@ -39,6 +39,8 @@ namespace Monopoly_Game_Simulator
 
         private (SimulationLayer.SimualationExitCode, int) m_simOutput = (SimulationLayer.SimualationExitCode.Error, 0);
 
+        private double m_progressBarValue = 0;
+
 
         public MainWindow()
         {
@@ -91,7 +93,22 @@ namespace Monopoly_Game_Simulator
 
             if (progressBar1.InvokeRequired)
             {
-                MethodInvoker m = new MethodInvoker(() => { if (progressBar1.Value < 100) progressBar1.Value++; });
+                MethodInvoker m = new MethodInvoker(() => 
+                { 
+                    if (progressBar1.Value < 100)
+                    {
+                        double value = (100.0 / (double)SimulationLayer.GameControlHub.GAMES_PER_SIMULATION);
+
+                        m_progressBarValue += value;
+
+                        // trim
+                        if (m_progressBarValue > 100)
+                            m_progressBarValue = 100;
+
+                        progressBar1.Value = (int)m_progressBarValue;
+
+                    }
+                });
                 progressBar1.Invoke(m);
             }
             else
@@ -1399,9 +1416,13 @@ namespace Monopoly_Game_Simulator
 
         private void startSimulationButton_Click(object sender, EventArgs e)
         {
+            startSimulationButton.Enabled = false;
+            maxDebtSelector.Enabled = false;
+            moneyPerStartSelector.Enabled = false;
             LoadPlayers();
             m_gameControlHub.DataCollector.Clear();
             progressBar1.Value = 0;
+            m_progressBarValue = 0;
 
             backgroundWorker1.RunWorkerAsync();
             //var output = m_gameControlHub.Run(m_simulationMode == SimulationMode.MultiSim);
@@ -1424,8 +1445,9 @@ namespace Monopoly_Game_Simulator
             UpdateSinglegameOutputTab(output.Item1, output.Item2);
             UpdateMultigameOutputTab(output.Item1, output.Item2);
             RefreshSimulation();
-
-            Console.WriteLine(progressBar1.Value);
+            startSimulationButton.Enabled = true;
+            maxDebtSelector.Enabled = true;
+            moneyPerStartSelector.Enabled = true;
         }
 
         private void UpdateSinglegameOutputTab(SimulationLayer.SimualationExitCode exitCode, int turns)
