@@ -41,6 +41,7 @@ namespace Monopoly_Game_Simulator
                 chart1.Series[1].Points.AddXY( tileName, item.Value.second / gamecount);
 
                 chart1.Series[0].Points.Last().ToolTip = tileName;
+                chart1.Series[1].Points.Last().ToolTip = chart1.Series[1].Points.Last().YValues.Last().ToString();
             }
 
             // set column chart colors

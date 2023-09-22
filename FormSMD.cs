@@ -40,6 +40,7 @@ namespace Monopoly_Game_Simulator
                 chart1.Series[1].Points.AddXY(tileName, item.Value.second);
 
                 chart1.Series[0].Points.Last().ToolTip = tileName;
+                chart1.Series[1].Points.Last().ToolTip = chart1.Series[1].Points.Last().YValues.Last().ToString();
             }
 
             // set column chart colors
@@ -159,7 +160,7 @@ namespace Monopoly_Game_Simulator
         private Bitmap Screenshot()
         {
             Bitmap bitmap = new Bitmap(this.tableLayoutPanel1.Width, this.tableLayoutPanel1.Height, PixelFormat.Format64bppArgb);
-            tableLayoutPanel1.DrawToBitmap(m_image, new Rectangle(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height));
+            tableLayoutPanel1.DrawToBitmap(bitmap, new Rectangle(0, 0, tableLayoutPanel1.Width, tableLayoutPanel1.Height));
 
             return bitmap;
         }

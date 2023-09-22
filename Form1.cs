@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -93,8 +94,8 @@ namespace Monopoly_Game_Simulator
 
             if (progressBar1.InvokeRequired)
             {
-                MethodInvoker m = new MethodInvoker(() => 
-                { 
+                MethodInvoker m = new MethodInvoker(() =>
+                {
                     if (progressBar1.Value < 100)
                     {
                         double value = (100.0 / (double)SimulationLayer.GameControlHub.GAMES_PER_SIMULATION);
@@ -1063,6 +1064,8 @@ namespace Monopoly_Game_Simulator
             }
 
 
+            // SELECTING TILES
+
             // uncheck all tiles
             foreach (Panel panel in tableLayoutPanel1.Controls)
             {
@@ -1126,12 +1129,86 @@ namespace Monopoly_Game_Simulator
                     CheckTransportOrServiceTile(panel, true);
                 }
             }
+
+
+
+
+            // ENABLING TILES
+
+            // enable all
+            foreach (Panel panel in tableLayoutPanel1.Controls)
+            {
+                EnableTile(panel, true);
+            }
+            foreach (Panel panel in tableLayoutPanel2.Controls)
+            {
+                EnableTile(panel, true);
+            }
+            foreach (Panel panel in tableLayoutPanel3.Controls)
+            {
+                EnableTile(panel, true);
+            }
+            foreach (Panel panel in tableLayoutPanel4.Controls)
+            {
+                EnableTile(panel, true);
+            }
+
+
+            // wrap in lambda to save space
+            Action<TableLayoutPanel> DisableIfOwned = (tablepanel) =>
+            {
+                foreach (var player in m_gameControlHub.Players)
+                {
+                    // don't check selected Player
+                    if (player == m_selectedPlayer)
+                        continue;
+
+                    // find player properties
+                    List<string> prop = new List<string>(); // player's properties
+
+                    foreach (int index in player.OwnedTiles)
+                    {
+                        prop.Add(new string(m_gameControlHub.Tiles[index].Name.ToCharArray()));
+                    }
+
+                    foreach (Panel panel in tablepanel.Controls)
+                    {
+                        Label label = panel.Controls.OfType<Label>().FirstOrDefault();
+
+                        if (prop.Contains(label.Text))
+                        {
+                            EnableTile(panel, false);
+                        }
+                    }
+                }
+            };
+
+
+            DisableIfOwned(tableLayoutPanel1);
+            DisableIfOwned(tableLayoutPanel2);
+            DisableIfOwned(tableLayoutPanel3);
+            DisableIfOwned(tableLayoutPanel4);
         }
 
         private void playerPropertiesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             RefreshLevelDropdownList();
             RefreshPropertyData();
+        }
+
+
+
+        private void EnableTile(Panel panel, bool enable)
+        {
+            if (panel.Tag != null && panel != null)
+            {
+                foreach (Control control in panel.Controls)
+                {
+                    control.Enabled = enable;
+                }
+
+                panel.Enabled = enable;
+            }
         }
 
 
