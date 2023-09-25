@@ -29,12 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend7 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series19 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series20 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series21 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.orangePanel3 = new System.Windows.Forms.Panel();
             this.orangeLabel3 = new System.Windows.Forms.Label();
@@ -105,34 +105,26 @@
             this.redCheckBox3 = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.transportPanel4 = new System.Windows.Forms.Panel();
-            this.transportImage4 = new System.Windows.Forms.PictureBox();
             this.transportLabel4 = new System.Windows.Forms.Label();
             this.transportPanel3 = new System.Windows.Forms.Panel();
-            this.transportImage3 = new System.Windows.Forms.PictureBox();
             this.transportLabel3 = new System.Windows.Forms.Label();
             this.transportPanel2 = new System.Windows.Forms.Panel();
-            this.transportImage2 = new System.Windows.Forms.PictureBox();
             this.transportLabel2 = new System.Windows.Forms.Label();
             this.transportPanel1 = new System.Windows.Forms.Panel();
-            this.transportImage1 = new System.Windows.Forms.PictureBox();
             this.transportLabel1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.publicServicePanel2 = new System.Windows.Forms.Panel();
-            this.publicServiceImage2 = new System.Windows.Forms.PictureBox();
             this.publicServiceLabel2 = new System.Windows.Forms.Label();
             this.publicServicePanel1 = new System.Windows.Forms.Panel();
-            this.publicServiceImage1 = new System.Windows.Forms.PictureBox();
             this.publicServiceLabel1 = new System.Windows.Forms.Label();
             this.selectWholeStreet = new System.Windows.Forms.CheckBox();
             this.playerPropertiesListBox = new System.Windows.Forms.ListBox();
-            this.ClearPropertiesButton = new System.Windows.Forms.Button();
             this.levelSelectorComboBox = new System.Windows.Forms.ComboBox();
             this.maxLevelCheckBox = new System.Windows.Forms.CheckBox();
             this.propertyManagerGroupBox = new System.Windows.Forms.GroupBox();
             this.tileValueLabel = new System.Windows.Forms.Label();
             this.tileValueTextLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.tileColorPB = new System.Windows.Forms.PictureBox();
             this.playerNameLabel = new System.Windows.Forms.Label();
             this.priceLabelText = new System.Windows.Forms.Label();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
@@ -194,11 +186,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.openChartButtonMM = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.simStatusLabelMM = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.openChartButtonSM = new System.Windows.Forms.Button();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.label13 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -238,12 +228,28 @@
             this.simStatusLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.logDataButton = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.importButton = new System.Windows.Forms.Button();
+            this.exportButton = new System.Windows.Forms.Button();
+            this.openChartButtonMM = new System.Windows.Forms.Button();
+            this.openChartButtonSM = new System.Windows.Forms.Button();
+            this.tileColorPB = new System.Windows.Forms.PictureBox();
+            this.ClearPropertiesButton = new System.Windows.Forms.Button();
+            this.publicServiceImage2 = new System.Windows.Forms.PictureBox();
+            this.publicServiceImage1 = new System.Windows.Forms.PictureBox();
+            this.transportImage4 = new System.Windows.Forms.PictureBox();
+            this.transportImage3 = new System.Windows.Forms.PictureBox();
+            this.transportImage2 = new System.Windows.Forms.PictureBox();
+            this.transportImage1 = new System.Windows.Forms.PictureBox();
             this.simulationEntryData_DataSet = new Monopoly_Game_Simulator.SimulationEntryData_DataSet();
             this.playerEntryDataBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.playerEntryDataTableAdapter = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.PlayerEntryDataTableAdapter();
             this.tableAdapterManager = new Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager();
-            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.saveLogFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.orangePanel3.SuspendLayout();
             this.orangePanel2.SuspendLayout();
@@ -270,20 +276,13 @@
             this.redPanel3.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.transportPanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.transportImage4)).BeginInit();
             this.transportPanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.transportImage3)).BeginInit();
             this.transportPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.transportImage2)).BeginInit();
             this.transportPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.transportImage1)).BeginInit();
             this.tableLayoutPanel4.SuspendLayout();
             this.publicServicePanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage2)).BeginInit();
             this.publicServicePanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage1)).BeginInit();
             this.propertyManagerGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tileColorPB)).BeginInit();
             this.tableLayoutPanel5.SuspendLayout();
             this.playerManagerGroupBox.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
@@ -299,6 +298,13 @@
             this.tabPage1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tileColorPB)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transportImage4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transportImage3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transportImage2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transportImage1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simulationEntryData_DataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerEntryDataBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -1401,21 +1407,6 @@
             this.transportPanel4.Tag = "Transport";
             this.transportPanel4.Click += new System.EventHandler(this.OnTransportTileClicked);
             // 
-            // transportImage4
-            // 
-            this.transportImage4.BackColor = System.Drawing.Color.Transparent;
-            this.transportImage4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage4.BackgroundImage")));
-            this.transportImage4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.transportImage4.Location = new System.Drawing.Point(0, 35);
-            this.transportImage4.Name = "transportImage4";
-            this.transportImage4.Size = new System.Drawing.Size(64, 59);
-            this.transportImage4.TabIndex = 4;
-            this.transportImage4.TabStop = false;
-            this.transportImage4.Click += new System.EventHandler(this.OnTransportTileClicked);
-            this.transportImage4.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
-            this.transportImage4.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
-            this.transportImage4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
-            // 
             // transportLabel4
             // 
             this.transportLabel4.BackColor = System.Drawing.Color.Transparent;
@@ -1445,21 +1436,6 @@
             this.transportPanel3.TabIndex = 14;
             this.transportPanel3.Tag = "Transport";
             this.transportPanel3.Click += new System.EventHandler(this.OnTransportTileClicked);
-            // 
-            // transportImage3
-            // 
-            this.transportImage3.BackColor = System.Drawing.Color.Transparent;
-            this.transportImage3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage3.BackgroundImage")));
-            this.transportImage3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.transportImage3.Location = new System.Drawing.Point(0, 35);
-            this.transportImage3.Name = "transportImage3";
-            this.transportImage3.Size = new System.Drawing.Size(64, 59);
-            this.transportImage3.TabIndex = 3;
-            this.transportImage3.TabStop = false;
-            this.transportImage3.Click += new System.EventHandler(this.OnTransportTileClicked);
-            this.transportImage3.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
-            this.transportImage3.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
-            this.transportImage3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
             // 
             // transportLabel3
             // 
@@ -1491,21 +1467,6 @@
             this.transportPanel2.Tag = "Transport";
             this.transportPanel2.Click += new System.EventHandler(this.OnTransportTileClicked);
             // 
-            // transportImage2
-            // 
-            this.transportImage2.BackColor = System.Drawing.Color.Transparent;
-            this.transportImage2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage2.BackgroundImage")));
-            this.transportImage2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.transportImage2.Location = new System.Drawing.Point(0, 35);
-            this.transportImage2.Name = "transportImage2";
-            this.transportImage2.Size = new System.Drawing.Size(64, 59);
-            this.transportImage2.TabIndex = 2;
-            this.transportImage2.TabStop = false;
-            this.transportImage2.Click += new System.EventHandler(this.OnTransportTileClicked);
-            this.transportImage2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
-            this.transportImage2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
-            this.transportImage2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
-            // 
             // transportLabel2
             // 
             this.transportLabel2.BackColor = System.Drawing.Color.Transparent;
@@ -1535,21 +1496,6 @@
             this.transportPanel1.TabIndex = 13;
             this.transportPanel1.Tag = "Transport";
             this.transportPanel1.Click += new System.EventHandler(this.OnTransportTileClicked);
-            // 
-            // transportImage1
-            // 
-            this.transportImage1.BackColor = System.Drawing.Color.Transparent;
-            this.transportImage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage1.BackgroundImage")));
-            this.transportImage1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.transportImage1.Location = new System.Drawing.Point(0, 35);
-            this.transportImage1.Name = "transportImage1";
-            this.transportImage1.Size = new System.Drawing.Size(64, 59);
-            this.transportImage1.TabIndex = 1;
-            this.transportImage1.TabStop = false;
-            this.transportImage1.Click += new System.EventHandler(this.OnTransportTileClicked);
-            this.transportImage1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
-            this.transportImage1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
-            this.transportImage1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
             // 
             // transportLabel1
             // 
@@ -1597,21 +1543,6 @@
             this.publicServicePanel2.Tag = "PublicService";
             this.publicServicePanel2.Click += new System.EventHandler(this.OnPublicServiceTileClicked);
             // 
-            // publicServiceImage2
-            // 
-            this.publicServiceImage2.BackColor = System.Drawing.Color.Transparent;
-            this.publicServiceImage2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("publicServiceImage2.BackgroundImage")));
-            this.publicServiceImage2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.publicServiceImage2.Location = new System.Drawing.Point(0, 35);
-            this.publicServiceImage2.Name = "publicServiceImage2";
-            this.publicServiceImage2.Size = new System.Drawing.Size(63, 59);
-            this.publicServiceImage2.TabIndex = 2;
-            this.publicServiceImage2.TabStop = false;
-            this.publicServiceImage2.Click += new System.EventHandler(this.OnPublicServiceTileClicked);
-            this.publicServiceImage2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
-            this.publicServiceImage2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
-            this.publicServiceImage2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
-            // 
             // publicServiceLabel2
             // 
             this.publicServiceLabel2.BackColor = System.Drawing.Color.Transparent;
@@ -1641,21 +1572,6 @@
             this.publicServicePanel1.TabIndex = 13;
             this.publicServicePanel1.Tag = "PublicService";
             this.publicServicePanel1.Click += new System.EventHandler(this.OnPublicServiceTileClicked);
-            // 
-            // publicServiceImage1
-            // 
-            this.publicServiceImage1.BackColor = System.Drawing.Color.Transparent;
-            this.publicServiceImage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("publicServiceImage1.BackgroundImage")));
-            this.publicServiceImage1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.publicServiceImage1.Location = new System.Drawing.Point(0, 35);
-            this.publicServiceImage1.Name = "publicServiceImage1";
-            this.publicServiceImage1.Size = new System.Drawing.Size(63, 59);
-            this.publicServiceImage1.TabIndex = 1;
-            this.publicServiceImage1.TabStop = false;
-            this.publicServiceImage1.Click += new System.EventHandler(this.OnPublicServiceTileClicked);
-            this.publicServiceImage1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
-            this.publicServiceImage1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
-            this.publicServiceImage1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
             // 
             // publicServiceLabel1
             // 
@@ -1699,21 +1615,6 @@
             this.playerPropertiesListBox.Size = new System.Drawing.Size(163, 184);
             this.playerPropertiesListBox.TabIndex = 17;
             this.playerPropertiesListBox.SelectedIndexChanged += new System.EventHandler(this.playerPropertiesListBox_SelectedIndexChanged);
-            // 
-            // ClearPropertiesButton
-            // 
-            this.ClearPropertiesButton.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ClearPropertiesButton.Image = ((System.Drawing.Image)(resources.GetObject("ClearPropertiesButton.Image")));
-            this.ClearPropertiesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.ClearPropertiesButton.Location = new System.Drawing.Point(175, 48);
-            this.ClearPropertiesButton.Name = "ClearPropertiesButton";
-            this.ClearPropertiesButton.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
-            this.ClearPropertiesButton.Size = new System.Drawing.Size(100, 26);
-            this.ClearPropertiesButton.TabIndex = 18;
-            this.ClearPropertiesButton.Text = "clear";
-            this.toolTip1.SetToolTip(this.ClearPropertiesButton, "Removes all properties from the selected player");
-            this.ClearPropertiesButton.UseVisualStyleBackColor = true;
-            this.ClearPropertiesButton.Click += new System.EventHandler(this.ClearPropertiesButton_Click);
             // 
             // levelSelectorComboBox
             // 
@@ -1802,15 +1703,6 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "Tile Color";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // tileColorPB
-            // 
-            this.tileColorPB.BackColor = System.Drawing.SystemColors.Control;
-            this.tileColorPB.Location = new System.Drawing.Point(235, 174);
-            this.tileColorPB.Name = "tileColorPB";
-            this.tileColorPB.Size = new System.Drawing.Size(37, 19);
-            this.tileColorPB.TabIndex = 25;
-            this.tileColorPB.TabStop = false;
             // 
             // playerNameLabel
             // 
@@ -2673,47 +2565,36 @@
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
+            chartArea7.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea7);
+            legend7.Name = "Legend1";
+            this.chart1.Legends.Add(legend7);
             this.chart1.Location = new System.Drawing.Point(6, 52);
             this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series1.Color = System.Drawing.Color.LimeGreen;
-            series1.IsValueShownAsLabel = true;
-            series1.Legend = "Legend1";
-            series1.Name = "Won Games";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            series2.IsValueShownAsLabel = true;
-            series2.Legend = "Legend1";
-            series2.Name = "Non-defeat";
-            series3.ChartArea = "ChartArea1";
-            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series3.Color = System.Drawing.Color.Red;
-            series3.IsValueShownAsLabel = true;
-            series3.Legend = "Legend1";
-            series3.Name = "Lost Games";
-            this.chart1.Series.Add(series1);
-            this.chart1.Series.Add(series2);
-            this.chart1.Series.Add(series3);
+            series19.ChartArea = "ChartArea1";
+            series19.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series19.Color = System.Drawing.Color.LimeGreen;
+            series19.IsValueShownAsLabel = true;
+            series19.Legend = "Legend1";
+            series19.Name = "Won Games";
+            series20.ChartArea = "ChartArea1";
+            series20.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series20.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            series20.IsValueShownAsLabel = true;
+            series20.Legend = "Legend1";
+            series20.Name = "Non-defeat";
+            series21.ChartArea = "ChartArea1";
+            series21.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series21.Color = System.Drawing.Color.Red;
+            series21.IsValueShownAsLabel = true;
+            series21.Legend = "Legend1";
+            series21.Name = "Lost Games";
+            this.chart1.Series.Add(series19);
+            this.chart1.Series.Add(series20);
+            this.chart1.Series.Add(series21);
             this.chart1.Size = new System.Drawing.Size(351, 157);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
-            // 
-            // openChartButtonMM
-            // 
-            this.openChartButtonMM.Image = ((System.Drawing.Image)(resources.GetObject("openChartButtonMM.Image")));
-            this.openChartButtonMM.Location = new System.Drawing.Point(269, 11);
-            this.openChartButtonMM.Name = "openChartButtonMM";
-            this.openChartButtonMM.Size = new System.Drawing.Size(78, 35);
-            this.openChartButtonMM.TabIndex = 7;
-            this.toolTip1.SetToolTip(this.openChartButtonMM, "Open external window containing additional data");
-            this.openChartButtonMM.UseVisualStyleBackColor = true;
-            this.openChartButtonMM.Click += new System.EventHandler(this.openChartButtonMM_Click);
             // 
             // label14
             // 
@@ -2750,17 +2631,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Singlegame mode";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // openChartButtonSM
-            // 
-            this.openChartButtonSM.Image = ((System.Drawing.Image)(resources.GetObject("openChartButtonSM.Image")));
-            this.openChartButtonSM.Location = new System.Drawing.Point(269, 11);
-            this.openChartButtonSM.Name = "openChartButtonSM";
-            this.openChartButtonSM.Size = new System.Drawing.Size(78, 35);
-            this.openChartButtonSM.TabIndex = 6;
-            this.toolTip1.SetToolTip(this.openChartButtonSM, "Open external window containing additional data");
-            this.openChartButtonSM.UseVisualStyleBackColor = true;
-            this.openChartButtonSM.Click += new System.EventHandler(this.openChartButtonSM_Click);
             // 
             // flowLayoutPanel1
             // 
@@ -3187,6 +3057,187 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
+            // logDataButton
+            // 
+            this.logDataButton.Enabled = false;
+            this.logDataButton.Location = new System.Drawing.Point(375, 510);
+            this.logDataButton.Name = "logDataButton";
+            this.logDataButton.Size = new System.Drawing.Size(61, 35);
+            this.logDataButton.TabIndex = 27;
+            this.logDataButton.Text = "Log data";
+            this.toolTip1.SetToolTip(this.logDataButton, "Logs simulation output to a text file");
+            this.logDataButton.UseVisualStyleBackColor = true;
+            this.logDataButton.Click += new System.EventHandler(this.logDataButton_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.DefaultExt = "monsim";
+            this.openFileDialog1.Filter = "Monopoly Simulation Files (*.monsim)|*.monsim";
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "monsim";
+            this.saveFileDialog1.FileName = "MySimulation";
+            this.saveFileDialog1.Filter = "Monopoly Simulation Files (*.monsim)|*.monsim";
+            // 
+            // importButton
+            // 
+            this.importButton.BackgroundImage = global::Monopoly_Game_Simulator.Properties.Resources.ImportButton1;
+            this.importButton.Location = new System.Drawing.Point(294, 510);
+            this.importButton.Name = "importButton";
+            this.importButton.Size = new System.Drawing.Size(35, 35);
+            this.importButton.TabIndex = 26;
+            this.toolTip1.SetToolTip(this.importButton, "Open simulation file");
+            this.importButton.UseVisualStyleBackColor = true;
+            this.importButton.Click += new System.EventHandler(this.importButton_Click);
+            // 
+            // exportButton
+            // 
+            this.exportButton.BackgroundImage = global::Monopoly_Game_Simulator.Properties.Resources.ExportButton;
+            this.exportButton.Location = new System.Drawing.Point(335, 510);
+            this.exportButton.Name = "exportButton";
+            this.exportButton.Size = new System.Drawing.Size(35, 35);
+            this.exportButton.TabIndex = 25;
+            this.toolTip1.SetToolTip(this.exportButton, "save simulation to a file");
+            this.exportButton.UseVisualStyleBackColor = true;
+            this.exportButton.Click += new System.EventHandler(this.exportButton_Click);
+            // 
+            // openChartButtonMM
+            // 
+            this.openChartButtonMM.Image = ((System.Drawing.Image)(resources.GetObject("openChartButtonMM.Image")));
+            this.openChartButtonMM.Location = new System.Drawing.Point(269, 11);
+            this.openChartButtonMM.Name = "openChartButtonMM";
+            this.openChartButtonMM.Size = new System.Drawing.Size(78, 35);
+            this.openChartButtonMM.TabIndex = 7;
+            this.toolTip1.SetToolTip(this.openChartButtonMM, "Open external window containing additional data");
+            this.openChartButtonMM.UseVisualStyleBackColor = true;
+            this.openChartButtonMM.Click += new System.EventHandler(this.openChartButtonMM_Click);
+            // 
+            // openChartButtonSM
+            // 
+            this.openChartButtonSM.Image = ((System.Drawing.Image)(resources.GetObject("openChartButtonSM.Image")));
+            this.openChartButtonSM.Location = new System.Drawing.Point(269, 11);
+            this.openChartButtonSM.Name = "openChartButtonSM";
+            this.openChartButtonSM.Size = new System.Drawing.Size(78, 35);
+            this.openChartButtonSM.TabIndex = 6;
+            this.toolTip1.SetToolTip(this.openChartButtonSM, "Open external window containing additional data");
+            this.openChartButtonSM.UseVisualStyleBackColor = true;
+            this.openChartButtonSM.Click += new System.EventHandler(this.openChartButtonSM_Click);
+            // 
+            // tileColorPB
+            // 
+            this.tileColorPB.BackColor = System.Drawing.SystemColors.Control;
+            this.tileColorPB.Location = new System.Drawing.Point(235, 174);
+            this.tileColorPB.Name = "tileColorPB";
+            this.tileColorPB.Size = new System.Drawing.Size(37, 19);
+            this.tileColorPB.TabIndex = 25;
+            this.tileColorPB.TabStop = false;
+            // 
+            // ClearPropertiesButton
+            // 
+            this.ClearPropertiesButton.Font = new System.Drawing.Font("Microsoft Tai Le", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ClearPropertiesButton.Image = ((System.Drawing.Image)(resources.GetObject("ClearPropertiesButton.Image")));
+            this.ClearPropertiesButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.ClearPropertiesButton.Location = new System.Drawing.Point(175, 48);
+            this.ClearPropertiesButton.Name = "ClearPropertiesButton";
+            this.ClearPropertiesButton.Padding = new System.Windows.Forms.Padding(1, 0, 0, 0);
+            this.ClearPropertiesButton.Size = new System.Drawing.Size(100, 26);
+            this.ClearPropertiesButton.TabIndex = 18;
+            this.ClearPropertiesButton.Text = "clear";
+            this.toolTip1.SetToolTip(this.ClearPropertiesButton, "Removes all properties from the selected player");
+            this.ClearPropertiesButton.UseVisualStyleBackColor = true;
+            this.ClearPropertiesButton.Click += new System.EventHandler(this.ClearPropertiesButton_Click);
+            // 
+            // publicServiceImage2
+            // 
+            this.publicServiceImage2.BackColor = System.Drawing.Color.Transparent;
+            this.publicServiceImage2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("publicServiceImage2.BackgroundImage")));
+            this.publicServiceImage2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.publicServiceImage2.Location = new System.Drawing.Point(0, 35);
+            this.publicServiceImage2.Name = "publicServiceImage2";
+            this.publicServiceImage2.Size = new System.Drawing.Size(63, 59);
+            this.publicServiceImage2.TabIndex = 2;
+            this.publicServiceImage2.TabStop = false;
+            this.publicServiceImage2.Click += new System.EventHandler(this.OnPublicServiceTileClicked);
+            this.publicServiceImage2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
+            this.publicServiceImage2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
+            this.publicServiceImage2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
+            // 
+            // publicServiceImage1
+            // 
+            this.publicServiceImage1.BackColor = System.Drawing.Color.Transparent;
+            this.publicServiceImage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("publicServiceImage1.BackgroundImage")));
+            this.publicServiceImage1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.publicServiceImage1.Location = new System.Drawing.Point(0, 35);
+            this.publicServiceImage1.Name = "publicServiceImage1";
+            this.publicServiceImage1.Size = new System.Drawing.Size(63, 59);
+            this.publicServiceImage1.TabIndex = 1;
+            this.publicServiceImage1.TabStop = false;
+            this.publicServiceImage1.Click += new System.EventHandler(this.OnPublicServiceTileClicked);
+            this.publicServiceImage1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
+            this.publicServiceImage1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
+            this.publicServiceImage1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
+            // 
+            // transportImage4
+            // 
+            this.transportImage4.BackColor = System.Drawing.Color.Transparent;
+            this.transportImage4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage4.BackgroundImage")));
+            this.transportImage4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.transportImage4.Location = new System.Drawing.Point(0, 35);
+            this.transportImage4.Name = "transportImage4";
+            this.transportImage4.Size = new System.Drawing.Size(64, 59);
+            this.transportImage4.TabIndex = 4;
+            this.transportImage4.TabStop = false;
+            this.transportImage4.Click += new System.EventHandler(this.OnTransportTileClicked);
+            this.transportImage4.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
+            this.transportImage4.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
+            this.transportImage4.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
+            // 
+            // transportImage3
+            // 
+            this.transportImage3.BackColor = System.Drawing.Color.Transparent;
+            this.transportImage3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage3.BackgroundImage")));
+            this.transportImage3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.transportImage3.Location = new System.Drawing.Point(0, 35);
+            this.transportImage3.Name = "transportImage3";
+            this.transportImage3.Size = new System.Drawing.Size(64, 59);
+            this.transportImage3.TabIndex = 3;
+            this.transportImage3.TabStop = false;
+            this.transportImage3.Click += new System.EventHandler(this.OnTransportTileClicked);
+            this.transportImage3.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
+            this.transportImage3.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
+            this.transportImage3.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
+            // 
+            // transportImage2
+            // 
+            this.transportImage2.BackColor = System.Drawing.Color.Transparent;
+            this.transportImage2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage2.BackgroundImage")));
+            this.transportImage2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.transportImage2.Location = new System.Drawing.Point(0, 35);
+            this.transportImage2.Name = "transportImage2";
+            this.transportImage2.Size = new System.Drawing.Size(64, 59);
+            this.transportImage2.TabIndex = 2;
+            this.transportImage2.TabStop = false;
+            this.transportImage2.Click += new System.EventHandler(this.OnTransportTileClicked);
+            this.transportImage2.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
+            this.transportImage2.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
+            this.transportImage2.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
+            // 
+            // transportImage1
+            // 
+            this.transportImage1.BackColor = System.Drawing.Color.Transparent;
+            this.transportImage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage1.BackgroundImage")));
+            this.transportImage1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.transportImage1.Location = new System.Drawing.Point(0, 35);
+            this.transportImage1.Name = "transportImage1";
+            this.transportImage1.Size = new System.Drawing.Size(64, 59);
+            this.transportImage1.TabIndex = 1;
+            this.transportImage1.TabStop = false;
+            this.transportImage1.Click += new System.EventHandler(this.OnTransportTileClicked);
+            this.transportImage1.MouseEnter += new System.EventHandler(this.OnTileMouseEnter);
+            this.transportImage1.MouseLeave += new System.EventHandler(this.OnTileMouseLeave);
+            this.transportImage1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.OnTileMouseUpdate);
+            // 
             // simulationEntryData_DataSet
             // 
             this.simulationEntryData_DataSet.DataSetName = "SimulationEntryData_DataSet";
@@ -3208,11 +3259,20 @@
             this.tableAdapterManager.TileEntryDataTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = Monopoly_Game_Simulator.SimulationEntryData_DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
+            // saveLogFileDialog
+            // 
+            this.saveLogFileDialog.DefaultExt = "txt";
+            this.saveLogFileDialog.FileName = "Log";
+            this.saveLogFileDialog.Filter = "Text Files(*.txt)|*.txt";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1140, 554);
+            this.Controls.Add(this.logDataButton);
+            this.Controls.Add(this.importButton);
+            this.Controls.Add(this.exportButton);
             this.Controls.Add(this.simOutputGroupBox);
             this.Controls.Add(this.simSettingsGroupBox);
             this.Controls.Add(this.playerManagerGroupBox);
@@ -3252,21 +3312,14 @@
             this.redPanel3.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.transportPanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.transportImage4)).EndInit();
             this.transportPanel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.transportImage3)).EndInit();
             this.transportPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.transportImage2)).EndInit();
             this.transportPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.transportImage1)).EndInit();
             this.tableLayoutPanel4.ResumeLayout(false);
             this.publicServicePanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage2)).EndInit();
             this.publicServicePanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage1)).EndInit();
             this.propertyManagerGroupBox.ResumeLayout(false);
             this.propertyManagerGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tileColorPB)).EndInit();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.playerManagerGroupBox.ResumeLayout(false);
             this.tableLayoutPanel6.ResumeLayout(false);
@@ -3284,6 +3337,13 @@
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tileColorPB)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.publicServiceImage1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transportImage4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transportImage3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transportImage2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transportImage1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simulationEntryData_DataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerEntryDataBindingSource)).EndInit();
             this.ResumeLayout(false);
@@ -3501,6 +3561,12 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.Button exportButton;
+        private System.Windows.Forms.Button importButton;
+        private System.Windows.Forms.Button logDataButton;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveLogFileDialog;
     }
 }
 

@@ -1,12 +1,15 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Runtime.DesignerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -75,6 +78,14 @@ namespace Monopoly_Game_Simulator
 
             m_gameControlHub.SimulationProgressIncreased += OnSimulationProgressIncreased;
             m_gameControlHub.f_progressbar = progressBar1;
+
+            string currentDirectory = Directory.GetCurrentDirectory();
+
+            openFileDialog1.InitialDirectory = Path.Combine(currentDirectory, @"Saved Simulations");
+            saveFileDialog1.InitialDirectory = Path.Combine(currentDirectory, @"Saved Simulations");
+            saveLogFileDialog.InitialDirectory = Path.Combine(currentDirectory, @"Saved Simulations\Logs");
+
+            //saveFileDialog1.InitialDirectory = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory() + @"..\Saved Simulations"));
         }
 
         private void MainWindow_Load(object sender, EventArgs e)
@@ -253,6 +264,212 @@ namespace Monopoly_Game_Simulator
             publicServiceLabel1.Text = Tiles[12].Name;
             publicServiceLabel2.Text = Tiles[28].Name;
         }
+
+
+
+        void ImportSimulationFromFile(string filename)
+        {
+            /// 
+            /// FILE STRUCTURE:
+            /// 
+            /// {Player 1 name}
+            /// {Number of properties}
+            /// {Porperty name} {Level}
+            /// {Property name} {Level}
+            /// ...
+            /// {Property name} {Level}
+            /// ...5
+            ///
+            /// note: "...n" copies structure above n times
+            /// note: "..."  just like in sequence def
+            ///
+
+            BinaryReader reader = new BinaryReader(File.OpenRead(filename));
+
+            try
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    string playerName = reader.ReadString();
+                    int propCount = reader.ReadInt32();
+
+                    List<Pair<string, int>> properties = new List<Pair<string, int>>(propCount);
+
+                    for (int j = 0; j < propCount; j++)
+                    {
+                        properties.Add(new Pair<string, int>(reader.ReadString(), reader.ReadInt32()));
+                    }
+
+                    foreach (var property in properties)
+                    {
+                        AssignPropertyToPlayer(m_gameControlHub.Players[i], property.first, property.second);
+                    }
+                }
+            }
+            catch (Exception e) // for both IOException and EndOfFileException
+            {
+                MessageBox.Show("Error: File " + filename + " is corrupted\n" + "Exception: " + e.Message, "Simulation import error");
+            }
+
+            RefreshSelectedTiles();
+            RefreshPlayerPropertiesListBox();
+            RefreshPropertyData();
+
+            reader.Close();
+        }
+
+
+        void ExportSimulationFromFile(string filename)
+        {
+            /// 
+            /// FILE STRUCTURE:
+            /// 
+            /// {Player 1 name}
+            /// {Number of properties}
+            /// {Porperty name} {Level}
+            /// {Property name} {Level}
+            /// ...
+            /// {Property name} {Level}
+            /// ...5
+            ///
+            /// note: "...n" copies structure above n times
+            /// note: "..."  just like in sequence def
+            ///
+
+            BinaryWriter writer = new BinaryWriter(File.OpenWrite(filename));
+
+            try
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    var player = m_gameControlHub.Players[i];
+
+                    writer.Write(player.Name);
+                    writer.Write(player.OwnedTiles.Count);
+
+                    foreach (var tileIndex in player.OwnedTiles)
+                    {
+                        writer.Write(m_gameControlHub.Tiles[tileIndex].Name);
+                        writer.Write(m_gameControlHub.Tiles[tileIndex].Level);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Could not save the simulation\n" + "Exception: " + e.Message, "Simulation export error");
+                return;
+            }
+
+            writer.Close();
+        }
+
+
+
+        bool CreateLogFile(string filename)
+        {
+            /// 
+            /// FILE STRUCTURE:
+            /// 
+            /// [PLAYERS]: Playing {n}
+            /// [Player name]: {name}
+            /// {
+            ///     [Money]: {n}
+            ///     [Debt]: {n}
+            ///     [Properties]: Count = {n}
+            ///     {
+            ///         {name}
+            ///         {name}
+            ///         ...
+            ///         {name}
+            ///     }
+            /// }
+            /// ...2-6
+            /// [TILES]
+            /// [Tile ID]: {id}     [Tile name]: {name}
+            /// {
+            ///     [Level]: {n}
+            ///     [Profit]: {d}
+            ///     [Passes]: {d}
+            /// }
+            /// ...40
+            ///
+            /// note: "...n" copies structure above n times
+            /// note: "..."  just like in sequence def
+            ///
+
+
+            List<string> playerData = new List<string>(6);
+            int playing = 0;
+
+            foreach (var player in m_gameControlHub.Players)
+            {
+                if (player.Playing)
+                    playing++;
+                else
+                    continue;
+
+                string str =
+                    "[Player Name]: " + player.Name + '\n' +
+                    '{' + '\n' +
+                    '\t' + "[Money on start]: " + player.Money.ToString() + '\n' +
+                    '\t' + "[Debt on start]: " + player.Debt.ToString() + '\n' +
+                    '\t' + "[Properties]: Count = " + player.OwnedTiles.Count.ToString() + '\n';
+
+                if (player.OwnedTiles.Count > 0)
+                {
+                    string tilestr = "\t{\n";
+                    foreach (int i in player.OwnedTiles)
+                    {
+                        tilestr += "\t\t" + m_gameControlHub.Tiles[i].Name + "\n";
+                    }
+                    tilestr += "\t}\n";
+
+                    str += tilestr;
+                }
+
+                str += '}' + '\n';
+
+                playerData.Add(str);
+            }
+
+            string outputText = "[PLAYERS]: \tPlaying = " + playing.ToString() + '\n';
+
+            foreach (var player in playerData)
+            {
+                outputText += player;
+            }
+
+            outputText += "################################\n";
+
+            outputText += "[TILES]\n";
+
+            List<string> tileData = new List<string>(40);
+
+            foreach (var tile in m_gameControlHub.DataCollector.TileDataTracker)
+            {
+                string str =
+                    "[Tile ID]: " + tile.Key.ToString() + " \t" + "[Tile Name]: " + m_gameControlHub.Tiles[tile.Key].Name + "\n" +
+                    '{' + '\n' +
+                    '\t' + "[Profit]: " + tile.Value.first.ToString() + '\n' +
+                    '\t' + "[Passes]: " + tile.Value.second.ToString() + '\n' +
+                    '}' + '\n';
+
+                outputText += str;
+            }
+
+
+            try
+            {
+                File.WriteAllText(filename, outputText);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error: could not create the Log file\n" + "Exception: " + e.Message, "Log file error");
+            }
+
+            return true;
+        }
+
 
 
         private void AssignPropertyToPlayer(SimulationLayer.Player player, string PropertyName, int level = 5)
@@ -1236,6 +1453,15 @@ namespace Monopoly_Game_Simulator
                 playerNameTextBox3.Enabled = true;
                 startMoneyTB3.Enabled = true;
                 startDebtTB3.Enabled = true;
+                
+                // select the player
+                m_selectedPlayer = m_gameControlHub.Players[2];
+                player3Button.Checked = true;
+
+                RefreshSelectedTiles();
+                RefreshPlayerPropertiesListBox();
+                RefreshPropertyData();
+
             }
             else // disable every control
             {
@@ -1270,6 +1496,14 @@ namespace Monopoly_Game_Simulator
                 playerNameTextBox4.Enabled = true;
                 startMoneyTB4.Enabled = true;
                 startDebtTB4.Enabled = true;
+
+                // select the player
+                m_selectedPlayer = m_gameControlHub.Players[3];
+                player4Button.Checked = true;
+
+                RefreshSelectedTiles();
+                RefreshPlayerPropertiesListBox();
+                RefreshPropertyData();
             }
             else // disable every control
             {
@@ -1304,6 +1538,14 @@ namespace Monopoly_Game_Simulator
                 playerNameTextBox5.Enabled = true;
                 startMoneyTB5.Enabled = true;
                 startDebtTB5.Enabled = true;
+
+                // select the player
+                m_selectedPlayer = m_gameControlHub.Players[4];
+                player5Button.Checked = true;
+
+                RefreshSelectedTiles();
+                RefreshPlayerPropertiesListBox();
+                RefreshPropertyData();
             }
             else // disable every control
             {
@@ -1338,6 +1580,14 @@ namespace Monopoly_Game_Simulator
                 playerNameTextBox6.Enabled = true;
                 startMoneyTB6.Enabled = true;
                 startDebtTB6.Enabled = true;
+
+                // select the player
+                m_selectedPlayer = m_gameControlHub.Players[5];
+                player6Button.Checked = true;
+
+                RefreshSelectedTiles();
+                RefreshPlayerPropertiesListBox();
+                RefreshPropertyData();
             }
             else // disable every control
             {
@@ -1496,6 +1746,7 @@ namespace Monopoly_Game_Simulator
             startSimulationButton.Enabled = false;
             maxDebtSelector.Enabled = false;
             moneyPerStartSelector.Enabled = false;
+            logDataButton.Enabled = false;
             LoadPlayers();
             m_gameControlHub.DataCollector.Clear();
             progressBar1.Value = 0;
@@ -1525,6 +1776,10 @@ namespace Monopoly_Game_Simulator
             startSimulationButton.Enabled = true;
             maxDebtSelector.Enabled = true;
             moneyPerStartSelector.Enabled = true;
+
+            logDataButton.Enabled = true;
+
+            progressBar1.Value = 100;
         }
 
         private void UpdateSinglegameOutputTab(SimulationLayer.SimualationExitCode exitCode, int turns)
@@ -1685,6 +1940,30 @@ namespace Monopoly_Game_Simulator
         {
             m_formMMD = new FormMMD();
             m_formMMD.Show();
+        }
+
+        private void importButton_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ImportSimulationFromFile(openFileDialog1.FileName);
+            }
+        }
+
+        private void exportButton_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ExportSimulationFromFile(saveFileDialog1.FileName);
+            }
+        }
+
+        private void logDataButton_Click(object sender, EventArgs e)
+        {
+            if (saveLogFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                CreateLogFile(saveLogFileDialog.FileName);
+            }
         }
     }
 }

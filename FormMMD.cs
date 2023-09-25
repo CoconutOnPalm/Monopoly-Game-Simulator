@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,9 @@ namespace Monopoly_Game_Simulator
         {
             InitializeComponent();
             LoadTileChart();
+
+            string currentDirectory = Directory.GetCurrentDirectory();
+            saveFileDialog1.InitialDirectory = Path.Combine(currentDirectory, @"Saved Charts");
         }
 
 

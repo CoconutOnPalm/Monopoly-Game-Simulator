@@ -198,25 +198,25 @@ namespace SimulationLayer
 
                     RefreshPlayerData();
 
-                    if (i != 0) // to avoid div by 0
-                    {
-                        Console.WriteLine("{0}, {1}", 100 * (i + 1) / GAMES_PER_SIMULATION, 100 * (i) / GAMES_PER_SIMULATION);
-                        if (100 * (i + 1) / GAMES_PER_SIMULATION > 100 * (i) / GAMES_PER_SIMULATION)
-                        {
-                            OnSimulationProgressIncreased(EventArgs.Empty);
-                            //if (f_progressbar.InvokeRequired)
-                            //{
-                            //    MethodInvoker m = new MethodInvoker(() => f_progressbar.Value++);
-                            //    f_progressbar.Invoke(m);
-                            //}
-                            //else
-                            //{
-                            //    f_progressbar.Value++;
-                            //    //}
-                            //}
-                        }
-                    }
-                    else
+                    //if (i != 0) // to avoid div by 0
+                    //{
+                    //    Console.WriteLine("{0}, {1}", 100 * (i + 1) / GAMES_PER_SIMULATION, 100 * (i) / GAMES_PER_SIMULATION);
+                    //    if (100 * (i + 1) / GAMES_PER_SIMULATION > 100 * (i) / GAMES_PER_SIMULATION)
+                    //    {
+                    //        OnSimulationProgressIncreased(EventArgs.Empty);
+                    //        //if (f_progressbar.InvokeRequired)
+                    //        //{
+                    //        //    MethodInvoker m = new MethodInvoker(() => f_progressbar.Value++);
+                    //        //    f_progressbar.Invoke(m);
+                    //        //}
+                    //        //else
+                    //        //{
+                    //        //    f_progressbar.Value++;
+                    //        //    //}
+                    //        //}
+                    //    }
+                    //}
+                    //else
                     {
                         OnSimulationProgressIncreased(EventArgs.Empty);
                     }
