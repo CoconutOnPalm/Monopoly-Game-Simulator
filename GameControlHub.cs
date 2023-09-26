@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
@@ -37,24 +38,31 @@ namespace SimulationLayer
     {
         public GameControlHub()
         {
-            string simEntryDataConnectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\SimulationEntryData.mdf;Integrated Security=True";
+            Tiles = new Dictionary<int, Tile>(TILE_COUNT);
+            Players = new List<Player>(6);
+        }
 
-            using (SqlConnection sqlConnection = new SqlConnection(simEntryDataConnectionString))
+
+        /// <summary>
+        /// Initializes GameControlHub. Outside constructor to make it return a vaule
+        /// </summary>
+        /// <returns>True -> success | False -> Failure: close the app</returns>
+        public bool Init()
+        {
+
+            Console.WriteLine(Path.Combine(Directory.GetCurrentDirectory(), @"res\data\TileData.txt"));
+
+            if (File.Exists(Path.Combine(Directory.GetCurrentDirectory(), @"res\data\TileData.txt")))
             {
-                sqlConnection.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM [TileEntryData];", sqlConnection))
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    Tiles = new Dictionary<int, Tile>(TILE_COUNT);
-
-                    while (reader.Read())
-                    {
-                        LoadTileFromDatabase(reader);
-                    }
-                }
-                sqlConnection.Close();
+                LoadTiles(@"res\data\TileData.txt");
             }
+            else
+            {
+                MessageBox.Show("TileData.txt does not exist");
+                return false;
+            }
+
+            LoadPlayers();
 
 
             foreach (var tile in Tiles)
@@ -68,25 +76,6 @@ namespace SimulationLayer
                 Console.WriteLine();
             }
 
-
-            using (SqlConnection sqlConnection = new SqlConnection(simEntryDataConnectionString))
-            {
-                sqlConnection.Open();
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM [PlayerEntryData];", sqlConnection))
-                {
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    Players = new List<Player>();
-
-                    while (reader.Read())
-                    {
-                        LoadPlayerFromDatabase(reader);
-                    }
-                }
-                sqlConnection.Close();
-            }
-
-
             foreach (var player in Players)
             {
                 Console.Write(player.Name + " \t");
@@ -95,23 +84,12 @@ namespace SimulationLayer
                 Console.WriteLine();
             }
 
-
-            foreach (var player in Players)
-            {
-                Console.WriteLine("{0}'s properties:", player.Name);
-                foreach (var property in player.OwnedTiles)
-                {
-                    Console.WriteLine(Tiles.ElementAt(property).Key);
-                }
-                Console.WriteLine();
-
-                UpdateTransportCards(player);
-            }
+            return true;
         }
 
 
 
-        void LoadTileFromDatabase(SqlDataReader reader)
+        bool LoadTiles(string filename)
         {
             Func<string, HashSet<Property>> getProperties = str =>
             {
@@ -126,35 +104,88 @@ namespace SimulationLayer
                 return properties;
             };
 
-            Tiles[(int)reader["id"]] = new Tile(
-                reader["TileName"].ToString(),
-                (int)reader["Position"],
-                (Color)reader["Color"],
-                getProperties(reader["Properties"].ToString()),
-                new Price(new int[] { (int)reader["PriceLevel0"], (int)reader["PriceLevel1"], (int)reader["PriceLevel2"], (int)reader["PriceLevel3"], (int)reader["PriceLevel4"], (int)reader["PriceLevel5"] }),
-                (int)reader["Value"]);
+            FileStream fstr = new FileStream(filename, FileMode.Open);
+
+            using (StreamReader reader = new StreamReader(fstr))
+            {
+                for (int i = 0; i < TILE_COUNT; i++)
+                {
+
+                    string line = reader.ReadLine();
+
+                    List<string> values = new List<string>(line.Split('\t'));
+
+                    // (ID + Name + Position + Color + Properties + 6 x Price + Value) = 12
+                    if (values.Count != 12)
+                    {
+                        MessageBox.Show("TileData.txt is corrupted: wrong number of arguments at line " + i.ToString(), "ERROR");
+                        return false;
+                    }
+
+                    if (i != Convert.ToInt32(values[0]))
+                    {
+                        MessageBox.Show("TileData.txt is corrupted: id not valid at line " + i.ToString(), "ERROR");
+                        return false;
+                    }
+
+                    try
+                    {
+                        Tiles[i] = new Tile(
+                            values[1], Convert.ToInt32(values[2]), (Color)Convert.ToInt32(values[3]), getProperties(values[4]),
+                            new Price(new int[] { Convert.ToInt32(values[5]), Convert.ToInt32(values[6]), Convert.ToInt32(values[7]), Convert.ToInt32(values[8]), Convert.ToInt32(values[9]), Convert.ToInt32(values[10]) }),
+                            Convert.ToInt32(values[11]));
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("TileData.txt is corrupted: args not valid at line " + i.ToString() + "\nError message: " + ex.Message, "ERROR");
+                        return false;
+                    }
+                }
+            }
+
+            return true;
         }
 
-        void LoadPlayerFromDatabase(SqlDataReader reader)
-        {
-            Players.Add(new Player(reader["PlayerName"].ToString(), (int)reader["EntryBalance"], (int)reader["EntryDebt"]));
-        }
 
 
-
-
-        public void AssignProperties()
-        {
-
-        }
-
-
-        //public async Task<(SimualationExitCode, int)> RunAsync(bool simulationMode)
+        //void LoadTileFromDatabase(SqlDataReader reader)
         //{
-        //    var output = Run(simulationMode);
-        //    await output;
-        //    return output.Result;
+        //    Func<string, HashSet<Property>> getProperties = str =>
+        //    {
+        //        HashSet<Property> properties = new HashSet<Property>();
+        //        for (int i = 0; i < str.Length; i++)
+        //        {
+        //            if (str[i] == '1')
+        //            {
+        //                properties.Add((Property)i);
+        //            }
+        //        }
+        //        return properties;
+        //    };
+
+        //    Tiles[(int)reader["id"]] = new Tile(
+        //        reader["TileName"].ToString(),
+        //        (int)reader["Position"],
+        //        (Color)reader["Color"],
+        //        getProperties(reader["Properties"].ToString()),
+        //        new Price(new int[] { (int)reader["PriceLevel0"], (int)reader["PriceLevel1"], (int)reader["PriceLevel2"], (int)reader["PriceLevel3"], (int)reader["PriceLevel4"], (int)reader["PriceLevel5"] }),
+        //        (int)reader["Value"]);
         //}
+
+        //void LoadPlayerFromDatabase(SqlDataReader reader)
+        //{
+        //    Players.Add(new Player(reader["PlayerName"].ToString(), (int)reader["EntryBalance"], (int)reader["EntryDebt"]));
+        //}
+
+
+        void LoadPlayers()
+        {
+            for (int i = 0; i < 6; i++)
+            {
+                Players.Add(new Player("Player" + (i + 1).ToString()));
+            }
+        }
+
 
 
         /// <summary>
@@ -198,28 +229,7 @@ namespace SimulationLayer
 
                     RefreshPlayerData();
 
-                    //if (i != 0) // to avoid div by 0
-                    //{
-                    //    Console.WriteLine("{0}, {1}", 100 * (i + 1) / GAMES_PER_SIMULATION, 100 * (i) / GAMES_PER_SIMULATION);
-                    //    if (100 * (i + 1) / GAMES_PER_SIMULATION > 100 * (i) / GAMES_PER_SIMULATION)
-                    //    {
-                    //        OnSimulationProgressIncreased(EventArgs.Empty);
-                    //        //if (f_progressbar.InvokeRequired)
-                    //        //{
-                    //        //    MethodInvoker m = new MethodInvoker(() => f_progressbar.Value++);
-                    //        //    f_progressbar.Invoke(m);
-                    //        //}
-                    //        //else
-                    //        //{
-                    //        //    f_progressbar.Value++;
-                    //        //    //}
-                    //        //}
-                    //    }
-                    //}
-                    //else
-                    {
-                        OnSimulationProgressIncreased(EventArgs.Empty);
-                    }
+                    OnSimulationProgressIncreased(EventArgs.Empty);
 
                 }
 
@@ -291,6 +301,9 @@ namespace SimulationLayer
         }
 
 
+        /// <summary>
+        /// refreshes player money and debt to prepare him for the next game (in multi-game mode)
+        /// </summary>
         private void RefreshPlayerData()
         {
             foreach (Player player in Players)
@@ -301,6 +314,10 @@ namespace SimulationLayer
         }
 
 
+        /// <summary>
+        /// simulates a turn for each player
+        /// </summary>
+        /// <returns>TurnExitCode, used to describe how a specific turn ended (Default or BankWentBankrupt [aka "money overflow"] ))</returns>
         public TurnExitCode NextTurn()
         {
             for (int i = 0; i < Players.Count; i++)
@@ -364,7 +381,7 @@ namespace SimulationLayer
                     foreach (int index in owner.OwnedTiles)
                     {
                         if (Tiles[index].Properties.Contains(Property.isPublicService))
-                        {  count++; }
+                        { count++; }
                     }
 
                     if (count == 1)
@@ -456,7 +473,11 @@ namespace SimulationLayer
             }
         }
 
-
+        /// <summary>
+        /// used to avoid the situation when player has so much money it overflows and becomes a negative number
+        /// </summary>
+        /// <param name="player"></param>
+        /// <returns></returns>
         bool CheckForMoneyOverflow(Player player)
         {
             if (player.Money > 2000000)
@@ -469,6 +490,10 @@ namespace SimulationLayer
         }
 
 
+        /// <summary>
+        /// automatically updates transport card levels, accordingly to the monopoly rules
+        /// </summary>
+        /// <param name="player"></param>
         public void UpdateTransportCards(Player player)
         {
             int transport_cards = 0;
@@ -519,6 +544,10 @@ namespace SimulationLayer
         }
 
 
+        /// <summary>
+        /// event used to notify progressBar1 (see: Form1.cs)
+        /// </summary>
+        /// <param name="e"></param>
         private void OnSimulationProgressIncreased(EventArgs e)
         {
             if (SimulationProgressIncreased != null)

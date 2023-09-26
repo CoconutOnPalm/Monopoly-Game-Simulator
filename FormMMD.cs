@@ -39,10 +39,9 @@ namespace Monopoly_Game_Simulator
                 decimal gamecount = SimulationLayer.GameControlHub.GAMES_PER_SIMULATION;
 
                 var tileName = controlHub.Tiles[item.Key].Name;
-                //var tileName = item.Key;
-
-                chart1.Series[0].Points.AddXY( tileName, item.Value.first / gamecount);
-                chart1.Series[1].Points.AddXY( tileName, item.Value.second / gamecount);
+                
+                chart1.Series[0].Points.AddXY( tileName, item.Value.first / gamecount);  // profit
+                chart1.Series[1].Points.AddXY( tileName, item.Value.second / gamecount); // passes
 
                 chart1.Series[0].Points.Last().ToolTip = tileName;
                 chart1.Series[1].Points.Last().ToolTip = chart1.Series[1].Points.Last().YValues.Last().ToString();

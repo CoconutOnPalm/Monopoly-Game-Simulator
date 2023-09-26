@@ -51,6 +51,12 @@ namespace Monopoly_Game_Simulator
             InitializeComponent();
 
             m_gameControlHub = new SimulationLayer.GameControlHub();
+            var good = m_gameControlHub.Init();
+
+            if (!good)
+            {
+                this.Close();
+            }
 
             m_defaultTileColor = Color.FromArgb(220, 242, 221);
             m_selectedTileColor = Color.Ivory;
@@ -90,9 +96,7 @@ namespace Monopoly_Game_Simulator
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'simulationEntryData_DataSet.PlayerEntryData' table. You can move, or remove it, as needed.
-            this.playerEntryDataTableAdapter.Fill(this.simulationEntryData_DataSet.PlayerEntryData);
-
+            
         }
 
 
@@ -427,7 +431,7 @@ namespace Monopoly_Game_Simulator
                     str += tilestr;
                 }
 
-                str += '}' + '\n';
+                str += "}\n";
 
                 playerData.Add(str);
             }
@@ -1025,14 +1029,6 @@ namespace Monopoly_Game_Simulator
                     panel.BackColor = m_hoverTileColor;
                 }
             }
-        }
-
-        private void playerEntryDataBindingNavigatorSaveItem_Click(object sender, EventArgs e)
-        {
-            this.Validate();
-            this.playerEntryDataBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.simulationEntryData_DataSet);
-
         }
 
 
