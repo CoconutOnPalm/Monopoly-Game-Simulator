@@ -94,3 +94,6 @@ As we learn from the output, with out of 100 games
 It all depends on luck, or being more specific: how much you donate to the Church
 
 Don't ask me why I made this. I am still trying answer it myself.
+
+# Cloning the project
+The projest is made with .NET framework 4.8 and WinForms. After you clone the repository, copy the `res` folder with everything inside to the `bin\Debug\` or `bin\Release\` folders, because .net framework has problems with itself and I don't like the idea of resolving them (unlike c++, the default directory is not in the solution dir). If there is any way to tweak it in a *simple* way I am opened for any ideas.
