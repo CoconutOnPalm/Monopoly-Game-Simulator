@@ -1,8 +1,9 @@
 # Monopoly Game Simulator
->I have once lost a game in monopoly with my friends, so I created this funny thing to never loose it again
-> ~ CoconutOnPalm
+> Lost a game of Monopoly to my buddies once, so I created this thing to ensure I never lose again.
+> 
+> ~CoconutOnPalm
 
-I have lost more games since then (and will certainly loose even more), but this simulator showed me that skill is only a part of victory - luck is what really matters
+I have lost more games since then (and will certainly lose even more), but this simulator showed me that skill is only a part of victory - luck truly matters
 
 **Monopoly Game Simulator** allows you to simulate one or multiple games of *modified* Monopoly game. The modification itself was created by me and my friends to counter the boredom and stability of the normal game
 
@@ -16,7 +17,7 @@ Every property belongs to the **God Bless You Bank** (pol: Bank Bóg Zapłać). 
    - He/She stands on a penalty tile ("Pay 200" tile or "Pay 100" tile)
    - He/She stands on a police tile and wants to escape it
 
-However, the debt must not exceed the certain amount (for example: 5000). When a player does not have enough money to pay it off, he/she looses. Debt can only be payed with cash, as it is not a Casino-Royale style gameplay
+However, the debt must not exceed the certain amount (e.g.: 5000). When a player does not have enough money to pay it off, he/she looses. Debt can only be payed with cash, as it is not a Casino-Royale style gameplay
 There are additional rules that control the flow of the game, as well as some other important aspects:
 - Additional rules:
   - at one point of the game, all players exchange their cards with each other so all tiles are grouped in streets
@@ -92,4 +93,4 @@ As we learn from the output, with out of 100 games
 ## Final conclusion
 It all depends on luck, or being more specific: how much you donate to the Church
 
-Don't ask, me why I made this. I am still trying answer it myself.
+Don't ask me why I made this. I am still trying answer it myself.
