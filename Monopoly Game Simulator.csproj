@@ -147,6 +147,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MonopolySimIcon2.ico" />
+    <Content Include="res\data\PlayerData.txt" />
+    <Content Include="res\data\TileData.txt" />
+    <Content Include="res\MonopolySimIcon2.ico" />
     <None Include="Resources\ImportButton.png" />
     <None Include="Resources\ExportButton.png" />
     <None Include="Resources\ImportButton1.png" />
