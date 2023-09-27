@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.orangePanel3 = new System.Windows.Forms.Panel();
             this.orangeLabel3 = new System.Windows.Forms.Label();
@@ -2214,6 +2214,8 @@
             this.playerNameTextBox1.Name = "playerNameTextBox1";
             this.playerNameTextBox1.Size = new System.Drawing.Size(165, 27);
             this.playerNameTextBox1.TabIndex = 0;
+            this.playerNameTextBox1.Tag = "0";
+            this.playerNameTextBox1.Leave += new System.EventHandler(this.OnPlayerNameLeave);
             // 
             // playerNameTextBox2
             // 
@@ -2223,6 +2225,8 @@
             this.playerNameTextBox2.Name = "playerNameTextBox2";
             this.playerNameTextBox2.Size = new System.Drawing.Size(165, 27);
             this.playerNameTextBox2.TabIndex = 4;
+            this.playerNameTextBox2.Tag = "1";
+            this.playerNameTextBox2.Leave += new System.EventHandler(this.OnPlayerNameLeave);
             // 
             // playerNameTextBox3
             // 
@@ -2232,6 +2236,8 @@
             this.playerNameTextBox3.Name = "playerNameTextBox3";
             this.playerNameTextBox3.Size = new System.Drawing.Size(165, 27);
             this.playerNameTextBox3.TabIndex = 7;
+            this.playerNameTextBox3.Tag = "2";
+            this.playerNameTextBox3.Leave += new System.EventHandler(this.OnPlayerNameLeave);
             // 
             // playerNameTextBox4
             // 
@@ -2241,6 +2247,8 @@
             this.playerNameTextBox4.Name = "playerNameTextBox4";
             this.playerNameTextBox4.Size = new System.Drawing.Size(165, 27);
             this.playerNameTextBox4.TabIndex = 10;
+            this.playerNameTextBox4.Tag = "3";
+            this.playerNameTextBox4.Leave += new System.EventHandler(this.OnPlayerNameLeave);
             // 
             // playerNameTextBox5
             // 
@@ -2250,6 +2258,8 @@
             this.playerNameTextBox5.Name = "playerNameTextBox5";
             this.playerNameTextBox5.Size = new System.Drawing.Size(165, 27);
             this.playerNameTextBox5.TabIndex = 13;
+            this.playerNameTextBox5.Tag = "4";
+            this.playerNameTextBox5.Leave += new System.EventHandler(this.OnPlayerNameLeave);
             // 
             // playerNameTextBox6
             // 
@@ -2259,6 +2269,8 @@
             this.playerNameTextBox6.Name = "playerNameTextBox6";
             this.playerNameTextBox6.Size = new System.Drawing.Size(165, 27);
             this.playerNameTextBox6.TabIndex = 16;
+            this.playerNameTextBox6.Tag = "5";
+            this.playerNameTextBox6.Leave += new System.EventHandler(this.OnPlayerNameLeave);
             // 
             // label2
             // 
@@ -2673,33 +2685,33 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(6, 52);
             this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series4.Color = System.Drawing.Color.LimeGreen;
-            series4.IsValueShownAsLabel = true;
-            series4.Legend = "Legend1";
-            series4.Name = "Won Games";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            series5.IsValueShownAsLabel = true;
-            series5.Legend = "Legend1";
-            series5.Name = "Non-defeat";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series6.Color = System.Drawing.Color.Red;
-            series6.IsValueShownAsLabel = true;
-            series6.Legend = "Legend1";
-            series6.Name = "Lost Games";
-            this.chart1.Series.Add(series4);
-            this.chart1.Series.Add(series5);
-            this.chart1.Series.Add(series6);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series1.Color = System.Drawing.Color.LimeGreen;
+            series1.IsValueShownAsLabel = true;
+            series1.Legend = "Legend1";
+            series1.Name = "Won Games";
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            series2.IsValueShownAsLabel = true;
+            series2.Legend = "Legend1";
+            series2.Name = "Non-defeat";
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series3.Color = System.Drawing.Color.Red;
+            series3.IsValueShownAsLabel = true;
+            series3.Legend = "Legend1";
+            series3.Name = "Lost Games";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(351, 157);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";

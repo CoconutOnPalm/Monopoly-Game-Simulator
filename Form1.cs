@@ -96,7 +96,7 @@ namespace Monopoly_Game_Simulator
 
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            
+
         }
 
 
@@ -1449,7 +1449,7 @@ namespace Monopoly_Game_Simulator
                 playerNameTextBox3.Enabled = true;
                 startMoneyTB3.Enabled = true;
                 startDebtTB3.Enabled = true;
-                
+
                 // select the player
                 m_selectedPlayer = m_gameControlHub.Players[2];
                 player3Button.Checked = true;
@@ -1696,6 +1696,24 @@ namespace Monopoly_Game_Simulator
             }
 
             m_gameControlHub.Players[playerIndex].StartMoney = Convert.ToInt32(textBox.Text);
+        }
+
+
+        public void OnPlayerNameLeave(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            int index = Convert.ToInt32(textBox.Tag.ToString());
+
+            if (textBox.Text.Length == 0)
+            {
+                MessageBox.Show("Player name cannot be null");
+                textBox.Text = m_gameControlHub.Players[index].Name;
+            }
+            else
+            {
+                m_gameControlHub.Players[index].Name = textBox.Text;
+                playerNameLabel.Text = m_selectedPlayer.Name;
+            }
         }
 
         public void OnPlayerSettingsLeave(object sender, EventArgs e)
