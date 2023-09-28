@@ -30,11 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea17 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend17 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series49 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series50 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series51 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.orangePanel3 = new System.Windows.Forms.Panel();
             this.orangeLabel3 = new System.Windows.Forms.Label();
@@ -1405,6 +1405,7 @@
             // 
             this.transportImage4.BackColor = System.Drawing.Color.Transparent;
             this.transportImage4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage4.BackgroundImage")));
+            this.transportImage4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.transportImage4.Dock = System.Windows.Forms.DockStyle.Top;
             this.transportImage4.Location = new System.Drawing.Point(0, 35);
             this.transportImage4.Name = "transportImage4";
@@ -1450,6 +1451,7 @@
             // 
             this.transportImage3.BackColor = System.Drawing.Color.Transparent;
             this.transportImage3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage3.BackgroundImage")));
+            this.transportImage3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.transportImage3.Dock = System.Windows.Forms.DockStyle.Top;
             this.transportImage3.Location = new System.Drawing.Point(0, 35);
             this.transportImage3.Name = "transportImage3";
@@ -1495,6 +1497,7 @@
             // 
             this.transportImage2.BackColor = System.Drawing.Color.Transparent;
             this.transportImage2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage2.BackgroundImage")));
+            this.transportImage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.transportImage2.Dock = System.Windows.Forms.DockStyle.Top;
             this.transportImage2.Location = new System.Drawing.Point(0, 35);
             this.transportImage2.Name = "transportImage2";
@@ -1540,6 +1543,7 @@
             // 
             this.transportImage1.BackColor = System.Drawing.Color.Transparent;
             this.transportImage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("transportImage1.BackgroundImage")));
+            this.transportImage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.transportImage1.Dock = System.Windows.Forms.DockStyle.Top;
             this.transportImage1.Location = new System.Drawing.Point(0, 35);
             this.transportImage1.Name = "transportImage1";
@@ -1601,6 +1605,7 @@
             // 
             this.publicServiceImage2.BackColor = System.Drawing.Color.Transparent;
             this.publicServiceImage2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("publicServiceImage2.BackgroundImage")));
+            this.publicServiceImage2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.publicServiceImage2.Dock = System.Windows.Forms.DockStyle.Top;
             this.publicServiceImage2.Location = new System.Drawing.Point(0, 35);
             this.publicServiceImage2.Name = "publicServiceImage2";
@@ -1646,6 +1651,7 @@
             // 
             this.publicServiceImage1.BackColor = System.Drawing.Color.Transparent;
             this.publicServiceImage1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("publicServiceImage1.BackgroundImage")));
+            this.publicServiceImage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.publicServiceImage1.Dock = System.Windows.Forms.DockStyle.Top;
             this.publicServiceImage1.Location = new System.Drawing.Point(0, 35);
             this.publicServiceImage1.Name = "publicServiceImage1";
@@ -1980,7 +1986,8 @@
             this.tableLayoutPanel6.Controls.Add(this.includeCheckBox3, 4, 3);
             this.tableLayoutPanel6.Controls.Add(this.includeCheckBox4, 4, 4);
             this.tableLayoutPanel6.Controls.Add(this.includeCheckBox6, 4, 6);
-            this.tableLayoutPanel6.Location = new System.Drawing.Point(7, 19);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 16);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 7;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
@@ -1990,7 +1997,7 @@
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
-            this.tableLayoutPanel6.Size = new System.Drawing.Size(380, 238);
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(388, 249);
             this.tableLayoutPanel6.TabIndex = 0;
             // 
             // includeCheckBox5
@@ -2000,9 +2007,9 @@
             this.includeCheckBox5.CheckState = System.Windows.Forms.CheckState.Checked;
             this.includeCheckBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.includeCheckBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.includeCheckBox5.Location = new System.Drawing.Point(326, 168);
+            this.includeCheckBox5.Location = new System.Drawing.Point(331, 178);
             this.includeCheckBox5.Name = "includeCheckBox5";
-            this.includeCheckBox5.Size = new System.Drawing.Size(51, 27);
+            this.includeCheckBox5.Size = new System.Drawing.Size(54, 29);
             this.includeCheckBox5.TabIndex = 35;
             this.toolTip1.SetToolTip(this.includeCheckBox5, "Includes/excludes player from simulation\r\nThis lets you manipuilate how many play" +
         "ers\r\ntake part in the game");
@@ -2013,10 +2020,10 @@
             // 
             this.startDebtTB6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startDebtTB6.Location = new System.Drawing.Point(269, 201);
+            this.startDebtTB6.Location = new System.Drawing.Point(273, 213);
             this.startDebtTB6.MaxLength = 4;
             this.startDebtTB6.Name = "startDebtTB6";
-            this.startDebtTB6.Size = new System.Drawing.Size(51, 27);
+            this.startDebtTB6.Size = new System.Drawing.Size(52, 27);
             this.startDebtTB6.TabIndex = 18;
             this.startDebtTB6.Tag = "5";
             this.startDebtTB6.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2026,10 +2033,10 @@
             // 
             this.startMoneyTB6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startMoneyTB6.Location = new System.Drawing.Point(212, 201);
+            this.startMoneyTB6.Location = new System.Drawing.Point(215, 213);
             this.startMoneyTB6.MaxLength = 6;
             this.startMoneyTB6.Name = "startMoneyTB6";
-            this.startMoneyTB6.Size = new System.Drawing.Size(51, 27);
+            this.startMoneyTB6.Size = new System.Drawing.Size(52, 27);
             this.startMoneyTB6.TabIndex = 17;
             this.startMoneyTB6.Tag = "5";
             this.startMoneyTB6.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2039,10 +2046,10 @@
             // 
             this.startDebtTB5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startDebtTB5.Location = new System.Drawing.Point(269, 168);
+            this.startDebtTB5.Location = new System.Drawing.Point(273, 178);
             this.startDebtTB5.MaxLength = 4;
             this.startDebtTB5.Name = "startDebtTB5";
-            this.startDebtTB5.Size = new System.Drawing.Size(51, 27);
+            this.startDebtTB5.Size = new System.Drawing.Size(52, 27);
             this.startDebtTB5.TabIndex = 15;
             this.startDebtTB5.Tag = "4";
             this.startDebtTB5.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2052,10 +2059,10 @@
             // 
             this.startMoneyTB5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startMoneyTB5.Location = new System.Drawing.Point(212, 168);
+            this.startMoneyTB5.Location = new System.Drawing.Point(215, 178);
             this.startMoneyTB5.MaxLength = 6;
             this.startMoneyTB5.Name = "startMoneyTB5";
-            this.startMoneyTB5.Size = new System.Drawing.Size(51, 27);
+            this.startMoneyTB5.Size = new System.Drawing.Size(52, 27);
             this.startMoneyTB5.TabIndex = 14;
             this.startMoneyTB5.Tag = "4";
             this.startMoneyTB5.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2065,10 +2072,10 @@
             // 
             this.startDebtTB4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startDebtTB4.Location = new System.Drawing.Point(269, 135);
+            this.startDebtTB4.Location = new System.Drawing.Point(273, 143);
             this.startDebtTB4.MaxLength = 4;
             this.startDebtTB4.Name = "startDebtTB4";
-            this.startDebtTB4.Size = new System.Drawing.Size(51, 27);
+            this.startDebtTB4.Size = new System.Drawing.Size(52, 27);
             this.startDebtTB4.TabIndex = 12;
             this.startDebtTB4.Tag = "3";
             this.startDebtTB4.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2081,9 +2088,9 @@
             this.player1Button.Checked = true;
             this.player1Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.player1Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.player1Button.Location = new System.Drawing.Point(3, 36);
+            this.player1Button.Location = new System.Drawing.Point(3, 38);
             this.player1Button.Name = "player1Button";
-            this.player1Button.Size = new System.Drawing.Size(32, 27);
+            this.player1Button.Size = new System.Drawing.Size(32, 29);
             this.player1Button.TabIndex = 23;
             this.player1Button.TabStop = true;
             this.player1Button.Text = "1";
@@ -2096,10 +2103,10 @@
             // 
             this.startMoneyTB4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startMoneyTB4.Location = new System.Drawing.Point(212, 135);
+            this.startMoneyTB4.Location = new System.Drawing.Point(215, 143);
             this.startMoneyTB4.MaxLength = 6;
             this.startMoneyTB4.Name = "startMoneyTB4";
-            this.startMoneyTB4.Size = new System.Drawing.Size(51, 27);
+            this.startMoneyTB4.Size = new System.Drawing.Size(52, 27);
             this.startMoneyTB4.TabIndex = 11;
             this.startMoneyTB4.Tag = "3";
             this.startMoneyTB4.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2110,10 +2117,10 @@
             this.startMoneyTB1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
             this.startMoneyTB1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.startMoneyTB1.Location = new System.Drawing.Point(212, 36);
+            this.startMoneyTB1.Location = new System.Drawing.Point(215, 38);
             this.startMoneyTB1.MaxLength = 6;
             this.startMoneyTB1.Name = "startMoneyTB1";
-            this.startMoneyTB1.Size = new System.Drawing.Size(51, 27);
+            this.startMoneyTB1.Size = new System.Drawing.Size(52, 27);
             this.startMoneyTB1.TabIndex = 2;
             this.startMoneyTB1.Tag = "0";
             this.startMoneyTB1.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2123,10 +2130,10 @@
             // 
             this.startDebtTB3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startDebtTB3.Location = new System.Drawing.Point(269, 102);
+            this.startDebtTB3.Location = new System.Drawing.Point(273, 108);
             this.startDebtTB3.MaxLength = 4;
             this.startDebtTB3.Name = "startDebtTB3";
-            this.startDebtTB3.Size = new System.Drawing.Size(51, 27);
+            this.startDebtTB3.Size = new System.Drawing.Size(52, 27);
             this.startDebtTB3.TabIndex = 9;
             this.startDebtTB3.Tag = "2";
             this.startDebtTB3.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2136,10 +2143,10 @@
             // 
             this.startMoneyTB3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startMoneyTB3.Location = new System.Drawing.Point(212, 102);
+            this.startMoneyTB3.Location = new System.Drawing.Point(215, 108);
             this.startMoneyTB3.MaxLength = 6;
             this.startMoneyTB3.Name = "startMoneyTB3";
-            this.startMoneyTB3.Size = new System.Drawing.Size(51, 27);
+            this.startMoneyTB3.Size = new System.Drawing.Size(52, 27);
             this.startMoneyTB3.TabIndex = 8;
             this.startMoneyTB3.Tag = "2";
             this.startMoneyTB3.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2149,10 +2156,10 @@
             // 
             this.startDebtTB2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startDebtTB2.Location = new System.Drawing.Point(269, 69);
+            this.startDebtTB2.Location = new System.Drawing.Point(273, 73);
             this.startDebtTB2.MaxLength = 4;
             this.startDebtTB2.Name = "startDebtTB2";
-            this.startDebtTB2.Size = new System.Drawing.Size(51, 27);
+            this.startDebtTB2.Size = new System.Drawing.Size(52, 27);
             this.startDebtTB2.TabIndex = 6;
             this.startDebtTB2.Tag = "1";
             this.startDebtTB2.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2162,10 +2169,10 @@
             // 
             this.startMoneyTB2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startMoneyTB2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startMoneyTB2.Location = new System.Drawing.Point(212, 69);
+            this.startMoneyTB2.Location = new System.Drawing.Point(215, 73);
             this.startMoneyTB2.MaxLength = 6;
             this.startMoneyTB2.Name = "startMoneyTB2";
-            this.startMoneyTB2.Size = new System.Drawing.Size(51, 27);
+            this.startMoneyTB2.Size = new System.Drawing.Size(52, 27);
             this.startMoneyTB2.TabIndex = 5;
             this.startMoneyTB2.Tag = "1";
             this.startMoneyTB2.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2175,10 +2182,10 @@
             // 
             this.startDebtTB1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.startDebtTB1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.startDebtTB1.Location = new System.Drawing.Point(269, 36);
+            this.startDebtTB1.Location = new System.Drawing.Point(273, 38);
             this.startDebtTB1.MaxLength = 4;
             this.startDebtTB1.Name = "startDebtTB1";
-            this.startDebtTB1.Size = new System.Drawing.Size(51, 27);
+            this.startDebtTB1.Size = new System.Drawing.Size(52, 27);
             this.startDebtTB1.TabIndex = 3;
             this.startDebtTB1.Tag = "0";
             this.startDebtTB1.TextChanged += new System.EventHandler(this.PlayerSettingsTextBox_TextChanged);
@@ -2188,9 +2195,9 @@
             // 
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label4.Location = new System.Drawing.Point(269, 0);
+            this.label4.Location = new System.Drawing.Point(273, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(51, 33);
+            this.label4.Size = new System.Drawing.Size(52, 35);
             this.label4.TabIndex = 8;
             this.label4.Text = "Debt on start";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2199,9 +2206,9 @@
             // 
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label3.Location = new System.Drawing.Point(212, 0);
+            this.label3.Location = new System.Drawing.Point(215, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(51, 33);
+            this.label3.Size = new System.Drawing.Size(52, 35);
             this.label3.TabIndex = 7;
             this.label3.Text = "Money on start";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2210,9 +2217,9 @@
             // 
             this.playerNameTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerNameTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.playerNameTextBox1.Location = new System.Drawing.Point(41, 36);
+            this.playerNameTextBox1.Location = new System.Drawing.Point(41, 38);
             this.playerNameTextBox1.Name = "playerNameTextBox1";
-            this.playerNameTextBox1.Size = new System.Drawing.Size(165, 27);
+            this.playerNameTextBox1.Size = new System.Drawing.Size(168, 27);
             this.playerNameTextBox1.TabIndex = 0;
             this.playerNameTextBox1.Tag = "0";
             this.playerNameTextBox1.Leave += new System.EventHandler(this.OnPlayerNameLeave);
@@ -2221,9 +2228,9 @@
             // 
             this.playerNameTextBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerNameTextBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.playerNameTextBox2.Location = new System.Drawing.Point(41, 69);
+            this.playerNameTextBox2.Location = new System.Drawing.Point(41, 73);
             this.playerNameTextBox2.Name = "playerNameTextBox2";
-            this.playerNameTextBox2.Size = new System.Drawing.Size(165, 27);
+            this.playerNameTextBox2.Size = new System.Drawing.Size(168, 27);
             this.playerNameTextBox2.TabIndex = 4;
             this.playerNameTextBox2.Tag = "1";
             this.playerNameTextBox2.Leave += new System.EventHandler(this.OnPlayerNameLeave);
@@ -2232,9 +2239,9 @@
             // 
             this.playerNameTextBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerNameTextBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.playerNameTextBox3.Location = new System.Drawing.Point(41, 102);
+            this.playerNameTextBox3.Location = new System.Drawing.Point(41, 108);
             this.playerNameTextBox3.Name = "playerNameTextBox3";
-            this.playerNameTextBox3.Size = new System.Drawing.Size(165, 27);
+            this.playerNameTextBox3.Size = new System.Drawing.Size(168, 27);
             this.playerNameTextBox3.TabIndex = 7;
             this.playerNameTextBox3.Tag = "2";
             this.playerNameTextBox3.Leave += new System.EventHandler(this.OnPlayerNameLeave);
@@ -2243,9 +2250,9 @@
             // 
             this.playerNameTextBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerNameTextBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.playerNameTextBox4.Location = new System.Drawing.Point(41, 135);
+            this.playerNameTextBox4.Location = new System.Drawing.Point(41, 143);
             this.playerNameTextBox4.Name = "playerNameTextBox4";
-            this.playerNameTextBox4.Size = new System.Drawing.Size(165, 27);
+            this.playerNameTextBox4.Size = new System.Drawing.Size(168, 27);
             this.playerNameTextBox4.TabIndex = 10;
             this.playerNameTextBox4.Tag = "3";
             this.playerNameTextBox4.Leave += new System.EventHandler(this.OnPlayerNameLeave);
@@ -2254,9 +2261,9 @@
             // 
             this.playerNameTextBox5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerNameTextBox5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.playerNameTextBox5.Location = new System.Drawing.Point(41, 168);
+            this.playerNameTextBox5.Location = new System.Drawing.Point(41, 178);
             this.playerNameTextBox5.Name = "playerNameTextBox5";
-            this.playerNameTextBox5.Size = new System.Drawing.Size(165, 27);
+            this.playerNameTextBox5.Size = new System.Drawing.Size(168, 27);
             this.playerNameTextBox5.TabIndex = 13;
             this.playerNameTextBox5.Tag = "4";
             this.playerNameTextBox5.Leave += new System.EventHandler(this.OnPlayerNameLeave);
@@ -2265,9 +2272,9 @@
             // 
             this.playerNameTextBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.playerNameTextBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.playerNameTextBox6.Location = new System.Drawing.Point(41, 201);
+            this.playerNameTextBox6.Location = new System.Drawing.Point(41, 213);
             this.playerNameTextBox6.Name = "playerNameTextBox6";
-            this.playerNameTextBox6.Size = new System.Drawing.Size(165, 27);
+            this.playerNameTextBox6.Size = new System.Drawing.Size(168, 27);
             this.playerNameTextBox6.TabIndex = 16;
             this.playerNameTextBox6.Tag = "5";
             this.playerNameTextBox6.Leave += new System.EventHandler(this.OnPlayerNameLeave);
@@ -2278,7 +2285,7 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label2.Location = new System.Drawing.Point(41, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(165, 33);
+            this.label2.Size = new System.Drawing.Size(168, 35);
             this.label2.TabIndex = 6;
             this.label2.Text = "Name";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2289,9 +2296,9 @@
             this.player2Button.AutoSize = true;
             this.player2Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.player2Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.player2Button.Location = new System.Drawing.Point(3, 69);
+            this.player2Button.Location = new System.Drawing.Point(3, 73);
             this.player2Button.Name = "player2Button";
-            this.player2Button.Size = new System.Drawing.Size(32, 27);
+            this.player2Button.Size = new System.Drawing.Size(32, 29);
             this.player2Button.TabIndex = 24;
             this.player2Button.Text = "2";
             this.player2Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2305,9 +2312,9 @@
             this.player3Button.AutoSize = true;
             this.player3Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.player3Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.player3Button.Location = new System.Drawing.Point(3, 102);
+            this.player3Button.Location = new System.Drawing.Point(3, 108);
             this.player3Button.Name = "player3Button";
-            this.player3Button.Size = new System.Drawing.Size(32, 27);
+            this.player3Button.Size = new System.Drawing.Size(32, 29);
             this.player3Button.TabIndex = 25;
             this.player3Button.Text = "3";
             this.player3Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2321,9 +2328,9 @@
             this.player4Button.AutoSize = true;
             this.player4Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.player4Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.player4Button.Location = new System.Drawing.Point(3, 135);
+            this.player4Button.Location = new System.Drawing.Point(3, 143);
             this.player4Button.Name = "player4Button";
-            this.player4Button.Size = new System.Drawing.Size(32, 27);
+            this.player4Button.Size = new System.Drawing.Size(32, 29);
             this.player4Button.TabIndex = 26;
             this.player4Button.Text = "4";
             this.player4Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2337,9 +2344,9 @@
             this.player5Button.AutoSize = true;
             this.player5Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.player5Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.player5Button.Location = new System.Drawing.Point(3, 168);
+            this.player5Button.Location = new System.Drawing.Point(3, 178);
             this.player5Button.Name = "player5Button";
-            this.player5Button.Size = new System.Drawing.Size(32, 27);
+            this.player5Button.Size = new System.Drawing.Size(32, 29);
             this.player5Button.TabIndex = 27;
             this.player5Button.Text = "5";
             this.player5Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2353,9 +2360,9 @@
             this.player6Button.AutoSize = true;
             this.player6Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.player6Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.player6Button.Location = new System.Drawing.Point(3, 201);
+            this.player6Button.Location = new System.Drawing.Point(3, 213);
             this.player6Button.Name = "player6Button";
-            this.player6Button.Size = new System.Drawing.Size(32, 34);
+            this.player6Button.Size = new System.Drawing.Size(32, 33);
             this.player6Button.TabIndex = 28;
             this.player6Button.Text = "6";
             this.player6Button.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2367,9 +2374,9 @@
             // 
             this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.label5.Location = new System.Drawing.Point(326, 0);
+            this.label5.Location = new System.Drawing.Point(331, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(51, 33);
+            this.label5.Size = new System.Drawing.Size(54, 35);
             this.label5.TabIndex = 29;
             this.label5.Text = "Include";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -2382,9 +2389,9 @@
             this.includeCheckBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.includeCheckBox1.Enabled = false;
             this.includeCheckBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.includeCheckBox1.Location = new System.Drawing.Point(326, 36);
+            this.includeCheckBox1.Location = new System.Drawing.Point(331, 38);
             this.includeCheckBox1.Name = "includeCheckBox1";
-            this.includeCheckBox1.Size = new System.Drawing.Size(51, 27);
+            this.includeCheckBox1.Size = new System.Drawing.Size(54, 29);
             this.includeCheckBox1.TabIndex = 30;
             this.includeCheckBox1.UseVisualStyleBackColor = true;
             this.includeCheckBox1.CheckedChanged += new System.EventHandler(this.includeCheckBox1_CheckedChanged);
@@ -2397,9 +2404,9 @@
             this.includeCheckBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.includeCheckBox2.Enabled = false;
             this.includeCheckBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.includeCheckBox2.Location = new System.Drawing.Point(326, 69);
+            this.includeCheckBox2.Location = new System.Drawing.Point(331, 73);
             this.includeCheckBox2.Name = "includeCheckBox2";
-            this.includeCheckBox2.Size = new System.Drawing.Size(51, 27);
+            this.includeCheckBox2.Size = new System.Drawing.Size(54, 29);
             this.includeCheckBox2.TabIndex = 31;
             this.includeCheckBox2.UseVisualStyleBackColor = true;
             this.includeCheckBox2.CheckedChanged += new System.EventHandler(this.includeCheckBox2_CheckedChanged);
@@ -2411,9 +2418,9 @@
             this.includeCheckBox3.CheckState = System.Windows.Forms.CheckState.Checked;
             this.includeCheckBox3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.includeCheckBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.includeCheckBox3.Location = new System.Drawing.Point(326, 102);
+            this.includeCheckBox3.Location = new System.Drawing.Point(331, 108);
             this.includeCheckBox3.Name = "includeCheckBox3";
-            this.includeCheckBox3.Size = new System.Drawing.Size(51, 27);
+            this.includeCheckBox3.Size = new System.Drawing.Size(54, 29);
             this.includeCheckBox3.TabIndex = 32;
             this.toolTip1.SetToolTip(this.includeCheckBox3, "Includes/excludes player from simulation\r\nThis lets you manipuilate how many play" +
         "ers\r\ntake part in the game");
@@ -2427,9 +2434,9 @@
             this.includeCheckBox4.CheckState = System.Windows.Forms.CheckState.Checked;
             this.includeCheckBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.includeCheckBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.includeCheckBox4.Location = new System.Drawing.Point(326, 135);
+            this.includeCheckBox4.Location = new System.Drawing.Point(331, 143);
             this.includeCheckBox4.Name = "includeCheckBox4";
-            this.includeCheckBox4.Size = new System.Drawing.Size(51, 27);
+            this.includeCheckBox4.Size = new System.Drawing.Size(54, 29);
             this.includeCheckBox4.TabIndex = 33;
             this.toolTip1.SetToolTip(this.includeCheckBox4, "Includes/excludes player from simulation\r\nThis lets you manipuilate how many play" +
         "ers\r\ntake part in the game");
@@ -2443,9 +2450,9 @@
             this.includeCheckBox6.CheckState = System.Windows.Forms.CheckState.Checked;
             this.includeCheckBox6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.includeCheckBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.includeCheckBox6.Location = new System.Drawing.Point(326, 201);
+            this.includeCheckBox6.Location = new System.Drawing.Point(331, 213);
             this.includeCheckBox6.Name = "includeCheckBox6";
-            this.includeCheckBox6.Size = new System.Drawing.Size(51, 34);
+            this.includeCheckBox6.Size = new System.Drawing.Size(54, 33);
             this.includeCheckBox6.TabIndex = 34;
             this.toolTip1.SetToolTip(this.includeCheckBox6, "Includes/excludes player from simulation\r\nThis lets you manipuilate how many play" +
         "ers\r\ntake part in the game");
@@ -2685,39 +2692,40 @@
             // 
             // chart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart1.Legends.Add(legend2);
+            chartArea17.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea17);
+            legend17.Name = "Legend1";
+            this.chart1.Legends.Add(legend17);
             this.chart1.Location = new System.Drawing.Point(6, 52);
             this.chart1.Name = "chart1";
-            series4.ChartArea = "ChartArea1";
-            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series4.Color = System.Drawing.Color.LimeGreen;
-            series4.IsValueShownAsLabel = true;
-            series4.Legend = "Legend1";
-            series4.Name = "Won Games";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series5.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            series5.IsValueShownAsLabel = true;
-            series5.Legend = "Legend1";
-            series5.Name = "Non-defeat";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
-            series6.Color = System.Drawing.Color.Red;
-            series6.IsValueShownAsLabel = true;
-            series6.Legend = "Legend1";
-            series6.Name = "Lost Games";
-            this.chart1.Series.Add(series4);
-            this.chart1.Series.Add(series5);
-            this.chart1.Series.Add(series6);
+            series49.ChartArea = "ChartArea1";
+            series49.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series49.Color = System.Drawing.Color.LimeGreen;
+            series49.IsValueShownAsLabel = true;
+            series49.Legend = "Legend1";
+            series49.Name = "Won Games";
+            series50.ChartArea = "ChartArea1";
+            series50.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series50.Color = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            series50.IsValueShownAsLabel = true;
+            series50.Legend = "Legend1";
+            series50.Name = "Non-defeat";
+            series51.ChartArea = "ChartArea1";
+            series51.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StackedBar100;
+            series51.Color = System.Drawing.Color.Red;
+            series51.IsValueShownAsLabel = true;
+            series51.Legend = "Legend1";
+            series51.Name = "Lost Games";
+            this.chart1.Series.Add(series49);
+            this.chart1.Series.Add(series50);
+            this.chart1.Series.Add(series51);
             this.chart1.Size = new System.Drawing.Size(351, 157);
             this.chart1.TabIndex = 8;
             this.chart1.Text = "chart1";
             // 
             // openChartButtonMM
             // 
+            this.openChartButtonMM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.openChartButtonMM.Image = ((System.Drawing.Image)(resources.GetObject("openChartButtonMM.Image")));
             this.openChartButtonMM.Location = new System.Drawing.Point(269, 11);
             this.openChartButtonMM.Name = "openChartButtonMM";
@@ -2767,6 +2775,7 @@
             // 
             // openChartButtonSM
             // 
+            this.openChartButtonSM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.openChartButtonSM.Image = ((System.Drawing.Image)(resources.GetObject("openChartButtonSM.Image")));
             this.openChartButtonSM.Location = new System.Drawing.Point(269, 11);
             this.openChartButtonSM.Name = "openChartButtonSM";
@@ -3217,6 +3226,7 @@
             // importButton
             // 
             this.importButton.BackgroundImage = global::Monopoly_Game_Simulator.Properties.Resources.ImportButton1;
+            this.importButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.importButton.Location = new System.Drawing.Point(294, 510);
             this.importButton.Name = "importButton";
             this.importButton.Size = new System.Drawing.Size(35, 35);
@@ -3228,6 +3238,7 @@
             // exportButton
             // 
             this.exportButton.BackgroundImage = global::Monopoly_Game_Simulator.Properties.Resources.ExportButton;
+            this.exportButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.exportButton.Location = new System.Drawing.Point(335, 510);
             this.exportButton.Name = "exportButton";
             this.exportButton.Size = new System.Drawing.Size(35, 35);
@@ -3274,6 +3285,7 @@
             this.Name = "MainWindow";
             this.Text = "Monopoly Game Simulator";
             this.Load += new System.EventHandler(this.MainWindow_Load);
+            this.SizeChanged += new System.EventHandler(this.MainWindow_SizeChanged);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.orangePanel3.ResumeLayout(false);
             this.orangePanel2.ResumeLayout(false);

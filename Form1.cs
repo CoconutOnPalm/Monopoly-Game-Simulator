@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace Monopoly_Game_Simulator
 {
@@ -27,6 +28,10 @@ namespace Monopoly_Game_Simulator
 
     public partial class MainWindow : Form
     {
+        /// <summary>
+        /// WARTNING! Experimental
+        /// </summary>
+        const bool DISABLE_WINDOW_RESIZE = true;
 
         public Color m_defaultTileColor = new Color();
         public Color m_selectedTileColor = new Color();
@@ -45,10 +50,18 @@ namespace Monopoly_Game_Simulator
 
         private double m_progressBarValue = 0;
 
+        private SizeF m_default_window_size;
+        private SizeF m_winSizeOnStart;
+        private double m_window_ratio = 0;
+
 
         public MainWindow()
         {
             InitializeComponent();
+
+            m_default_window_size = this.Size;
+            m_window_ratio = Size.Width / Size.Height;
+            m_winSizeOnStart = Size; 
 
             m_gameControlHub = new SimulationLayer.GameControlHub();
             var good = m_gameControlHub.Init();
@@ -97,6 +110,78 @@ namespace Monopoly_Game_Simulator
         private void MainWindow_Load(object sender, EventArgs e)
         {
 
+        }
+
+
+        private void MainWindow_SizeChanged(object sender, EventArgs e)
+        {
+            if (DISABLE_WINDOW_RESIZE)
+                return;
+
+            if (this.WindowState == FormWindowState.Minimized)
+                return;
+
+            SizeF scale = new SizeF(this.Width / m_default_window_size.Width, this.Height / m_default_window_size.Height);
+            if (Width / Height <= m_window_ratio)
+                scale.Height = scale.Width;
+            else
+                scale.Width = scale.Height;
+
+            if (Math.Abs(1 - Width / m_default_window_size.Width) <= 0.2 || WindowState == FormWindowState.Maximized || this.Size == m_winSizeOnStart)
+            {
+                m_default_window_size = this.Size;
+                ResizeControl(tableLayoutPanel1, scale);
+                ResizeControl(tableLayoutPanel2, scale);
+                ResizeControl(tableLayoutPanel3, scale);
+                ResizeControl(tableLayoutPanel4, scale);
+                ResizeControl(playerManagerGroupBox, scale);
+
+                simSettingsGroupBox.Scale(scale);
+                propertyManagerGroupBox.Scale(scale);
+                simOutputGroupBox.Scale(scale);
+
+                selectWholeStreet.Scale(scale);
+                importButton.Scale(scale);
+                exportButton.Scale(scale);
+                logDataButton.Scale(scale);
+
+                ResizeFont(playerManagerGroupBox, scale.Width);
+            }
+            //ResizeFont(simSettingsGroupBox, scale.Width);
+
+            this.AutoSize = true;
+            this.AutoSize = false;
+        }
+
+
+        private void ResizeControl(Control self, SizeF factor)
+        {
+            self.BeginInvoke(new Action(() =>
+            {
+                if (self != this)
+                {
+                    if (self.Dock == DockStyle.None)
+                        self.Scale(factor);
+                }
+
+                foreach (Control control in self.Controls)
+                {
+                    if (control.GetType() != typeof(ListBox))
+                        ResizeControl(control, factor);
+                }
+            }));
+        }
+
+        private void ResizeFont(Control self, float factor)
+        {
+            foreach (Control control in self.Controls)
+            {
+                if (control.GetType() == typeof(GroupBox))
+                    continue;
+                float size = control.Font.Size;
+                control.Font = new Font("Microsoft Sans Serif", size * factor);
+                ResizeFont(control, factor);
+            }
         }
 
 
