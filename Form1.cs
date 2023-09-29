@@ -31,7 +31,7 @@ namespace Monopoly_Game_Simulator
         /// <summary>
         /// WARTNING! Experimental
         /// </summary>
-        const bool DISABLE_WINDOW_RESIZE = true;
+        const bool DISABLE_WINDOW_RESIZE = false;
 
         public Color m_defaultTileColor = new Color();
         public Color m_selectedTileColor = new Color();
@@ -112,22 +112,34 @@ namespace Monopoly_Game_Simulator
 
         }
 
+        // to avoid flickering (at least that's what StackOverflow said)
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams handleParam = base.CreateParams;
+                handleParam.ExStyle |= 0x02000000;   // WS_EX_COMPOSITED       
+                return handleParam;
+            }
+        }
+
 
         private void MainWindow_SizeChanged(object sender, EventArgs e)
         {
             if (DISABLE_WINDOW_RESIZE)
                 return;
 
+            // don't change anytginh when minimized
             if (this.WindowState == FormWindowState.Minimized)
                 return;
 
             SizeF scale = new SizeF(this.Width / m_default_window_size.Width, this.Height / m_default_window_size.Height);
-            if (Width / Height <= m_window_ratio)
-                scale.Height = scale.Width;
-            else
-                scale.Width = scale.Height;
+            //if (Width / Height <= m_window_ratio)
+            //    scale.Height = scale.Width;
+            //else
+            //    scale.Width = scale.Height;
 
-            if (Math.Abs(1 - Width / m_default_window_size.Width) <= 0.2 || WindowState == FormWindowState.Maximized || this.Size == m_winSizeOnStart)
+            //if (Math.Abs(1 - Width / m_default_window_size.Width) <= 0.2 || WindowState == FormWindowState.Maximized || this.Size == m_winSizeOnStart)
             {
                 m_default_window_size = this.Size;
                 ResizeControl(tableLayoutPanel1, scale);
@@ -148,9 +160,6 @@ namespace Monopoly_Game_Simulator
                 ResizeFont(playerManagerGroupBox, scale.Width);
             }
             //ResizeFont(simSettingsGroupBox, scale.Width);
-
-            this.AutoSize = true;
-            this.AutoSize = false;
         }
 
 

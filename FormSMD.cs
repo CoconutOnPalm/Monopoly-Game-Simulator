@@ -120,12 +120,15 @@ namespace Monopoly_Game_Simulator
 
             for (int playerIndex = 0; playerIndex < controlHub.Players.Count; playerIndex++)
             {
-                for (int i = 0; i < data.PlayerMoneyTracker[playerIndex].Count; i++)
+                if (controlHub.Players[playerIndex].Playing)
                 {
-                    var playerName = controlHub.Players[playerIndex].Name;
+                    for (int i = 0; i < data.PlayerMoneyTracker[playerIndex].Count; i++)
+                    {
+                        var playerName = controlHub.Players[playerIndex].Name;
 
-                    chart3.Series[playerIndex].Points.AddXY(i, data.PlayerMoneyTracker[playerIndex][i].second);
-                    chart3.Series[playerIndex].Name = playerName;
+                        chart3.Series[playerIndex].Points.AddXY(i, data.PlayerMoneyTracker[playerIndex][i].second);
+                        chart3.Series[playerIndex].Name = playerName;
+                    }
                 }
             }
         }
@@ -177,13 +180,13 @@ namespace Monopoly_Game_Simulator
                     switch (ext)
                     {
                         case ".png":
-                            format = ImageFormat.Png; 
+                            format = ImageFormat.Png;
                             break;
                         case ".jpg":
-                            format = ImageFormat.Jpeg; 
+                            format = ImageFormat.Jpeg;
                             break;
                         case ".bmp":
-                            format = ImageFormat.Bmp; 
+                            format = ImageFormat.Bmp;
                             break;
                         default:
                             MessageBox.Show("Incorrect extention: " + ext);
